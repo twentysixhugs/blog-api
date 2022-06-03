@@ -10,3 +10,7 @@ export type MiddlewareFn = (
   res: express.Response,
   next: express.NextFunction,
 ) => void;
+
+export type ExpressUser = {
+  id: string;
+};

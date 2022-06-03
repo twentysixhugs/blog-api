@@ -39,4 +39,4 @@ blogPostSchema.virtual('datePublishedFormatted').get(function () {
   );
 });
 
-export default model('blogpost', blogPostSchema);
+export default model('Blogpost', blogPostSchema);

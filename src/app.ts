@@ -5,6 +5,7 @@ import * as logger from 'morgan';
 import { ResponseError } from './types';
 
 import indexRouter from './routes/index';
+import userRouterAPI from './routes/api/user';
 
 import 'dotenv/config';
 import mongoose from 'mongoose';
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
+app.use('/api', userRouterAPI);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

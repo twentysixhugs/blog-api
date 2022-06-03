@@ -1,7 +1,7 @@
 import { Schema, model, SchemaTypes, Types } from 'mongoose';
 import { DateTime } from 'luxon';
 
-interface IBlogPost {
+export interface IBlogPost {
   title: string;
   text: string;
   datePublished: Date | null;

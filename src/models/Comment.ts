@@ -1,7 +1,7 @@
 import { Schema, model, SchemaTypes, Types } from 'mongoose';
 import { DateTime } from 'luxon';
 
-interface IComment {
+export interface IComment {
   author: Types.ObjectId;
   text: string;
   date: Date;

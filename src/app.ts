@@ -6,6 +6,7 @@ import { ResponseError } from './types';
 
 import indexRouter from './routes/index';
 import userRouterAPI from './routes/api/user';
+import blogPostRouterAPI from './routes/api/blogpost';
 
 import 'dotenv/config';
 import mongoose from 'mongoose';
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/api', userRouterAPI);
+app.use('/api', blogPostRouterAPI);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

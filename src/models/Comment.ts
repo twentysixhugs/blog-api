@@ -2,7 +2,7 @@ import { Schema, model, SchemaTypes, Types } from 'mongoose';
 import { DateTime } from 'luxon';
 
 export interface IComment {
-  author: Types.ObjectId;
+  author: string;
   text: string;
   date: Date;
   post: Types.ObjectId;
@@ -10,10 +10,7 @@ export interface IComment {
 }
 
 const commentSchema = new Schema<IComment>({
-  author: {
-    type: SchemaTypes.ObjectId,
-    ref: 'User',
-  },
+  author: String,
   post: {
     type: SchemaTypes.ObjectId,
     ref: 'Post',

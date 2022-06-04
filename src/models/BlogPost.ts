@@ -5,6 +5,7 @@ export interface IBlogPost {
   title: string;
   text: string;
   datePublished: Date | null;
+  dateEdited: Date | null;
   author: Types.ObjectId;
   url: string;
   datePublishedFormatted: string;
@@ -24,14 +25,14 @@ blogPostSchema.virtual('url').get(function () {
   return `/posts/${this._id}`;
 });
 
-blogPostSchema.virtual('datePublishedFormatted').get(function () {
-  // return null or formatted date
-  return (
-    this.datePublished &&
-    DateTime.fromJSDate(this.datePublished).toLocaleString(
-      DateTime.DATE_MED,
-    )
-  );
-});
+blogPostSchema
+  .virtual('formattedDate')
+  .get(function (date: 'datePublished' | 'dateEdited') {
+    // return null or formatted date
+    return (
+      this[date] &&
+      DateTime.fromJSDate(this[date]!).toLocaleString(DateTime.DATE_MED)
+    );
+  });
 
-export default model('Blogpost', blogPostSchema);
+export default model('blogpost', blogPostSchema);

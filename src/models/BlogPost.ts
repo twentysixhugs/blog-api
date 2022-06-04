@@ -6,7 +6,6 @@ export interface IBlogPost {
   text: string;
   datePublished: Date | null;
   author: Types.ObjectId;
-  comments: Types.ObjectId;
   url: string;
   datePublishedFormatted: string;
 }
@@ -18,10 +17,6 @@ const blogPostSchema = new Schema<IBlogPost>({
   author: {
     type: SchemaTypes.ObjectId,
     ref: 'user',
-  },
-  comments: {
-    type: SchemaTypes.ObjectId,
-    ref: 'comment',
   },
 });
 

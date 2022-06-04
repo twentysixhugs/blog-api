@@ -5,13 +5,18 @@ export interface IComment {
   author: Types.ObjectId;
   text: string;
   date: Date;
+  post: Types.ObjectId;
   dateFormatted: string;
 }
 
 const commentSchema = new Schema<IComment>({
   author: {
     type: SchemaTypes.ObjectId,
-    ref: 'user',
+    ref: 'User',
+  },
+  post: {
+    type: SchemaTypes.ObjectId,
+    ref: 'Post',
   },
   text: String,
   date: Date,

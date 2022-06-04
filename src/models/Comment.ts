@@ -26,4 +26,4 @@ commentSchema.virtual('dateFormatted').get(function () {
   return DateTime.fromJSDate(this.date).toLocaleString(DateTime.DATE_MED);
 });
 
-export default model('Comment', commentSchema);
+export default model('comment', commentSchema);

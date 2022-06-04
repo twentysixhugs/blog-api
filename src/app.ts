@@ -44,7 +44,10 @@ app.use(function (
 
   // render the error page
   res.status(err.status || 500);
-  res.send(err.message);
+  res.json({
+    success: false,
+    errors: [{ msg: err.message, status: err.status }],
+  });
 });
 
 export default app;

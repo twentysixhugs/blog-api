@@ -1,4 +1,4 @@
-import { MiddlewareFn, ExpressUser } from '../types';
+import { MiddlewareFn } from '../types';
 import {
   ValidationChain,
   validationResult,
@@ -9,7 +9,8 @@ import passport from '../config/passport';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
-import User from '../models/User';
+import User, { IUser } from '../models/User';
+import { HydratedDocument } from 'mongoose';
 
 const signupPOST = (() => {
   const validationChain: ValidationChain[] = [
@@ -95,7 +96,7 @@ const loginPOST = (() => {
       }
 
       const token = jwt.sign(
-        { sub: (req.user as ExpressUser).id },
+        { sub: (req.user as HydratedDocument<IUser>).id },
         process.env.JWTSECRET!,
         {
           expiresIn: '180d',

@@ -211,7 +211,6 @@ const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
       .skip(perPage * page)
       .sort({ datePublished: 'desc' });
 
-    console.log(blogPosts);
     return res.json({ success: true, blogPosts: blogPosts });
   } catch (err) {
     return next(err);

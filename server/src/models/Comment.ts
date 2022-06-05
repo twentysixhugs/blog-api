@@ -6,7 +6,6 @@ export interface IComment {
   text: string;
   date: Date;
   post: Types.ObjectId;
-  dateFormatted: string;
 }
 
 const commentSchema = new Schema<IComment>({
@@ -16,11 +15,6 @@ const commentSchema = new Schema<IComment>({
     ref: 'Post',
   },
   text: String,
-  date: Date,
-});
-
-commentSchema.virtual('dateFormatted').get(function () {
-  return DateTime.fromJSDate(this.date).toLocaleString(DateTime.DATE_MED);
 });
 
 export default model('comment', commentSchema);

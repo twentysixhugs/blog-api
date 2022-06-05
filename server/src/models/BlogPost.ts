@@ -8,33 +8,18 @@ export interface IBlogPost {
   dateEdited: Date | null;
   author: Types.ObjectId;
   previewUrl: string;
-  url: string;
-  datePublishedFormatted: string;
 }
 
 const blogPostSchema = new Schema<IBlogPost>({
   title: String,
   text: String,
   datePublished: SchemaTypes.Mixed,
+  dateEdited: SchemaTypes.Mixed,
   author: {
     type: SchemaTypes.ObjectId,
     ref: 'user',
   },
   previewUrl: String,
 });
-
-blogPostSchema.virtual('url').get(function () {
-  return `/posts/${this._id}`;
-});
-
-blogPostSchema
-  .virtual('formattedDate')
-  .get(function (date: 'datePublished' | 'dateEdited') {
-    // return null or formatted date
-    return (
-      this[date] &&
-      DateTime.fromJSDate(this[date]!).toLocaleString(DateTime.DATE_MED)
-    );
-  });
 
 export default model('blogpost', blogPostSchema);

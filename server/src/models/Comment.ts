@@ -1,5 +1,4 @@
 import { Schema, model, SchemaTypes, Types } from 'mongoose';
-import { DateTime } from 'luxon';
 
 export interface IComment {
   author: string;

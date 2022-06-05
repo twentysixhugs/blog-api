@@ -45,8 +45,6 @@ const signupPOST = (() => {
     async (req, res, next) => {
       const errors = await validationResult(req);
 
-      console.log(req.body);
-
       if (!errors.isEmpty()) {
         return res.json({ ...req.body, success: false, errors: errors });
       }

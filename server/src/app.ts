@@ -2,6 +2,7 @@ import * as createError from 'http-errors';
 import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
+import * as cors from 'cors';
 import { ResponseError } from './types';
 
 import userRouterAPI from './routes/api/user';
@@ -18,6 +19,7 @@ mongoose.connect(mongodb);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

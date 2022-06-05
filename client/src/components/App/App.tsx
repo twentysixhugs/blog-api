@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../Header';
-import Posts from '../Posts';
+import Posts from '../../pages/Posts';
+import Post from '../../pages/Post';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Posts />}></Route>
+          <Route path="posts/:postId" element={<Post />}></Route>
         </Routes>
       </BrowserRouter>
     </>

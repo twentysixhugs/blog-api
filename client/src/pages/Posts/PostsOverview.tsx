@@ -1,4 +1,4 @@
-import Card from '../Card';
+import Card from '../../components/Card';
 import { IPost } from '../../types';
 
 interface IPostsOverviewProps {
@@ -18,11 +18,10 @@ export default function PostsOverview({ posts }: IPostsOverviewProps) {
         className="c-card--main"
       ></Card>
       {posts.slice(1).map((post) => {
-        console.log(post._id);
         return (
           <Card
             key={post._id}
-            date={post.datePublishedFormatted!}
+            date={post.datePublishedFormatted}
             title={post.title}
             subtitle={'Build subtitle'}
             imgUrl={post.previewUrl}

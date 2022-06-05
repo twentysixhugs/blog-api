@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { IPost, IPostAPI } from '../../types';
-import { formatDate } from '../helpers/formatDate';
+import { IPost, IPostsResponse } from '../../types';
+import { formatDate } from '../../components/helpers/formatDate';
 import PostsOverview from './PostsOverview';
 
 export default function Posts() {
   const [posts, setPosts] = useState<null | IPost[]>(null);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -15,15 +15,13 @@ export default function Posts() {
           { mode: 'cors' },
         );
 
-        const data = await res.json();
+        const data: IPostsResponse = await res.json();
 
-        const blogPosts: IPost[] = (data.blogPosts as IPostAPI[]).map(
-          (post) => ({
-            ...post,
-            datePublishedFormatted: formatDate(post.datePublished!),
-            url: `/posts/${post._id}`,
-          }),
-        );
+        const blogPosts: IPost[] = data.blogPosts.map((post) => ({
+          ...post,
+          datePublishedFormatted: formatDate(post.datePublished!),
+          url: `/posts/${post._id}`,
+        }));
 
         setPosts(blogPosts);
       } catch (err) {
@@ -35,6 +33,6 @@ export default function Posts() {
       setIsError(false);
     });
   }, []);
-  // TODO: Refactor with loading HOC
+
   return <>{posts && <PostsOverview posts={posts} />}</>;
 }

@@ -184,7 +184,10 @@ const blogPostDELETE = (() => {
 
 const blogPostGET: MiddlewareFn = async (req, res, next) => {
   try {
-    const blogPost = await BlogPost.findById(req.params.postId);
+    const blogPost = await BlogPost.find({
+      _id: req.params.postId,
+      datePublished: { $ne: null },
+    });
 
     return res.json({ success: blogPost ? true : false, blogPost });
   } catch (err) {
@@ -206,7 +209,7 @@ const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
 
     const page = Number(req.query.page) || 0;
 
-    const blogPosts = await BlogPost.find()
+    const blogPosts = await BlogPost.find({ datePublished: { $ne: null } })
       .limit(perPage)
       .skip(perPage * page)
       .sort({ datePublished: 'desc' });

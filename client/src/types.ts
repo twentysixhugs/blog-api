@@ -1,24 +1,36 @@
 /* Models */
 
+// User
+
 export interface IUser {
   username: string;
 }
 
-export interface IPost {
-  id: string;
+// Post
+
+export interface IPostAPI {
+  _id: string;
   title: string;
   text: string;
-  datePublished: Date | null;
+  datePublished: string | null;
   author: string;
   previewUrl: string;
+}
+
+export interface IPost extends IPostAPI {
   url: string;
   datePublishedFormatted: string | null;
 }
 
-export interface IComment {
+// Comment
+
+export interface ICommentAPI {
   author: string;
   text: string;
-  date: Date;
+  date: string;
   post: string;
+}
+
+export interface IComment extends ICommentAPI {
   dateFormatted: string;
 }

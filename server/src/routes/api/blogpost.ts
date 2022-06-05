@@ -4,7 +4,7 @@ import * as commentController from '../../controllers/CommentController';
 const router = express.Router();
 
 /* Posts */
-router.get('/posts', blogPostController.blogPostGETAll);
+router.get('/posts', blogPostController.blogPostGETPaginated);
 
 /* Single post */
 

@@ -81,7 +81,6 @@ const blogPostUpdatePUT = (() => {
         return next(err);
       }
 
-      console.log(post.id);
       const author = await User.findById(post.author.id);
 
       if (!author) {
@@ -193,11 +192,27 @@ const blogPostGET: MiddlewareFn = async (req, res, next) => {
   }
 };
 
-const blogPostGETAll: MiddlewareFn = async (req, res, next) => {
+const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
   try {
-    const blogPosts = await BlogPost.find({});
+    let perPage = 4;
 
-    return res.json({ success: true, blogPosts });
+    if (req.query.perpage && Number(req.query.perpage)) {
+      if (Number(req.query.perpage) <= 30) {
+        perPage = Number(req.query.perpage);
+      } else {
+        perPage = 30;
+      }
+    }
+
+    const page = Number(req.query.page) || 0;
+
+    const blogPosts = await BlogPost.find()
+      .limit(perPage)
+      .skip(perPage * page)
+      .sort({ datePublished: 'desc' });
+
+    console.log(blogPosts);
+    return res.json({ success: true, blogPosts: blogPosts });
   } catch (err) {
     return next(err);
   }
@@ -205,7 +220,7 @@ const blogPostGETAll: MiddlewareFn = async (req, res, next) => {
 
 export {
   blogPostGET,
-  blogPostGETAll,
+  blogPostGETPaginated,
   blogPostCreatePOST,
   blogPostUpdatePUT,
   blogPostDELETE,

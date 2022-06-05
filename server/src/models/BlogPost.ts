@@ -7,6 +7,7 @@ export interface IBlogPost {
   datePublished: Date | null;
   dateEdited: Date | null;
   author: Types.ObjectId;
+  previewUrl: string;
   url: string;
   datePublishedFormatted: string;
 }
@@ -19,6 +20,7 @@ const blogPostSchema = new Schema<IBlogPost>({
     type: SchemaTypes.ObjectId,
     ref: 'user',
   },
+  previewUrl: String,
 });
 
 blogPostSchema.virtual('url').get(function () {

@@ -24,6 +24,7 @@ const blogPostCreatePOST = (() => {
         text: req.body.text,
         datePublished: req.body.shouldPublish ? new Date() : null,
         author: (req.user as HydratedDocument<IUser>).id,
+        previewUrl: req.body.previewUrl,
       });
 
       try {
@@ -96,6 +97,7 @@ const blogPostUpdatePUT = (() => {
         text: req.body.text,
         datePublished: req.body.shouldPublish ? new Date() : null,
         author: (req.user as HydratedDocument<IUser>).id,
+        previewUrl: req.body.previewUrl,
         _id: req.params.postId,
       });
 

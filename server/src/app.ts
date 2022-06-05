@@ -4,7 +4,6 @@ import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 import { ResponseError } from './types';
 
-import indexRouter from './routes/index';
 import userRouterAPI from './routes/api/user';
 import blogPostRouterAPI from './routes/api/blogpost';
 
@@ -24,7 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
 app.use('/api', userRouterAPI);
 app.use('/api', blogPostRouterAPI);
 

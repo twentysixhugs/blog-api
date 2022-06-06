@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { IPost, IPostsResponse } from '../../types';
 import { formatDate } from '../../components/helpers/formatDate';
 import PostsOverview from './PostsOverview';
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
 
 export default function Posts() {
   const [posts, setPosts] = useState<null | IPost[]>(null);
@@ -34,5 +36,11 @@ export default function Posts() {
     });
   }, []);
 
-  return <>{posts && <PostsOverview posts={posts} />}</>;
+  if (!posts) {
+    return <Loader />;
+  } else if (isError) {
+    return <Error message="Cannot fetch blog posts data" />;
+  } else {
+    return <PostsOverview posts={posts} />;
+  }
 }

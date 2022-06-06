@@ -5,6 +5,7 @@ const router = express.Router();
 
 /* Posts */
 router.get('/posts', blogPostController.blogPostGETPaginated);
+router.get('/posts/count', blogPostController.blogPostGETCount);
 
 /* Single post */
 

@@ -221,9 +221,22 @@ const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
   }
 };
 
+const blogPostGETCount: MiddlewareFn = async (req, res, next) => {
+  try {
+    const blogPostsCount = await BlogPost.find({
+      datePublished: { $ne: null },
+    }).count();
+
+    res.json({ success: true, blogPostsCount });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 export {
   blogPostGET,
   blogPostGETPaginated,
+  blogPostGETCount,
   blogPostCreatePOST,
   blogPostUpdatePUT,
   blogPostDELETE,

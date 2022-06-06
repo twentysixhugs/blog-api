@@ -3,11 +3,11 @@ import { IPost, IPostsResponse } from '../../types';
 import { formatDate } from '../../components/helpers/formatDate';
 import PostsOverview from './PostsOverview';
 import Loader from '../../components/Loader';
-import Error from '../../components/Error';
+import { default as ErrorComponent } from '../../components/Error';
 
 export default function Posts() {
   const [posts, setPosts] = useState<null | IPost[]>(null);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<null | { message: string }>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -16,6 +16,14 @@ export default function Posts() {
           'http://localhost:3000/api/posts?perpage=7&page=0',
           { mode: 'cors' },
         );
+
+        if (!res.ok) {
+          if (res.status === 404) {
+            setError({ message: 'Post not found' });
+          } else {
+            throw new Error('Cannot fetch post data');
+          }
+        }
 
         const data: IPostsResponse = await res.json();
 
@@ -27,19 +35,15 @@ export default function Posts() {
 
         setPosts(blogPosts);
       } catch (err) {
-        setIsError(true);
+        setError({ message: 'Cannot fetch blog posts data' });
       }
     }
-
-    fetchData().then(() => {
-      setIsError(false);
-    });
   }, []);
 
-  if (!posts) {
+  if (error) {
+    return <ErrorComponent message={error.message} />;
+  } else if (!posts) {
     return <Loader />;
-  } else if (isError) {
-    return <Error message="Cannot fetch blog posts data" />;
   } else {
     return <PostsOverview posts={posts} />;
   }

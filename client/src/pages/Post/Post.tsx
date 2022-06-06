@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Error from '../../components/Error';
+import { default as ErrorComponent } from '../../components/Error';
 import { formatDate } from '../../components/helpers/formatDate';
 import Loader from '../../components/Loader';
 import { IPost, IPostResponse } from '../../types';
 
 export default function Post() {
   const [currentPost, setCurrentPost] = useState<null | IPost>();
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<null | { message: string }>(null);
 
   const { postId } = useParams();
 
@@ -17,6 +17,14 @@ export default function Post() {
         const res = await fetch(
           `http://localhost:3000/api/posts/${postId}`,
         );
+
+        if (!res.ok) {
+          if (res.status === 404) {
+            setError({ message: 'Post not found' });
+          } else {
+            throw new Error('Cannot fetch post data');
+          }
+        }
 
         const data: IPostResponse = await res.json();
 
@@ -28,23 +36,19 @@ export default function Post() {
 
         setCurrentPost(post);
       } catch (err) {
-        setIsError(true);
+        setError({ message: 'Cannot fetch post data' });
       }
     }
-
-    fetchData().then(() => {
-      setIsError(false);
-    });
   }, [postId]);
 
-  if (!currentPost) {
+  if (error) {
+    return <ErrorComponent message={error.message} />;
+  } else if (!currentPost) {
     return (
       <div className="c-post">
         <Loader />
       </div>
     );
-  } else if (isError) {
-    return <Error message="Cannot fetch post data" />;
   } else {
     return (
       <div className="c-post">

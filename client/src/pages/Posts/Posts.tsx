@@ -38,7 +38,7 @@ export default function Posts() {
     fetchData<IPostsResponse>(
       `http://localhost:3000/api/posts?perpage=${POSTS_PER_PAGE}&page=${currentPage}`,
       () => {
-        throw new Error('Cannot fetch post data');
+        throw new Error('Cannot fetch posts data');
       },
       () => {
         throw new Error('Posts not found');

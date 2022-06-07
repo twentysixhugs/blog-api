@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { IPost, IPostsCountResponse, IPostsResponse } from '../../types';
 import { formatDate } from '../../components/helpers/formatDate';
-import PostsOverview from '../../components/PostsOverview/PostsOverview';
+import PostsOverview from '../../components/PostsOverview/';
+import PostsPagination from '../../components/PostsPagination';
 import Loader from '../../components/Loader';
 import { default as ErrorComponent } from '../../components/Error';
-import ReactPaginate from 'react-paginate';
 import fetchData from '../../api/fetchData';
 
 export default function Posts() {
@@ -68,15 +68,16 @@ export default function Posts() {
   } else {
     return (
       <>
-        <PostsOverview posts={posts} />
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageChange}
-          pageRangeDisplayed={3}
-          pageCount={pageCount}
-          previousLabel="< previous"
-        />
+        <PostsOverview posts={posts}>
+          <PostsPagination
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageChange}
+            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            previousLabel="<"
+          />
+        </PostsOverview>
       </>
     );
   }

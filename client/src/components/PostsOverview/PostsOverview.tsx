@@ -4,9 +4,13 @@ import styled from 'styled-components';
 
 interface IPostsOverviewProps {
   posts: IPost[];
+  children?: React.ReactNode;
 }
 
-export default function PostsOverview({ posts }: IPostsOverviewProps) {
+export default function PostsOverview({
+  posts,
+  children,
+}: IPostsOverviewProps) {
   return (
     <Wrapper>
       <Title>The blog</Title>
@@ -23,6 +27,7 @@ export default function PostsOverview({ posts }: IPostsOverviewProps) {
           );
         })}
       </PostsWrapper>
+      {children}
     </Wrapper>
   );
 }

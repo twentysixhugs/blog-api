@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 80px;
+  min-height: var(--header-offset);
   background: #000;
 `;
 

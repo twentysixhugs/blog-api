@@ -35,7 +35,7 @@ const commentCREATE = (() => {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.json({ success: false, errors });
+        return res.json({ success: false, errors: errors.mapped() });
       }
 
       const comment = new Comment({

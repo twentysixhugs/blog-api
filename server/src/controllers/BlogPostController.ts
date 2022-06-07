@@ -8,6 +8,7 @@ import BlogPost from '../models/BlogPost';
 import User, { IUser } from '../models/User';
 import { MiddlewareFn, ResponseError } from '../types';
 import { HydratedDocument } from 'mongoose';
+import { UploadedFile } from 'express-fileupload';
 
 const blogPostCreatePOST = (() => {
   const middlewareChain: MiddlewareFn[] = [
@@ -24,7 +25,7 @@ const blogPostCreatePOST = (() => {
         text: req.body.text,
         datePublished: req.body.shouldPublish ? new Date() : null,
         author: (req.user as HydratedDocument<IUser>).id,
-        previewUrl: req.body.previewUrl,
+        preview: (req.files?.preview as UploadedFile).data,
       });
 
       try {
@@ -68,7 +69,7 @@ const blogPostUpdatePUT = (() => {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.json({ success: false, errors });
+        return res.json({ success: false, errors: errors.mapped() });
       }
 
       const post = await BlogPost.findById(req.params.postId).populate(
@@ -96,7 +97,7 @@ const blogPostUpdatePUT = (() => {
         text: req.body.text,
         datePublished: req.body.shouldPublish ? new Date() : null,
         author: (req.user as HydratedDocument<IUser>).id,
-        previewUrl: req.body.previewUrl,
+        preview: (req.files?.preview as UploadedFile).data,
         _id: req.params.postId,
       });
 

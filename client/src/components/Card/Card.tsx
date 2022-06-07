@@ -45,7 +45,7 @@ const Title = styled.h2`
 
 const Subtitle = styled.p`
   font-size: 1rem;
-  color: #bbbbbb;
+  color: #707070;
 `;
 
 const Date = styled.span`

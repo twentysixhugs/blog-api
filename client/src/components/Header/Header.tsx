@@ -11,7 +11,7 @@ export default function Header() {
       </Title>
       <Links>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/about">About</StyledLink>
+        <StyledLinkWithMargin to="/about">About</StyledLinkWithMargin>
       </Links>
     </StyledHeader>
   );
@@ -38,7 +38,7 @@ const Title = styled.h1`
   align-items: center;
   font-size: 2rem;
   font-weight: 800;
-  color: #ffc068;
+  color: #ffa268;
 `;
 
 const Links = styled.div`
@@ -48,8 +48,6 @@ const Links = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 16px;
-
-  padding: 0 32px;
 
   font-size: 1.2rem;
 `;
@@ -61,4 +59,7 @@ const StyledLink = styled(NavLink)`
   &.active {
     text-decoration: underline;
   }
+`;
+const StyledLinkWithMargin = styled(StyledLink)`
+  margin-right: 32px;
 `;

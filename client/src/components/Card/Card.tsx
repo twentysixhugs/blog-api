@@ -7,6 +7,7 @@ interface ICardProps {
   title: string;
   subtitle: string;
   contentUrl: string;
+  className?: string;
 }
 
 export default function Card({
@@ -14,6 +15,7 @@ export default function Card({
   title,
   subtitle,
   contentUrl,
+  className,
 }: ICardProps) {
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ export default function Card({
   };
 
   return (
-    <Wrapper onClick={handleCardOpen}>
+    <Wrapper className={className} onClick={handleCardOpen}>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
       <Date>{date}</Date>

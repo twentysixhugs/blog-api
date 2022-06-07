@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IPost, IPostsCountResponse, IPostsResponse } from '../../types';
 import { formatDate } from '../../components/helpers/formatDate';
-import PostsOverview from './PostsOverview';
+import PostsOverview from '../../components/PostsOverview/PostsOverview';
 import Loader from '../../components/Loader';
 import { default as ErrorComponent } from '../../components/Error';
 import ReactPaginate from 'react-paginate';

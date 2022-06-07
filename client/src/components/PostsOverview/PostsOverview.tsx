@@ -1,4 +1,4 @@
-import Card from '../../components/Card';
+import Card from '../Card';
 import { IPost } from '../../types';
 
 interface IPostsOverviewProps {

@@ -5,7 +5,6 @@ interface ICardProps {
   date: string;
   title: string;
   subtitle: string;
-  imgUrl: string;
   contentUrl: string;
   className?: string;
 }
@@ -14,7 +13,6 @@ export default function Card({
   date,
   title,
   subtitle,
-  imgUrl,
   contentUrl,
   className,
 }: ICardProps) {
@@ -29,7 +27,6 @@ export default function Card({
       className={`c-card ${className ? className : ''}`}
       onClick={handleCardOpen}
     >
-      <img className="c-card__img" src={imgUrl} alt=""></img>
       <div className="c-card__info">
         <span className="c-card__date">{date}</span>
         <h2 className="c-card__title">{title}</h2>

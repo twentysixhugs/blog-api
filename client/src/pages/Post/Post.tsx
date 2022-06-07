@@ -54,7 +54,6 @@ export default function Post() {
   } else {
     return (
       <div className="c-post">
-        <img className="c-post__image" src={currentPost.previewUrl}></img>
         <span className="c-post__author">
           {currentPost.author.username}
         </span>

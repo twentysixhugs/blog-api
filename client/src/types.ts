@@ -17,7 +17,6 @@ export interface IPostAPI {
     _id: string;
     username: string;
   };
-  previewUrl: string;
 }
 
 export interface IPost extends IPostAPI {

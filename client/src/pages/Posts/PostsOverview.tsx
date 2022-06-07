@@ -13,7 +13,6 @@ export default function PostsOverview({ posts }: IPostsOverviewProps) {
         date={posts[0].datePublishedFormatted!}
         title={posts[0].title}
         subtitle={'Build subtitle'}
-        imgUrl={posts[0].previewUrl}
         contentUrl={posts[0].url}
         className="c-card--main"
       ></Card>
@@ -24,7 +23,6 @@ export default function PostsOverview({ posts }: IPostsOverviewProps) {
             date={post.datePublishedFormatted}
             title={post.title}
             subtitle={'Build subtitle'}
-            imgUrl={post.previewUrl}
             contentUrl={post.url}
           ></Card>
         );

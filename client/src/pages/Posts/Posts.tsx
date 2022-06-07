@@ -5,6 +5,7 @@ import PostsOverview from './PostsOverview';
 import Loader from '../../components/Loader';
 import { default as ErrorComponent } from '../../components/Error';
 import ReactPaginate from 'react-paginate';
+import fetchData from '../../api/fetchData';
 
 export default function Posts() {
   const [posts, setPosts] = useState<null | IPost[]>(null);
@@ -16,7 +17,15 @@ export default function Posts() {
   const POSTS_PER_PAGE = 7;
 
   useEffect(() => {
-    fetchData<IPostsCountResponse>(`http://localhost:3000/api/posts/count`)
+    fetchData<IPostsCountResponse>(
+      `http://localhost:3000/api/posts/count`,
+      () => {
+        throw new Error('Cannot fetch post data');
+      },
+      () => {
+        throw new Error('Posts not found');
+      },
+    )
       .then((data) => {
         setPageCount(Math.ceil(data.blogPostsCount / POSTS_PER_PAGE));
       })
@@ -28,6 +37,12 @@ export default function Posts() {
   useEffect(() => {
     fetchData<IPostsResponse>(
       `http://localhost:3000/api/posts?perpage=${POSTS_PER_PAGE}&page=${currentPage}`,
+      () => {
+        throw new Error('Cannot fetch post data');
+      },
+      () => {
+        throw new Error('Posts not found');
+      },
     )
       .then((data) => {
         const blogPosts: IPost[] = data.blogPosts.map((post) => ({
@@ -41,22 +56,6 @@ export default function Posts() {
         setError(err);
       });
   }, [currentPage]);
-
-  async function fetchData<T>(url: string): Promise<T> {
-    const res = await fetch(url, { mode: 'cors' });
-
-    if (!res.ok) {
-      if (res.status === 404) {
-        setError({ message: 'Post not found' });
-      } else {
-        throw new Error('Cannot fetch post data');
-      }
-    }
-
-    const data = await res.json();
-
-    return data;
-  }
 
   const handlePageChange = (event: { selected: number }) => {
     setCurrentPage(event.selected);

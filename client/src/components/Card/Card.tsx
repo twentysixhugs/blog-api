@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface ICardProps {
   date: string;
   title: string;
   subtitle: string;
   contentUrl: string;
-  className?: string;
 }
 
 export default function Card({
@@ -14,7 +14,6 @@ export default function Card({
   title,
   subtitle,
   contentUrl,
-  className,
 }: ICardProps) {
   const navigate = useNavigate();
 
@@ -23,15 +22,33 @@ export default function Card({
   };
 
   return (
-    <div
-      className={`c-card ${className ? className : ''}`}
-      onClick={handleCardOpen}
-    >
-      <div className="c-card__info">
-        <span className="c-card__date">{date}</span>
-        <h2 className="c-card__title">{title}</h2>
-        <p className="c-card__subtitle">{subtitle}</p>
-      </div>
-    </div>
+    <Wrapper onClick={handleCardOpen}>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+      <Date>{date}</Date>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  padding: 12px 24px;
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+  border-bottom: 1px solid #bbbbbb;
+`;
+
+const Title = styled.h2`
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1rem;
+  color: #bbbbbb;
+`;
+
+const Date = styled.span`
+  font-size: 0.8rem;
+  color: #bbbbbb;
+`;

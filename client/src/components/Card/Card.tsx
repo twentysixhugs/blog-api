@@ -36,6 +36,7 @@ const Wrapper = styled.div`
   flex-flow: column;
   gap: 8px;
   border-bottom: 1px solid #bbbbbb;
+  cursor: pointer;
 `;
 
 const Title = styled.h2`

@@ -31,7 +31,7 @@ export default function Card({
 }
 
 const Wrapper = styled.div`
-  padding: 12px 24px;
+  padding: 24px;
   display: flex;
   flex-flow: column;
   gap: 8px;

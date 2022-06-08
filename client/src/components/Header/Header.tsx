@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Header() {
@@ -6,8 +6,12 @@ export default function Header() {
     <StyledHeader>
       <InvisibleWrapper></InvisibleWrapper>
       <Title>
-        <span>Self-discipline</span>
-        <span>database</span>
+        <Link className="title__link" to="/">
+          Self-discipline
+        </Link>
+        <Link className="title__link" to="/">
+          database
+        </Link>
       </Title>
       <Links>
         <StyledLink to="/">Home</StyledLink>
@@ -38,7 +42,11 @@ const Title = styled.h1`
   align-items: center;
   font-size: 2rem;
   font-weight: 800;
-  color: #ffa268;
+
+  & .title__link {
+    text-decoration: none;
+    color: #ffa268;
+  }
 `;
 
 const Links = styled.div`

@@ -40,22 +40,22 @@ export interface IComment extends ICommentAPI {
 
 /* API Responses */
 
-interface Response {
+export interface APIResponse {
   success: boolean;
 }
 
-export interface IPostResponse extends Response {
+export interface IPostResponse extends APIResponse {
   blogPost: IPostAPI;
 }
 
-export interface IPostsResponse extends Response {
+export interface IPostsResponse extends APIResponse {
   blogPosts: IPostAPI[];
 }
 
-export interface IPostsCountResponse extends Response {
+export interface IPostsCountResponse extends APIResponse {
   blogPostsCount: number;
 }
 
-export interface ICommentsResponse extends Response {
+export interface ICommentsResponse extends APIResponse {
   comments: ICommentAPI[];
 }

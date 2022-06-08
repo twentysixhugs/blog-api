@@ -7,10 +7,7 @@ export default function Header() {
       <InvisibleWrapper></InvisibleWrapper>
       <Title>
         <Link className="title__link" to="/">
-          Self-discipline
-        </Link>
-        <Link className="title__link" to="/">
-          database
+          Twenty Six Hugs
         </Link>
       </Title>
       <Links>
@@ -38,7 +35,6 @@ const InvisibleWrapper = styled.div`
 
 const Title = styled.h1`
   display: flex;
-  flex-flow: column;
   align-items: center;
   font-size: 2rem;
   font-weight: 800;

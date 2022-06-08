@@ -21,7 +21,7 @@ router.delete('/posts/:postId', blogPostController.blogPostDELETE);
 
 router.get(
   '/posts/:postId/comments',
-  commentController.commentAllBlogPostGET,
+  commentController.allBlogPostCommentsGET,
 );
 router.post(
   '/posts/:postId/comments/new',

@@ -10,7 +10,7 @@ import passport from '../config/passport';
 import BlogPost from '../models/BlogPost';
 import { HydratedDocument } from 'mongoose';
 
-const commentAllBlogPostGET: MiddlewareFn = async (req, res, next) => {
+const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
   try {
     const comments = await Comment.find({ post: req.params.postId });
     return res.json({ success: true, comments });
@@ -92,4 +92,4 @@ const commentDELETE = (() => {
   return [...middlewareChain];
 })();
 
-export { commentAllBlogPostGET, commentCREATE, commentDELETE };
+export { allBlogPostCommentsGET, commentCREATE, commentDELETE };

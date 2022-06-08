@@ -13,7 +13,10 @@ const commentSchema = new Schema<IComment>({
     type: SchemaTypes.ObjectId,
     ref: 'Post',
   },
-  text: String,
+  text: {
+    type: String,
+  },
+  date: Date,
 });
 
 export default model('comment', commentSchema);

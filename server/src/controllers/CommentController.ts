@@ -13,6 +13,7 @@ import { HydratedDocument } from 'mongoose';
 const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
   try {
     const comments = await Comment.find({ post: req.params.postId });
+    console.log(comments);
     return res.json({ success: true, comments });
   } catch (err) {
     return next(err);
@@ -23,15 +24,14 @@ const commentCREATE = (() => {
   const validationChain: ValidationChain[] = [
     body('author')
       .trim()
-      .escape()
       .customSanitizer((value) => {
         if (!value) {
           return 'Anonymous';
         }
+        return value;
       }),
     body('text')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('Comment should contain something, right?'),
@@ -45,6 +45,19 @@ const commentCREATE = (() => {
         return res.json({ success: false, errors: errors.mapped() });
       }
 
+      const post = await BlogPost.findOne({ _id: req.params.postId });
+
+      if (!post) {
+        const err: ResponseError = new Error();
+        err.status = 404;
+        res.status(404);
+        return next(err);
+      }
+
+      if (!post.datePublished) {
+        return res.json({ success: false });
+      }
+
       const comment = new Comment({
         text: req.body.text,
         author: req.body.author,
@@ -54,7 +67,7 @@ const commentCREATE = (() => {
       try {
         await comment.save();
 
-        return res.json({ success: true });
+        return res.json({ success: true, comment });
       } catch (err) {
         return next(err);
       }

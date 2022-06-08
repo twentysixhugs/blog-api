@@ -39,19 +39,16 @@ const blogPostCreatePOST = (() => {
   const validationChain: ValidationChain[] = [
     body('title')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('Title should not be empty'),
     body('text')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('Text should not be empty. Write something :)'),
     body('shouldPublish')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('But should I publish it or not?'),
@@ -111,19 +108,16 @@ const blogPostUpdatePUT = (() => {
   const validationChain: ValidationChain[] = [
     body('title')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('Title should not be empty'),
     body('text')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('Text should not be empty. Write something :)'),
     body('shouldPublish')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('But should I publish it or not?'),

@@ -16,7 +16,6 @@ const signupPOST = (() => {
   const validationChain: ValidationChain[] = [
     body('username')
       .trim()
-      .escape()
       .not()
       .isEmpty()
       .withMessage('Username is required')
@@ -79,8 +78,7 @@ const loginPOST = (() => {
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Username is required')
-      .escape(),
+      .withMessage('Username is required'),
     body('password').not().isEmpty().withMessage('Password is required'),
   ];
 

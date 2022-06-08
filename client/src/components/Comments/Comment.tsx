@@ -9,23 +9,40 @@ interface ICommentProps {
 export default function Comment({ author, text, date }: ICommentProps) {
   return (
     <Wrapper>
-      <Author>{author}</Author>
+      <CommentInfo>
+        <Author>{author}</Author>
+        &#8226;
+        <Date>{date}</Date>
+      </CommentInfo>
       <Text>{text}</Text>
-      <Date>{date}</Date>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  margin-top: 3rem;
+  padding: 1.7rem;
+
   display: flex;
   flex-flow: column;
-  padding: 0.3rem;
-  border-bottom: 1px solid #e4e4e4;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
 `;
 
-const Author = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
+const CommentInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  font-size: 0.7rem;
+
+  color: #979797;
+`;
+
+const Author = styled.span`
+  font-size: 1.2rem;
+  color: #464646;
 `;
 
 const Text = styled.p`
@@ -35,6 +52,8 @@ const Text = styled.p`
 `;
 
 const Date = styled.span`
+  margin-top: 2px;
   font-size: 0.9rem;
+  line-height: 1.5;
   color: #636363;
 `;

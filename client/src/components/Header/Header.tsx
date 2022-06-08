@@ -7,7 +7,7 @@ export default function Header() {
       <InvisibleWrapper></InvisibleWrapper>
       <Title>
         <Link className="title__link" to="/">
-          Twenty Six Hugs
+          TWENTY SIX HUGS
         </Link>
       </Title>
       <Links>
@@ -41,7 +41,7 @@ const Title = styled.h1`
 
   & .title__link {
     text-decoration: none;
-    color: #ffa268;
+    color: #ffbb68;
   }
 `;
 

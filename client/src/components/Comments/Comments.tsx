@@ -14,6 +14,7 @@ export default function Comments({
 }: ICommentsProps) {
   return (
     <>
+      <CommentsHeading>Comments</CommentsHeading>
       <CommentForm onSubmit={onNewComment} />
       {comments.length > 0 ? (
         comments.map((comment) => (
@@ -25,8 +26,23 @@ export default function Comments({
           />
         ))
       ) : (
-        <span>There are no comments yet. Be the first :)</span>
+        <NoComments>There are no comments yet. Be the first :)</NoComments>
       )}
     </>
   );
 }
+
+const CommentsHeading = styled.h2`
+  margin-top: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+`;
+
+const NoComments = styled.div`
+  margin-top: 80px;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  color: #333333;
+`;

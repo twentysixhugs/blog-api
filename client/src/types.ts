@@ -56,6 +56,10 @@ export interface IPostsCountResponse extends APIResponse {
   blogPostsCount: number;
 }
 
+export interface ICommentResponse extends APIResponse {
+  comment: ICommentAPI;
+}
+
 export interface ICommentsResponse extends APIResponse {
   comments: ICommentAPI[];
 }

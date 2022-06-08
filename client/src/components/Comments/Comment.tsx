@@ -7,6 +7,7 @@ interface ICommentProps {
 }
 
 export default function Comment({ author, text, date }: ICommentProps) {
+  console.log(text);
   return (
     <Wrapper>
       <Author>{author}</Author>

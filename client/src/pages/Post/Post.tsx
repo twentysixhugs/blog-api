@@ -9,14 +9,15 @@ import {
   IPostResponse,
   IComment,
   ICommentsResponse,
+  ICommentResponse,
 } from '../../types';
 import fetchData from '../../api/fetchData';
 
 export default function Post() {
   const [currentPost, setCurrentPost] = useState<null | IPost>();
   const [currentPostComments, setCurrentPostComments] = useState<
-    null | IComment[]
-  >();
+    IComment[] | null
+  >(null);
   const [error, setError] = useState<null | { message: string }>(null);
 
   const { postId } = useParams();
@@ -75,7 +76,45 @@ export default function Post() {
       });
   }, [postId]);
 
-  const handleNewComment = (author: string, text: string) => {};
+  const handleNewComment = async (author: string, text: string) => {
+    try {
+      const commentCreationResult = await fetchData<ICommentResponse>(
+        `http://localhost:3000/api/posts/${postId}/comments/new`,
+        {
+          mode: 'cors',
+          method: 'POST',
+          body: JSON.stringify({ author, text }),
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        },
+        () => {
+          throw new Error('Something went wrong, cannot add a comment');
+        },
+        () => {
+          throw new Error(
+            'The post you are trying to add a comment for is not found. Are you a hacker?',
+          );
+        },
+      );
+
+      if (commentCreationResult.success) {
+        const processedComment = {
+          ...commentCreationResult.comment,
+          dateFormatted: formatDate(commentCreationResult.comment.date),
+        };
+        setCurrentPostComments(
+          currentPostComments && [
+            ...currentPostComments,
+            processedComment,
+          ],
+        );
+      }
+    } catch (err) {
+      setError(err as { message: string });
+    }
+  };
 
   if (error) {
     return <ErrorComponent message={error.message} />;
@@ -87,14 +126,16 @@ export default function Post() {
     );
   } else {
     return (
-      <PostComponent
-        author={currentPost.author.username}
-        date={currentPost.datePublishedFormatted}
-        title={currentPost.title}
-        text={currentPost.text}
-        comments={currentPostComments}
-        onNewComment={handleNewComment}
-      />
+      <>
+        <PostComponent
+          author={currentPost.author.username}
+          date={currentPost.datePublishedFormatted}
+          title={currentPost.title}
+          text={currentPost.text}
+          comments={currentPostComments}
+          onNewComment={handleNewComment}
+        />
+      </>
     );
   }
 }

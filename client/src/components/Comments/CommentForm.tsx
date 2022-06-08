@@ -20,6 +20,7 @@ export default function CommentForm({ onSubmit }: ICommentFormProps) {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     onSubmit(inputFields.author, inputFields.text);
+    setInputFields({ author: '', text: '' });
   };
 
   return (

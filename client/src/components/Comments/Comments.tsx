@@ -12,17 +12,22 @@ export default function Comments({
   comments,
   onNewComment,
 }: ICommentsProps) {
+  console.log(comments);
   return (
     <>
       <CommentForm onSubmit={onNewComment} />
-      {comments.map((comment) => (
-        <Comment
-          key={comment._id}
-          text={comment.text}
-          author={comment.author}
-          date={comment.dateFormatted}
-        />
-      ))}
+      {comments.length > 0 ? (
+        comments.map((comment) => (
+          <Comment
+            key={comment._id}
+            text={comment.text}
+            author={comment.author}
+            date={comment.dateFormatted}
+          />
+        ))
+      ) : (
+        <span>There are no comments yet. Be the first :)</span>
+      )}
     </>
   );
 }

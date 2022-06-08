@@ -19,6 +19,7 @@ export default function Posts() {
   useEffect(() => {
     fetchData<IPostsCountResponse>(
       `http://localhost:3000/api/posts/count`,
+      { mode: 'cors' },
       () => {
         throw new Error('Cannot fetch post data');
       },
@@ -37,6 +38,7 @@ export default function Posts() {
   useEffect(() => {
     fetchData<IPostsResponse>(
       `http://localhost:3000/api/posts?perpage=${POSTS_PER_PAGE}&page=${currentPage}`,
+      { mode: 'cors' },
       () => {
         throw new Error('Cannot fetch posts data');
       },

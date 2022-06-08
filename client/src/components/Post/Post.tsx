@@ -1,13 +1,24 @@
 import styled from 'styled-components';
+import { IComment } from '../../types';
+import Comments from '../Comments';
 
 interface IPostProps {
   author: string;
   title: string;
   date: string;
   text: string;
+  comments: IComment[];
+  onNewComment: (author: string, text: string) => void;
 }
 
-export default function Post({ author, title, date, text }: IPostProps) {
+export default function Post({
+  author,
+  title,
+  date,
+  text,
+  comments,
+  onNewComment,
+}: IPostProps) {
   return (
     <StyledPost>
       <Title>{title}</Title>
@@ -16,6 +27,7 @@ export default function Post({ author, title, date, text }: IPostProps) {
         <span>{author}</span>
       </DateAuthorWrapper>
       <Text>{text}</Text>
+      <Comments comments={comments} onNewComment={onNewComment} />
     </StyledPost>
   );
 }

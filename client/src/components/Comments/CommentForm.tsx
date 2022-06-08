@@ -43,7 +43,7 @@ export default function CommentForm({ onSubmit }: ICommentFormProps) {
           placeholder="What do you feel like?"
         ></Textarea>
       </UserInputWrapper>
-      <SubmitButton>Submit</SubmitButton>
+      <SubmitButton>Post a reply</SubmitButton>
     </Form>
   );
 }

@@ -21,6 +21,14 @@ const StyledReactPaginate = styled(ReactPaginate)`
   align-items: center;
   margin-top: 15px;
 
+  &,
+  & > * {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
   .page {
     width: max-content;
     padding: 0.3rem;

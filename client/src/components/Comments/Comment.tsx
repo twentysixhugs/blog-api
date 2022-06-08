@@ -7,7 +7,6 @@ interface ICommentProps {
 }
 
 export default function Comment({ author, text, date }: ICommentProps) {
-  console.log(text);
   return (
     <Wrapper>
       <Author>{author}</Author>
@@ -36,6 +35,6 @@ const Text = styled.p`
 `;
 
 const Date = styled.span`
-  font-size: 0.7rem;
-  color: #d6d6d6;
+  font-size: 0.9rem;
+  color: #636363;
 `;

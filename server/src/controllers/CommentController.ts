@@ -13,7 +13,6 @@ import { HydratedDocument } from 'mongoose';
 const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
   try {
     const comments = await Comment.find({ post: req.params.postId });
-    console.log(comments);
     return res.json({ success: true, comments });
   } catch (err) {
     return next(err);

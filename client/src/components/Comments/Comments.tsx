@@ -12,7 +12,6 @@ export default function Comments({
   comments,
   onNewComment,
 }: ICommentsProps) {
-  console.log(comments);
   return (
     <>
       <CommentForm onSubmit={onNewComment} />

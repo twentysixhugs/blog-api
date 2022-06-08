@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { default as ErrorComponent } from '../../components/Error';
+import { default as PostComponent } from '../../components/Post';
 import { formatDate } from '../../components/helpers/formatDate';
 import Loader from '../../components/Loader';
 import { IPost, IPostResponse } from '../../types';
@@ -45,16 +46,12 @@ export default function Post() {
     );
   } else {
     return (
-      <div className="c-post">
-        <span className="c-post__author">
-          {currentPost.author.username}
-        </span>
-        <span className="c-post__date">
-          {currentPost.datePublishedFormatted}
-        </span>
-        <h1 className="c-post__title">{currentPost.title}</h1>
-        <p className="c-post__text">{currentPost.text}</p>
-      </div>
+      <PostComponent
+        author={currentPost.author.username}
+        date={currentPost.datePublishedFormatted}
+        title={currentPost.title}
+        text={currentPost.text}
+      />
     );
   }
 }

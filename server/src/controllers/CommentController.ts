@@ -21,7 +21,14 @@ const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
 
 const commentCREATE = (() => {
   const validationChain: ValidationChain[] = [
-    body('author').trim().escape(),
+    body('author')
+      .trim()
+      .escape()
+      .customSanitizer((value) => {
+        if (!value) {
+          return 'Anonymous';
+        }
+      }),
     body('text')
       .trim()
       .escape()

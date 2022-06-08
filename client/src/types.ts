@@ -27,6 +27,7 @@ export interface IPost extends IPostAPI {
 // Comment
 
 export interface ICommentAPI {
+  _id: string;
   author: string;
   text: string;
   date: string;

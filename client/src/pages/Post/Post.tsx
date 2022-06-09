@@ -86,7 +86,6 @@ export default function Post() {
           body: JSON.stringify({ author, text }),
           headers: {
             'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         },
         () => {

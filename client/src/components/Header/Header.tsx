@@ -54,7 +54,7 @@ const Title = styled.h1`
   }
 
   @media (max-width: 500px) {
-    font-size: 1rem;
+    font-size: 0.7rem;
     text-align: center;
     margin-inline: 20px;
   }

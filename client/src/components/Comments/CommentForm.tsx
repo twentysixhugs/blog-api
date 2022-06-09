@@ -7,40 +7,68 @@ interface ICommentFormProps {
 
 export default function CommentForm({ onSubmit }: ICommentFormProps) {
   const [inputFields, setInputFields] = useState({
-    author: '',
-    text: '',
+    author: {
+      value: '',
+      required: false,
+    },
+    text: {
+      value: '',
+      required: true,
+    },
   });
 
   const handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = (e) => {
-    setInputFields({ ...inputFields, [e.target.name]: e.target.value });
+    if (e.target.name in inputFields)
+      setInputFields({
+        ...inputFields,
+        [e.target.name]: {
+          ...inputFields[e.target.name as keyof typeof inputFields],
+          value: e.target.value,
+        },
+      });
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    onSubmit(inputFields.author, inputFields.text);
-    setInputFields({ author: '', text: '' });
+    onSubmit(inputFields.author.value, inputFields.text.value);
+
+    const resetInputFields = { ...inputFields };
+
+    for (const prop in inputFields) {
+      const typedProp = prop as keyof typeof inputFields;
+
+      resetInputFields[typedProp] = {
+        ...inputFields[typedProp],
+        value: '',
+      };
+    }
+
+    setInputFields(resetInputFields);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Errors></Errors>
       <UserInputWrapper>
         <Label>Your name</Label>
         <Input
           name="author"
           onChange={handleChange}
-          value={inputFields.author}
+          value={inputFields.author.value}
           placeholder="Anonymous"
           autoComplete="off"
         ></Input>
       </UserInputWrapper>
       <UserInputWrapper>
-        <Label>Your message</Label>
+        <Label>
+          Your message <Required>*</Required>
+        </Label>
         <Textarea
           name="text"
           onChange={handleChange}
-          value={inputFields.text}
+          value={inputFields.text.value}
           placeholder="What do you think?"
         ></Textarea>
       </UserInputWrapper>
@@ -54,6 +82,10 @@ const Form = styled.form`
   display: flex;
   flex-flow: column;
   gap: 16px;
+`;
+
+const Errors = styled.div`
+  color: #e94b4b;
 `;
 
 const UserInputWrapper = styled.div`
@@ -102,6 +134,10 @@ const Textarea = styled.textarea`
   @media (max-width: 500px) {
     min-height: 8rem;
   }
+`;
+
+const Required = styled.span`
+  color: #e94b4b;
 `;
 
 const SubmitButton = styled.button`

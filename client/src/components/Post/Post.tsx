@@ -34,11 +34,19 @@ export default function Post({
 
 const StyledPost = styled.div`
   padding: 50px 20vw;
+
+  @media (max-width: 1000px) {
+    padding: 50px 8vw;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 800;
+
+  @media (max-width: 500px) {
+    font-size: 2rem;
+  }
 `;
 
 const DateAuthorWrapper = styled.div`
@@ -53,4 +61,9 @@ const Text = styled.p`
 
   line-height: 1.8;
   font-size: 1.3rem;
+
+  @media (max-width: 500px) {
+    line-height: 1.6;
+    font-size: 1.2rem;
+  }
 `;

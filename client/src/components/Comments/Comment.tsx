@@ -27,6 +27,10 @@ const Wrapper = styled.div`
   flex-flow: column;
   border: 1px solid #e4e4e4;
   border-radius: 12px;
+
+  @media (max-width: 500px) {
+    padding: 1.2rem 1rem;
+  }
 `;
 
 const CommentInfo = styled.div`

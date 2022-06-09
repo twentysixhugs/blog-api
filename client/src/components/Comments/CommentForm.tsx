@@ -98,6 +98,10 @@ const Textarea = styled.textarea`
     outline: none;
     border: 1px solid #9e9e9e;
   }
+
+  @media (max-width: 500px) {
+    min-height: 8rem;
+  }
 `;
 
 const SubmitButton = styled.button`

@@ -31,6 +31,10 @@ const InvisibleWrapper = styled.div`
   visibility: hidden;
   margin-right: auto;
   flex: 1;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h1`
@@ -42,6 +46,17 @@ const Title = styled.h1`
   & .title__link {
     text-decoration: none;
     color: #ffbb68;
+  }
+
+  @media (max-width: 700px) {
+    font-size: 1.3rem;
+    margin-left: 32px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    text-align: center;
+    margin-inline: 20px;
   }
 `;
 

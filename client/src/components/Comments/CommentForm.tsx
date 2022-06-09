@@ -17,6 +17,12 @@ export default function CommentForm({ onSubmit }: ICommentFormProps) {
     },
   });
 
+  const [errors, setErrors] = useState<string[]>([]);
+
+  const validationErrors = {
+    requiredFields: 'Please, fill out the required fields.',
+  };
+
   const handleChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = (e) => {
@@ -29,9 +35,34 @@ export default function CommentForm({ onSubmit }: ICommentFormProps) {
         },
       });
   };
+  const validateRequiredFields = () => {
+    for (const prop in inputFields) {
+      const typedProp = prop as keyof typeof inputFields;
+
+      if (
+        !inputFields[typedProp].value &&
+        inputFields[typedProp].required
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
+    if (!validateRequiredFields()) {
+      // Prevent doubly showing the same message
+      if (!errors.find((err) => err === validationErrors.requiredFields)) {
+        setErrors([...errors, validationErrors.requiredFields]);
+      }
+      return;
+    } else {
+      setErrors([]);
+    }
+
     onSubmit(inputFields.author.value, inputFields.text.value);
 
     const resetInputFields = { ...inputFields };
@@ -50,7 +81,7 @@ export default function CommentForm({ onSubmit }: ICommentFormProps) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Errors></Errors>
+      <Errors>{errors}</Errors>
       <UserInputWrapper>
         <Label>Your name</Label>
         <Input

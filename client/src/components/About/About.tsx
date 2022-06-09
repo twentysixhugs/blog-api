@@ -25,13 +25,13 @@ const Wrapper = styled.div`
   min-height: calc(100vh - var(--header-offset));
   display: flex;
   align-items: center;
-  padding: 0 30vw;
+  padding: 0 25vw;
 
   @media (max-width: 1200px) {
     padding: 0 15vw;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 700px) {
     padding: 5vh 5vw;
   }
 `;

@@ -54,12 +54,20 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   gap: 16px;
+
+  @media (max-width: 700px) {
+    padding: 50px 5vw;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 800;
   animation: ${appear} 0.5s ease-out both;
+
+  @media (max-width: 500px) {
+    font-size: 2rem;
+  }
 `;
 
 const PostsWrapper = styled.div`

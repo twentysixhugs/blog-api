@@ -9,7 +9,7 @@ export default function Loader() {
 }
 
 const Wrapper = styled.div`
-  height: calc(100vh - var(--header-offset));
+  min-height: calc(100vh - var(--header-offset));
   display: flex;
   align-items: center;
   justify-content: center;

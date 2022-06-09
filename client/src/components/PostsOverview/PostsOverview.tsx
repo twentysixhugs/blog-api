@@ -25,7 +25,7 @@ export default function PostsOverview({
               key={post._id}
               date={post.datePublishedFormatted}
               title={post.title}
-              subtitle={'Build subtitle'}
+              subtitle={post.text.slice(0, 250) + '...'}
               contentUrl={post.url}
               animationDelay={animationDelay}
             />

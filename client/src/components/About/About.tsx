@@ -11,9 +11,9 @@ export default function About() {
           accessing it. It{"'"}s not the first time I work with REST API,
           but it is the first time I build the API myself. I create the
           blog posts using CMS, store them on the backend made with Express
-          & MongoDB and fetch from there. You can browse through the posts
-          page by page, open one, leave a comment and see what others think
-          about it.
+          & MongoDB and make available here. You can browse through the
+          posts page by page, open one, leave a comment and see what others
+          think about it.
         </Description>
         <Links></Links>
       </Content>

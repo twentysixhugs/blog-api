@@ -1,8 +1,8 @@
-export default function GithubLink() {
+export default function GithubLink({ className }: { className?: string }) {
   return (
     <div className="c-game-result__link">
       <a
-        className="c-game-result__link-anchor"
+        className={className}
         href="https://github.com/twentysixhugs"
         target="_blank"
         rel="noreferrer"

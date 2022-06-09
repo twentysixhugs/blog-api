@@ -1,8 +1,12 @@
-export default function LinkedInLink() {
+export default function LinkedInLink({
+  className,
+}: {
+  className?: string;
+}) {
   return (
     <div className="c-game-result__link">
       <a
-        className="c-game-result__link-anchor"
+        className={className}
         href="https://www.linkedin.com/in/iaan-lamanosau/"
         target="_blank"
         rel="noreferrer"

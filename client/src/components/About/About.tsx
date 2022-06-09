@@ -22,10 +22,18 @@ export default function About() {
 }
 
 const Wrapper = styled.div`
-  height: calc(100vh - var(--header-offset));
+  min-height: calc(100vh - var(--header-offset));
   display: flex;
   align-items: center;
   padding: 0 30vw;
+
+  @media (max-width: 1200px) {
+    padding: 0 15vw;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 5vh 5vw;
+  }
 `;
 
 const Content = styled.div`

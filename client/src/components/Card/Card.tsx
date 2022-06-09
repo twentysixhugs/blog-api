@@ -48,6 +48,9 @@ const Title = styled.h2`
 
 const Subtitle = styled.p`
   font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #707070;
 `;
 

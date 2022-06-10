@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Posts from '../pages/Posts';
 import Post from '../pages/Post';
 import About from '../pages/About';
-import { ThemeStore } from '../context/Theme/ThemeContext';
+import { ThemeStore } from '../context/Theme/ThemeStore';
 import Theme from '../context/Theme/Theme';
 
 function App() {

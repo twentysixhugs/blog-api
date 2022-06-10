@@ -1,4 +1,4 @@
-import { useTheme } from '../../../context/Theme/ThemeContext';
+import { useTheme } from '../../../context/Theme/ThemeStore';
 
 export default function GithubLink({ className }: { className?: string }) {
   const theme = useTheme();

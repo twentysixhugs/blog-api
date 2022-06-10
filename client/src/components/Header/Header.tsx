@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import { useTheme } from '../../context/Theme/ThemeContext';
+import { useTheme } from '../../context/Theme/ThemeStore';
 
 import SUN_PIC from './assets/sun.png';
 import MOON_PIC from './assets/moon.png';

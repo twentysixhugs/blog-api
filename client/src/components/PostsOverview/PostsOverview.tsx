@@ -2,7 +2,7 @@ import Card from '../Card';
 import { IPost } from '../../types';
 import styled, { keyframes, ThemeProvider } from 'styled-components';
 
-import { useTheme } from '../../context/Theme/ThemeContext';
+import { useTheme } from '../../context/Theme/ThemeStore';
 
 interface IPostsOverviewProps {
   posts: IPost[];

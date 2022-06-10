@@ -3,10 +3,11 @@ import Header from '../components/Header';
 import Posts from '../pages/Posts';
 import Post from '../pages/Post';
 import About from '../pages/About';
+import { ThemeProvider } from '../context/ThemeContext';
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -15,7 +16,7 @@ function App() {
           <Route path="about" element={<About />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </ThemeProvider>
   );
 }
 

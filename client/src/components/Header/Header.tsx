@@ -1,7 +1,13 @@
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTheme } from '../../context/ThemeContext';
+
+import SUN_PIC from './assets/sun.png';
+import MOON_PIC from './assets/moon.png';
 
 export default function Header() {
+  const theme = useTheme();
+
   return (
     <StyledHeader>
       <InvisibleWrapper></InvisibleWrapper>
@@ -13,6 +19,7 @@ export default function Header() {
       <Nav>
         <StyledLink to="/">Home</StyledLink>
         <StyledLinkWithMargin to="/about">About</StyledLinkWithMargin>
+        <ThemeToggle theme={theme} onClick={theme.toggle}></ThemeToggle>
       </Nav>
     </StyledHeader>
   );
@@ -76,6 +83,7 @@ const StyledLink = styled(NavLink)`
   color: #3f3f3f;
   font-weight: 400;
   text-decoration: none;
+  line-height: 1.1;
   &.active {
     text-decoration: underline;
   }
@@ -83,4 +91,15 @@ const StyledLink = styled(NavLink)`
 
 const StyledLinkWithMargin = styled(StyledLink)`
   margin-right: 32px;
+`;
+
+const ThemeToggle = styled.button`
+  width: calc(var(--header-offset));
+  height: calc(var(--header-offset) / 4);
+
+  background: url(${(props) => (props.theme.isDark ? SUN_PIC : MOON_PIC)});
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  cursor: pointer;
 `;

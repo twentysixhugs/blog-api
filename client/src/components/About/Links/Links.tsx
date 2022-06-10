@@ -51,7 +51,8 @@ const StyledLinkedinLink = styled(LinkedInLink)`
 const ViewCodeLink = styled.a`
   font-weight: 700;
   font-size: 1.1rem;
-  color: ${(props) => (props.theme.isDark ? '#ff975f' : '#006a97')};
+  color: ${(props) =>
+    props.theme.isDark ? 'var(--orange--dark)' : '#006a97'};
 
   &:active {
     color: #009bde;

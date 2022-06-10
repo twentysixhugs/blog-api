@@ -129,7 +129,7 @@ const Label = styled.label`
   font-weight: 700;
   font-size: 1.2rem;
 
-  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#000')};
+  color: ${(props) => (props.theme.isDark ? 'var(--text--dark)' : '#000')};
 `;
 
 const Input = styled.input`
@@ -187,7 +187,8 @@ const SubmitButton = styled.button`
 
   font-size: 1.5rem;
 
-  background: ${(props) => (props.theme.isDark ? '#ff975f' : '#e48729')};
+  background: ${(props) =>
+    props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
   color: ${(props) => (props.theme.isDark ? '#000' : '#fff')};
   border-radius: 12px;
 

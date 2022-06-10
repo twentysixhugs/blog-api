@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   border: 1px solid
-    ${(props) => (props.theme.isDark ? '#3e3e3e' : '#e4e4e4')};
+    ${(props) => (props.theme.isDark ? 'var(--border--dark)' : '#e4e4e4')};
   border-radius: 12px;
 
   @media (max-width: 500px) {
@@ -53,7 +53,8 @@ const Author = styled.span`
 const Text = styled.p`
   font-size: 1.2rem;
   line-height: 1.5;
-  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#525252')};
+  color: ${(props) =>
+    props.theme.isDark ? 'var(--text--dark)' : '#525252'};
 `;
 
 const Date = styled.span`

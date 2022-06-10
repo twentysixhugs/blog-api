@@ -38,7 +38,8 @@ const StyledReactPaginate = styled(ReactPaginate)`
   }
 
   .active {
-    background: ${({ theme }) => (theme.isDark ? '#ff975f' : '#ffc258')};
+    background: ${({ theme }) =>
+      theme.isDark ? 'var(--orange--dark)' : '#ffc258'};
     color: #000;
   }
 

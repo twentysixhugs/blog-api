@@ -37,7 +37,7 @@ const CommentsHeading = styled.h2`
   font-size: 2rem;
   font-weight: 700;
 
-  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#000')};
+  color: ${(props) => (props.theme.isDark ? 'var(--text--dark)' : '#000')};
 `;
 
 const NoComments = styled.div`

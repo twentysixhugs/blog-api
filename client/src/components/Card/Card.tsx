@@ -38,14 +38,14 @@ const Wrapper = styled.div`
   flex-flow: column;
   gap: 8px;
   border-bottom: ${({ theme }) =>
-    theme.isDark ? '1px solid #3e3e3e' : '1px solid #bbbbbb'};
+    theme.isDark ? '1px solid var(--border--dark)' : '1px solid #bbbbbb'};
   cursor: pointer;
 `;
 
 const Title = styled.h2`
   font-size: 1.2rem;
   font-weight: bold;
-  color: ${({ theme }) => (theme.isDark ? '#ff975f' : '#000')};
+  color: ${({ theme }) => (theme.isDark ? 'var(--orange--dark)' : '#000')};
 `;
 
 const Subtitle = styled.p`

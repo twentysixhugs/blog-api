@@ -44,7 +44,7 @@ const Title = styled.h1`
   font-size: 3rem;
   font-weight: 800;
 
-  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#000')};
+  color: ${(props) => (props.theme.isDark ? 'var(--text--dark)' : '#000')};
 
   @media (max-width: 500px) {
     font-size: 2rem;
@@ -56,7 +56,7 @@ const DateAuthorWrapper = styled.div`
   padding-bottom: 0.75rem;
   color: ${(props) => (props.theme.isDark ? '#bababa' : '#525252')};
   border-bottom: 1px solid
-    ${(props) => (props.theme.isDark ? '#3e3e3e' : '#e7e7e7')};
+    ${(props) => (props.theme.isDark ? 'var(--border--dark)' : '#e7e7e7')};
 `;
 
 const Text = styled.p`
@@ -65,7 +65,7 @@ const Text = styled.p`
   line-height: 1.8;
   font-size: 1.3rem;
 
-  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#000')};
+  color: ${(props) => (props.theme.isDark ? 'var(--text--dark)' : '#000')};
 
   @media (max-width: 500px) {
     line-height: 1.6;

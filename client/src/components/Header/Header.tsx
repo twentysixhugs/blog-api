@@ -57,7 +57,8 @@ const Title = styled.h1`
 
   & .title__link {
     text-decoration: none;
-    color: ${({ theme }) => (theme.isDark ? '#ff975f' : '#1c1c1c')};
+    color: ${({ theme }) =>
+      theme.isDark ? 'var(--orange--dark)' : '#1c1c1c'};
   }
 
   @media (max-width: 700px) {
@@ -84,7 +85,8 @@ const Nav = styled.nav`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: ${({ theme }) => (theme.isDark ? '#ff975f' : '#3f3f3f')};
+  color: ${({ theme }) =>
+    theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
   font-weight: 400;
   text-decoration: none;
   line-height: 1.1;

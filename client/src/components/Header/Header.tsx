@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../context/Theme/ThemeContext';
 
 import SUN_PIC from './assets/sun.png';
 import MOON_PIC from './assets/moon.png';
@@ -19,7 +19,7 @@ export default function Header() {
       <Nav>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/about">About</StyledLink>
-        <ThemeToggle theme={theme} onClick={theme.toggle}></ThemeToggle>
+        <ThemeToggle onClick={theme.toggle}></ThemeToggle>
       </Nav>
     </StyledHeader>
   );

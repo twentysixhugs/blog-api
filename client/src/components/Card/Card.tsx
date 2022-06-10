@@ -44,6 +44,7 @@ const Wrapper = styled.div`
 const Title = styled.h2`
   font-size: 1.2rem;
   font-weight: bold;
+  color: ${({ theme }) => (theme.isDark ? '#ff975f' : '#000')};
 `;
 
 const Subtitle = styled.p`

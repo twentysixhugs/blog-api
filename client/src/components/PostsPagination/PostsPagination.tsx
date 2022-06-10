@@ -33,11 +33,13 @@ const StyledReactPaginate = styled(ReactPaginate)`
     width: max-content;
     padding: 0.3rem;
     border-radius: 4px;
+    color: ${({ theme }) => (theme.isDark ? '#ffffff' : '#000000')};
     cursor: pointer;
   }
 
   .active {
-    background: #ffc258;
+    background: ${({ theme }) => (theme.isDark ? '#ff975f' : '#ffc258')};
+    color: #000;
   }
 
   .next,

@@ -41,15 +41,19 @@ const Content = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -12px;
-  border: 1px solid #f1f1f1;
+  box-shadow: ${(props) =>
+    props.theme.isDark
+      ? 'none'
+      : 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -12px'};
+  border: 1px solid
+    ${(props) => (props.theme.isDark ? '#3e3e3e' : '#f1f1f1')};
   border-radius: 12px;
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 700;
+  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#000')};
 `;
 
 const Description = styled.p`
@@ -59,5 +63,5 @@ const Description = styled.p`
   font-size: 1.2rem;
   text-align: center;
 
-  color: #1d1d1d;
+  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#1d1d1d')};
 `;

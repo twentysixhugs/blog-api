@@ -18,7 +18,7 @@ export default function Header() {
       </Title>
       <Nav>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLinkWithMargin to="/about">About</StyledLinkWithMargin>
+        <StyledLink to="/about">About</StyledLink>
         <ThemeToggle theme={theme} onClick={theme.toggle}></ThemeToggle>
       </Nav>
     </StyledHeader>
@@ -26,6 +26,7 @@ export default function Header() {
 }
 
 const StyledHeader = styled.header`
+  padding-inline: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +41,7 @@ const InvisibleWrapper = styled.div`
   margin-right: auto;
   flex: 1;
 
-  @media (max-width: 700px) {
+  @media (max-width: 750px) {
     display: none;
   }
 `;
@@ -89,12 +90,8 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const StyledLinkWithMargin = styled(StyledLink)`
-  margin-right: 32px;
-`;
-
 const ThemeToggle = styled.button`
-  width: calc(var(--header-offset));
+  width: calc(var(--header-offset) / 4);
   height: calc(var(--header-offset) / 4);
 
   background: url(${(props) => (props.theme.isDark ? SUN_PIC : MOON_PIC)});
@@ -102,4 +99,9 @@ const ThemeToggle = styled.button`
   background-size: contain;
 
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    background-position: center;
+    width: calc(var(--header-offset) / 1.5);
+  }
 `;

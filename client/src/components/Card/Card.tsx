@@ -37,7 +37,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   gap: 8px;
-  border-bottom: 1px solid #bbbbbb;
+  border-bottom: ${({ theme }) =>
+    theme.isDark ? '1px solid #3e3e3e' : '1px solid #bbbbbb'};
   cursor: pointer;
 `;
 

@@ -93,6 +93,7 @@ const StyledLink = styled(NavLink)`
 const ThemeToggle = styled.button`
   width: calc(var(--header-offset) / 4);
   height: calc(var(--header-offset) / 4);
+  margin-left: 10px;
 
   background: url(${(props) => (props.theme.isDark ? SUN_PIC : MOON_PIC)});
   background-repeat: no-repeat;

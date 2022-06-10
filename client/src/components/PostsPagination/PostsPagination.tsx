@@ -33,7 +33,7 @@ const StyledReactPaginate = styled(ReactPaginate)`
     width: max-content;
     padding: 0.3rem;
     border-radius: 4px;
-    color: ${({ theme }) => (theme.isDark ? '#ffffff' : '#000000')};
+    color: ${({ theme }) => (theme.isDark ? '#d8d8d8' : '#000000')};
     cursor: pointer;
   }
 
@@ -58,6 +58,6 @@ const StyledReactPaginate = styled(ReactPaginate)`
   }
 
   .disabled {
-    color: #bcbcbc;
+    color: ${({ theme }) => (theme.isDark ? '#373737' : '#cdcdcd')};
   }
 `;

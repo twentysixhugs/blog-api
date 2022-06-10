@@ -10,10 +10,10 @@ export default function Header() {
           TWENTY SIX HUGS
         </Link>
       </Title>
-      <Links>
+      <Nav>
         <StyledLink to="/">Home</StyledLink>
         <StyledLinkWithMargin to="/about">About</StyledLinkWithMargin>
-      </Links>
+      </Nav>
     </StyledHeader>
   );
 }
@@ -24,7 +24,8 @@ const StyledHeader = styled.header`
   align-items: center;
   width: 100%;
   min-height: var(--header-offset);
-  background: #000;
+  background: #ffffff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
 const InvisibleWrapper = styled.div`
@@ -45,7 +46,7 @@ const Title = styled.h1`
 
   & .title__link {
     text-decoration: none;
-    color: #ffbb68;
+    color: #1c1c1c;
   }
 
   @media (max-width: 700px) {
@@ -60,7 +61,7 @@ const Title = styled.h1`
   }
 `;
 
-const Links = styled.div`
+const Nav = styled.nav`
   margin-left: auto;
   flex: 1;
 
@@ -72,13 +73,14 @@ const Links = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: #ffffff;
-  font-weight: 600;
+  color: #3f3f3f;
+  font-weight: 400;
   text-decoration: none;
   &.active {
     text-decoration: underline;
   }
 `;
+
 const StyledLinkWithMargin = styled(StyledLink)`
   margin-right: 32px;
 `;

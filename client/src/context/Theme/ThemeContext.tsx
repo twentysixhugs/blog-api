@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 export interface IThemeContext {
   isDark: boolean;
@@ -15,6 +15,21 @@ const useTheme = function () {
 
 function ThemeStore({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const localStorageTheme = localStorage.getItem('theme');
+
+    if (!localStorageTheme) {
+      localStorage.setItem('theme', JSON.stringify({ isDark: false }));
+      return;
+    }
+
+    setIsDark(JSON.parse(localStorageTheme).isDark);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify({ isDark }));
+  }, [isDark]);
 
   const toggle = function () {
     setIsDark(!isDark);

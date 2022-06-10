@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-interface IThemeContext {
+export interface IThemeContext {
   isDark: boolean;
   toggle: () => void;
 }

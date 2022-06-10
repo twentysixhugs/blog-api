@@ -60,7 +60,9 @@ export default function Posts() {
   }, [currentPage]);
 
   const handlePageChange = (event: { selected: number }) => {
-    window.scroll({ top: 10, left: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    }, 200);
     setCurrentPage(event.selected);
   };
 

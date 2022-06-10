@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../../context/Theme/ThemeContext';
 
 import SUN_PIC from './assets/sun.png';
@@ -27,13 +27,16 @@ export default function Header() {
 
 const StyledHeader = styled.header`
   padding-inline: 16px;
+  width: 100%;
+  min-height: var(--header-offset);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  min-height: var(--header-offset);
-  background: #ffffff;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  background: ${({ theme }) => (theme.isDark ? '#181818' : '#fff')};
+  box-shadow: ${({ theme }) =>
+    theme.isDark ? 'none' : 'rgba(111, 104, 100, 0.2) 0px 7px 29px 0px'};
 `;
 
 const InvisibleWrapper = styled.div`
@@ -54,7 +57,7 @@ const Title = styled.h1`
 
   & .title__link {
     text-decoration: none;
-    color: #1c1c1c;
+    color: ${({ theme }) => (theme.isDark ? '#ff975f' : '#1c1c1c')};
   }
 
   @media (max-width: 700px) {
@@ -81,7 +84,7 @@ const Nav = styled.nav`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: #3f3f3f;
+  color: ${({ theme }) => (theme.isDark ? '#ff975f' : '#3f3f3f')};
   font-weight: 400;
   text-decoration: none;
   line-height: 1.1;
@@ -95,7 +98,7 @@ const ThemeToggle = styled.button`
   height: calc(var(--header-offset) / 4);
   margin-left: 10px;
 
-  background: url(${(props) => (props.theme.isDark ? SUN_PIC : MOON_PIC)});
+  background: url(${(props) => (props.theme.isDark ? MOON_PIC : SUN_PIC)});
   background-repeat: no-repeat;
   background-size: contain;
 

@@ -109,10 +109,10 @@ export default function CommentForm({ onSubmit }: ICommentFormProps) {
 }
 
 const Form = styled.form`
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-flow: column;
-  gap: 16px;
+  gap: 32px;
 `;
 
 const Errors = styled.div`

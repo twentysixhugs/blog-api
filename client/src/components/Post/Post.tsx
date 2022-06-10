@@ -33,7 +33,7 @@ export default function Post({
 }
 
 const StyledPost = styled.div`
-  padding: 50px 20vw;
+  padding: 80px 20vw;
 
   @media (max-width: 1000px) {
     padding: 50px 8vw;

@@ -128,6 +128,8 @@ const UserInputWrapper = styled.div`
 const Label = styled.label`
   font-weight: 700;
   font-size: 1.2rem;
+
+  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#000')};
 `;
 
 const Input = styled.input`
@@ -137,12 +139,15 @@ const Input = styled.input`
   font-size: 1.1rem;
 
   border-radius: 8px;
-  border: 1px solid #cacaca;
 
   &:focus {
     outline: none;
     border: 1px solid #9e9e9e;
   }
+
+  background: ${(props) => (props.theme.isDark ? '#232323' : '#ffffff')};
+  border: 1px solid
+    ${(props) => (props.theme.isDark ? '#232323' : '#cacaca;')};
 `;
 
 const Textarea = styled.textarea`
@@ -153,10 +158,12 @@ const Textarea = styled.textarea`
   font-family: inherit;
 
   border-radius: 8px;
-  border: 1px solid #cacaca;
 
   resize: none;
 
+  background: ${(props) => (props.theme.isDark ? '#232323' : '#ffffff')};
+  border: 1px solid
+    ${(props) => (props.theme.isDark ? '#232323' : '#cacaca;')};
   &:focus {
     outline: none;
     border: 1px solid #9e9e9e;
@@ -180,8 +187,8 @@ const SubmitButton = styled.button`
 
   font-size: 1.5rem;
 
-  color: #fff;
-  background: #e48729;
+  background: ${(props) => (props.theme.isDark ? '#ff975f' : '#e48729')};
+  color: ${(props) => (props.theme.isDark ? '#000' : '#fff')};
   border-radius: 12px;
 
   cursor: pointer;

@@ -25,7 +25,8 @@ const Wrapper = styled.div`
 
   display: flex;
   flex-flow: column;
-  border: 1px solid #e4e4e4;
+  border: 1px solid
+    ${(props) => (props.theme.isDark ? '#3e3e3e' : '#e4e4e4')};
   border-radius: 12px;
 
   @media (max-width: 500px) {
@@ -46,13 +47,13 @@ const CommentInfo = styled.div`
 
 const Author = styled.span`
   font-size: 1.2rem;
-  color: #464646;
+  color: ${(props) => (props.theme.isDark ? '#a0a0a0' : '#464646')};
 `;
 
 const Text = styled.p`
   font-size: 1.2rem;
   line-height: 1.5;
-  color: #1b1b1b;
+  color: ${(props) => (props.theme.isDark ? '#e2e2e2' : '#525252')};
 `;
 
 const Date = styled.span`

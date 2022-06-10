@@ -9,24 +9,22 @@ const ThemeContext = React.createContext<IThemeContext>(
   {} as IThemeContext,
 );
 
-export function useTheme() {
+const useTheme = function () {
   return useContext(ThemeContext);
-}
+};
 
-export function ThemeProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function ThemeStore({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(false);
 
-  const updateTheme = function () {
+  const toggle = function () {
     setIsDark(!isDark);
   };
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggle: updateTheme }}>
+    <ThemeContext.Provider value={{ isDark, toggle }}>
       {children}
     </ThemeContext.Provider>
   );
 }
+
+export { ThemeContext, ThemeStore, useTheme };

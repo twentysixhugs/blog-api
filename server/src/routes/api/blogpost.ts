@@ -9,7 +9,7 @@ router.get('/posts/count', blogPostController.getTotalCount);
 
 router.get('/posts/author', blogPostController.getAuthorsOwnPaginated);
 router.get(
-  '/posts/author/count',
+  '/author/posts/count',
   blogPostController.getAuthorsOwnTotalCount,
 );
 
@@ -17,7 +17,7 @@ router.get(
 
 router.get('/posts/:postId', blogPostController.get);
 
-router.get('/posts/author/:postId', blogPostController.getAuthorsOwn);
+router.get('/author/posts/:postId', blogPostController.getAuthorsOwn);
 
 router.post('/posts/new', blogPostController.create);
 
@@ -27,6 +27,10 @@ router.delete('/posts/:postId', blogPostController.deleteOne);
 
 /* Comments */
 
+router.get(
+  '/author/posts/:postId/comments',
+  commentController.getAllForAuthorPost,
+);
 router.get('/posts/:postId/comments', commentController.getAllForPost);
 router.post('/posts/:postId/comments/new', commentController.create);
 router.delete(

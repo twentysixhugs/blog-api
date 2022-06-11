@@ -36,7 +36,6 @@ export default function Posts() {
     )
       .then((data) => {
         setPageCount(Math.ceil(data.blogPostsCount / POSTS_PER_PAGE));
-        console.log(data.blogPostsCount);
       })
       .catch((err) => {
         setError(err);

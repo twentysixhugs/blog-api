@@ -63,8 +63,6 @@ export default function Post() {
         const postFetchResult = results[0];
         const commentsFetchResult = results[1];
 
-        console.log(results);
-
         const post: IPost = {
           ...postFetchResult.blogPost,
           url: `/author/posts/${postFetchResult.blogPost._id}`,

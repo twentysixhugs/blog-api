@@ -25,8 +25,15 @@ export default function Post() {
   useEffect(() => {
     Promise.all([
       fetchData<IPostResponse>(
-        `http://localhost:3000/api/posts/${postId}`,
-        { mode: 'cors' },
+        `http://localhost:3000/api/author/posts/${postId}`,
+        {
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmE0OGRlNDhlYTg3MjAwODYzNjkzYWUiLCJpYXQiOjE2NTQ5NTEzOTYsImV4cCI6MTY1NTAzNzc5Nn0.6sKLkrpj7D3xpEpE7n3xWJ40WpSOpB2-DIC1QAjxEkY',
+          },
+        },
         () => {
           throw new Error('Cannot fetch post data');
         },
@@ -35,8 +42,15 @@ export default function Post() {
         },
       ),
       fetchData<ICommentsResponse>(
-        `http://localhost:3000/api/posts/${postId}/comments`,
-        { mode: 'cors' },
+        `http://localhost:3000/api/author/posts/${postId}/comments`,
+        {
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmE0OGRlNDhlYTg3MjAwODYzNjkzYWUiLCJpYXQiOjE2NTQ5NTEzOTYsImV4cCI6MTY1NTAzNzc5Nn0.6sKLkrpj7D3xpEpE7n3xWJ40WpSOpB2-DIC1QAjxEkY',
+          },
+        },
         () => {
           throw new Error('Cannot fetch comments data');
         },
@@ -49,13 +63,16 @@ export default function Post() {
         const postFetchResult = results[0];
         const commentsFetchResult = results[1];
 
+        console.log(results);
+
         const post: IPost = {
           ...postFetchResult.blogPost,
-          url: `/posts/${postFetchResult.blogPost._id}`,
+          url: `/author/posts/${postFetchResult.blogPost._id}`,
           datePublishedFormatted: formatDate(
             postFetchResult.blogPost.datePublished,
           ),
         };
+
         setCurrentPost(post);
 
         const comments: IComment[] = commentsFetchResult.comments.map(

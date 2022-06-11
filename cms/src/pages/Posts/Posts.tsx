@@ -18,7 +18,7 @@ export default function Posts() {
 
   useEffect(() => {
     fetchData<IPostsCountResponse>(
-      `http://localhost:3000/api/posts/author/count`,
+      `http://localhost:3000/api/author/posts/count`,
       {
         mode: 'cors',
         headers: {
@@ -65,7 +65,7 @@ export default function Posts() {
         const blogPosts: IPost[] = data.blogPosts.map((post) => ({
           ...post,
           datePublishedFormatted: formatDate(post.datePublished!),
-          url: `/posts/${post._id}`,
+          url: `/author/posts/${post._id}`,
         }));
         setPosts(blogPosts);
       })

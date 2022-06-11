@@ -33,6 +33,39 @@ const getAllForPost: MiddlewareFn = async (req, res, next) => {
   }
 };
 
+const getAllForAuthorPost = (() => {
+  const middlewareChain: MiddlewareFn[] = [
+    passport.authenticate('jwt', { session: false }),
+    async (req, res, next) => {
+      try {
+        const comments = await Comment.find({ post: req.params.postId })
+          .sort({
+            date: 'desc',
+          })
+          .populate({
+            path: 'post',
+            populate: { path: 'author', model: 'user' },
+          });
+
+        // Make sure the author queries their own posts only
+        if (
+          comments[0] &&
+          (comments[0].post as unknown as HydratedDocument<IBlogPost>)
+            .author.id !== (req.user as HydratedDocument<IUser>).id
+        ) {
+          return res.json({ success: false });
+        }
+
+        return res.json({ success: true, comments });
+      } catch (err) {
+        return next(err);
+      }
+    },
+  ];
+
+  return [...middlewareChain];
+})();
+
 const create = (() => {
   const validationChain: ValidationChain[] = [
     body('author')
@@ -126,4 +159,4 @@ const deleteOne = (() => {
   return [...middlewareChain];
 })();
 
-export { getAllForPost, create, deleteOne };
+export { getAllForPost, create, deleteOne, getAllForAuthorPost };

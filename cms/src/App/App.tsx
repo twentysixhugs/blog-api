@@ -14,7 +14,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Posts />}></Route>
-            <Route path="posts/:postId" element={<Post />}></Route>
+            <Route path="author/posts/:postId" element={<Post />}></Route>
             <Route path="about" element={<About />} />
           </Routes>
         </BrowserRouter>

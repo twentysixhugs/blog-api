@@ -11,7 +11,7 @@ const commentSchema = new Schema<IComment>({
   author: String,
   post: {
     type: SchemaTypes.ObjectId,
-    ref: 'Post',
+    ref: 'blogpost',
   },
   text: {
     type: String,

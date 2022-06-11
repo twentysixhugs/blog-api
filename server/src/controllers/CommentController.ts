@@ -7,15 +7,26 @@ import {
   validationResult,
 } from 'express-validator';
 import passport from '../config/passport';
-import BlogPost from '../models/BlogPost';
+import BlogPost, { IBlogPost } from '../models/BlogPost';
 import { HydratedDocument } from 'mongoose';
 import profanityFilter from '../config/profanity-filter';
 
 const getAllForPost: MiddlewareFn = async (req, res, next) => {
   try {
-    const comments = await Comment.find({ post: req.params.postId }).sort({
-      date: 'desc',
-    });
+    const comments = await Comment.find({ post: req.params.postId })
+      .sort({
+        date: 'desc',
+      })
+      .populate('post');
+
+    if (
+      comments[0] &&
+      !(comments[0].post as unknown as HydratedDocument<IBlogPost>)
+        .datePublished
+    ) {
+      return res.json({ success: false });
+    }
+
     return res.json({ success: true, comments });
   } catch (err) {
     return next(err);

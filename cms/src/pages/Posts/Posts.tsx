@@ -18,8 +18,15 @@ export default function Posts() {
 
   useEffect(() => {
     fetchData<IPostsCountResponse>(
-      `http://localhost:3000/api/posts/count`,
-      { mode: 'cors' },
+      `http://localhost:3000/api/posts/author/count`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmE0OGRlNDhlYTg3MjAwODYzNjkzYWUiLCJpYXQiOjE2NTQ5NTEzOTYsImV4cCI6MTY1NTAzNzc5Nn0.6sKLkrpj7D3xpEpE7n3xWJ40WpSOpB2-DIC1QAjxEkY',
+        },
+      },
       () => {
         throw new Error('Cannot fetch post data');
       },
@@ -29,6 +36,7 @@ export default function Posts() {
     )
       .then((data) => {
         setPageCount(Math.ceil(data.blogPostsCount / POSTS_PER_PAGE));
+        console.log(data.blogPostsCount);
       })
       .catch((err) => {
         setError(err);
@@ -37,8 +45,15 @@ export default function Posts() {
 
   useEffect(() => {
     fetchData<IPostsResponse>(
-      `http://localhost:3000/api/posts?perpage=${POSTS_PER_PAGE}&page=${currentPage}`,
-      { mode: 'cors' },
+      `http://localhost:3000/api/posts/author?perpage=${POSTS_PER_PAGE}&page=${currentPage}`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmE0OGRlNDhlYTg3MjAwODYzNjkzYWUiLCJpYXQiOjE2NTQ5NTEzOTYsImV4cCI6MTY1NTAzNzc5Nn0.6sKLkrpj7D3xpEpE7n3xWJ40WpSOpB2-DIC1QAjxEkY',
+        },
+      },
       () => {
         throw new Error('Cannot fetch posts data');
       },

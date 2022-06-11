@@ -15,6 +15,11 @@ router.get('/posts/count', blogPostController.blogPostGETCount);
 
 router.get('/posts/:postId', blogPostController.blogPostGET);
 
+router.get(
+  '/posts/author/:postId',
+  blogPostController.authorOwnBlogPostGET,
+);
+
 router.post('/posts/new', blogPostController.blogPostCreatePOST);
 
 router.put('/posts/:postId', blogPostController.blogPostUpdatePUT);

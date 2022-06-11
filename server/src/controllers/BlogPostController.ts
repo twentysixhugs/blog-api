@@ -213,6 +213,41 @@ const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
   }
 };
 
+const getAllAuthorBlogPostsPaginated = (() => {
+  const MiddlewareChain: MiddlewareFn[] = [
+    passport.authenticate('jwt', { session: false }),
+    async (req, res, next) => {
+      try {
+        let perPage = 4;
+
+        if (req.query.perpage && Number(req.query.perpage)) {
+          if (Number(req.query.perpage) <= 30) {
+            perPage = Number(req.query.perpage);
+          } else {
+            perPage = 30;
+          }
+        }
+
+        const page = Number(req.query.page) || 0;
+
+        const blogPosts = await BlogPost.find({
+          author: (req.user as HydratedDocument<IUser>)._id,
+        })
+          .limit(perPage)
+          .skip(perPage * page)
+          .sort({ datePublished: 'desc' })
+          .populate('author', 'username');
+
+        return res.json({ success: true, blogPosts: blogPosts });
+      } catch (err) {
+        return next(err);
+      }
+    },
+  ];
+
+  return [...MiddlewareChain];
+})();
+
 const blogPostGETCount: MiddlewareFn = async (req, res, next) => {
   try {
     const blogPostsCount = await BlogPost.find({
@@ -228,6 +263,7 @@ const blogPostGETCount: MiddlewareFn = async (req, res, next) => {
 export {
   blogPostGET,
   blogPostGETPaginated,
+  getAllAuthorBlogPostsPaginated,
   blogPostGETCount,
   blogPostCreatePOST,
   blogPostUpdatePUT,

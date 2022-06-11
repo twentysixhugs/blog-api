@@ -12,7 +12,7 @@ import * as bcrypt from 'bcrypt';
 import User, { IUser } from '../models/User';
 import { HydratedDocument } from 'mongoose';
 
-const signupPOST = (() => {
+const signup = (() => {
   const validationChain: ValidationChain[] = [
     body('username')
       .trim()
@@ -72,7 +72,7 @@ const signupPOST = (() => {
   return [...validationChain, ...middlewareChain];
 })();
 
-const loginPOST = (() => {
+const login = (() => {
   const validationChain: ValidationChain[] = [
     body('username')
       .trim()
@@ -109,4 +109,4 @@ const loginPOST = (() => {
   return [...validationChain, ...middlewareChain];
 })();
 
-export { signupPOST, loginPOST };
+export { signup, login };

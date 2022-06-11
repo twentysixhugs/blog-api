@@ -9,7 +9,7 @@ import User, { IUser } from '../models/User';
 import { MiddlewareFn, ResponseError } from '../types';
 import { HydratedDocument } from 'mongoose';
 
-const blogPostCreatePOST = (() => {
+const create = (() => {
   const middlewareChain: MiddlewareFn[] = [
     passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
@@ -57,7 +57,7 @@ const blogPostCreatePOST = (() => {
   return [...validationChain, ...middlewareChain];
 })();
 
-const blogPostUpdatePUT = (() => {
+const update = (() => {
   const middlewareChain: MiddlewareFn[] = [
     passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
@@ -126,7 +126,7 @@ const blogPostUpdatePUT = (() => {
   return [...validationChain, ...middlewareChain];
 })();
 
-const blogPostDELETE = (() => {
+const deleteOne = (() => {
   const middlewareChain: MiddlewareFn[] = [
     passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
@@ -174,7 +174,7 @@ const blogPostDELETE = (() => {
   return [...middlewareChain];
 })();
 
-const blogPostGET: MiddlewareFn = async (req, res, next) => {
+const get: MiddlewareFn = async (req, res, next) => {
   try {
     const blogPost = await BlogPost.findOne({
       _id: req.params.postId,
@@ -187,7 +187,7 @@ const blogPostGET: MiddlewareFn = async (req, res, next) => {
   }
 };
 
-const authorOwnBlogPostGET = (() => {
+const getAuthorsOwn = (() => {
   const middlewareChain: MiddlewareFn[] = [
     passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
@@ -207,7 +207,7 @@ const authorOwnBlogPostGET = (() => {
   return [...middlewareChain];
 })();
 
-const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
+const getPaginated: MiddlewareFn = async (req, res, next) => {
   try {
     let perPage = 4;
 
@@ -233,7 +233,7 @@ const blogPostGETPaginated: MiddlewareFn = async (req, res, next) => {
   }
 };
 
-const getAllAuthorBlogPostsPaginated = (() => {
+const getAuthorsOwnPaginated = (() => {
   const MiddlewareChain: MiddlewareFn[] = [
     passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
@@ -268,7 +268,7 @@ const getAllAuthorBlogPostsPaginated = (() => {
   return [...MiddlewareChain];
 })();
 
-const blogPostGETCount: MiddlewareFn = async (req, res, next) => {
+const getTotalCount: MiddlewareFn = async (req, res, next) => {
   try {
     const blogPostsCount = await BlogPost.find({
       datePublished: { $ne: null },
@@ -281,12 +281,12 @@ const blogPostGETCount: MiddlewareFn = async (req, res, next) => {
 };
 
 export {
-  blogPostGET,
-  authorOwnBlogPostGET,
-  blogPostGETPaginated,
-  getAllAuthorBlogPostsPaginated,
-  blogPostGETCount,
-  blogPostCreatePOST,
-  blogPostUpdatePUT,
-  blogPostDELETE,
+  get,
+  getAuthorsOwn,
+  getPaginated,
+  getAuthorsOwnPaginated,
+  getTotalCount,
+  create,
+  update,
+  deleteOne,
 };

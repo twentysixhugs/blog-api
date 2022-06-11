@@ -11,7 +11,7 @@ import BlogPost from '../models/BlogPost';
 import { HydratedDocument } from 'mongoose';
 import profanityFilter from '../config/profanity-filter';
 
-const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
+const getAllForPost: MiddlewareFn = async (req, res, next) => {
   try {
     const comments = await Comment.find({ post: req.params.postId }).sort({
       date: 'desc',
@@ -22,7 +22,7 @@ const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
   }
 };
 
-const commentCREATE = (() => {
+const create = (() => {
   const validationChain: ValidationChain[] = [
     body('author')
       .trim()
@@ -80,7 +80,7 @@ const commentCREATE = (() => {
   return [...validationChain, ...middlewareChain];
 })();
 
-const commentDELETE = (() => {
+const deleteOne = (() => {
   // Comments can be deleted by the post author only
   const middlewareChain: MiddlewareFn[] = [
     passport.authenticate('jwt', { session: false }),
@@ -115,4 +115,4 @@ const commentDELETE = (() => {
   return [...middlewareChain];
 })();
 
-export { allBlogPostCommentsGET, commentCREATE, commentDELETE };
+export { getAllForPost, create, deleteOne };

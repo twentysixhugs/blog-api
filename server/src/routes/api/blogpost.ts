@@ -4,41 +4,29 @@ import * as commentController from '../../controllers/CommentController';
 const router = express.Router();
 
 /* Posts */
-router.get('/posts', blogPostController.blogPostGETPaginated);
-router.get(
-  '/posts/author',
-  blogPostController.getAllAuthorBlogPostsPaginated,
-);
-router.get('/posts/count', blogPostController.blogPostGETCount);
+router.get('/posts', blogPostController.getPaginated);
+router.get('/posts/author', blogPostController.getAuthorsOwnPaginated);
+router.get('/posts/count', blogPostController.getTotalCount);
 
 /* Single post */
 
-router.get('/posts/:postId', blogPostController.blogPostGET);
+router.get('/posts/:postId', blogPostController.get);
 
-router.get(
-  '/posts/author/:postId',
-  blogPostController.authorOwnBlogPostGET,
-);
+router.get('/posts/author/:postId', blogPostController.getAuthorsOwn);
 
-router.post('/posts/new', blogPostController.blogPostCreatePOST);
+router.post('/posts/new', blogPostController.create);
 
-router.put('/posts/:postId', blogPostController.blogPostUpdatePUT);
+router.put('/posts/:postId', blogPostController.update);
 
-router.delete('/posts/:postId', blogPostController.blogPostDELETE);
+router.delete('/posts/:postId', blogPostController.deleteOne);
 
 /* Comments */
 
-router.get(
-  '/posts/:postId/comments',
-  commentController.allBlogPostCommentsGET,
-);
-router.post(
-  '/posts/:postId/comments/new',
-  commentController.commentCREATE,
-);
+router.get('/posts/:postId/comments', commentController.getAllForPost);
+router.post('/posts/:postId/comments/new', commentController.create);
 router.delete(
   '/posts/:postId/comments/:commentId',
-  commentController.commentDELETE,
+  commentController.deleteOne,
 );
 
 export default router;

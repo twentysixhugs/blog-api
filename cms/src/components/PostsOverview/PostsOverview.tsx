@@ -20,7 +20,7 @@ export default function PostsOverview({
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
-        <Title>The blog</Title>
+        <Title>Your posts</Title>
         <PostsWrapper>
           {posts.map((post) => {
             animationDelay += 0.1;

@@ -87,6 +87,15 @@ const update = (() => {
         return next(err);
       }
 
+      if (author.id !== (req.user as HydratedDocument<IUser>).id) {
+        const err: ResponseError = new Error(
+          'You are not the author of the post',
+        );
+        err.status = 403;
+
+        return next(err);
+      }
+
       const blogPost = new BlogPost({
         title: req.body.title,
         text: req.body.text,

@@ -5,8 +5,13 @@ const router = express.Router();
 
 /* Posts */
 router.get('/posts', blogPostController.getPaginated);
-router.get('/posts/author', blogPostController.getAuthorsOwnPaginated);
 router.get('/posts/count', blogPostController.getTotalCount);
+
+router.get('/posts/author', blogPostController.getAuthorsOwnPaginated);
+router.get(
+  '/posts/author/count',
+  blogPostController.getAuthorsOwnTotalCount,
+);
 
 /* Single post */
 

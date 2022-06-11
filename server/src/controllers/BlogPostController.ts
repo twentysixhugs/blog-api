@@ -289,12 +289,32 @@ const getTotalCount: MiddlewareFn = async (req, res, next) => {
   }
 };
 
+const getAuthorsOwnTotalCount = (() => {
+  const middlewareChain: MiddlewareFn[] = [
+    passport.authenticate('jwt', { session: false }),
+    async (req, res, next) => {
+      try {
+        const blogPostsCount = await BlogPost.find({
+          author: (req.user as HydratedDocument<IUser>)._id,
+        }).count();
+
+        res.json({ success: true, blogPostsCount });
+      } catch (err) {
+        return next(err);
+      }
+    },
+  ];
+
+  return [...middlewareChain];
+})();
+
 export {
   get,
   getAuthorsOwn,
   getPaginated,
   getAuthorsOwnPaginated,
   getTotalCount,
+  getAuthorsOwnTotalCount,
   create,
   update,
   deleteOne,

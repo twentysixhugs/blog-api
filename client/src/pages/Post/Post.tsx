@@ -105,8 +105,8 @@ export default function Post() {
         };
         setCurrentPostComments(
           currentPostComments && [
-            ...currentPostComments,
             processedComment,
+            ...currentPostComments,
           ],
         );
       }

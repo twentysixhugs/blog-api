@@ -9,10 +9,13 @@ import {
 import passport from '../config/passport';
 import BlogPost from '../models/BlogPost';
 import { HydratedDocument } from 'mongoose';
+import profanityFilter from '../config/profanity-filter';
 
 const allBlogPostCommentsGET: MiddlewareFn = async (req, res, next) => {
   try {
-    const comments = await Comment.find({ post: req.params.postId });
+    const comments = await Comment.find({ post: req.params.postId }).sort({
+      date: 'desc',
+    });
     return res.json({ success: true, comments });
   } catch (err) {
     return next(err);
@@ -27,13 +30,14 @@ const commentCREATE = (() => {
         if (!value) {
           return 'Anonymous';
         }
-        return value;
+        return profanityFilter.clean(value);
       }),
     body('text')
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Comment should contain something, right?'),
+      .withMessage('Comment should contain something, right?')
+      .customSanitizer((value) => profanityFilter.clean(value)),
   ];
 
   const middlewareChain: MiddlewareFn[] = [

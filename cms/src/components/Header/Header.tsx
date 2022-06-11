@@ -13,7 +13,7 @@ export default function Header() {
       <InvisibleWrapper></InvisibleWrapper>
       <Title>
         <Link className="title__link" to="/">
-          TWENTY SIX HUGS
+          BLOG API CMS
         </Link>
       </Title>
       <Nav>

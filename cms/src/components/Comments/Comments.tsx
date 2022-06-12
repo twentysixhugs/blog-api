@@ -3,6 +3,7 @@ import { IComment, IInputFields } from '../../types';
 import { useState } from 'react';
 import Form from '../Form';
 import Comment from './Comment';
+import resetInputFields from '../../helpers/resetInputFields';
 
 interface ICommentsProps {
   comments: IComment[];
@@ -32,6 +33,7 @@ export default function Comments({
       <Form
         onSubmit={() => {
           onNewComment(inputFields.author.value, inputFields.text.value);
+          setInputFields(resetInputFields(inputFields));
         }}
         inputFields={inputFields}
         onChange={(field, value) => {

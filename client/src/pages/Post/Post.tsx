@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { default as ErrorComponent } from '../../components/Error';
 import { default as PostComponent } from '../../components/Post';
-import { formatDate } from '../../components/helpers/formatDate';
+import { formatDate } from '../../helpers/formatDate';
 import Loader from '../../components/Loader';
 import {
   IPost,

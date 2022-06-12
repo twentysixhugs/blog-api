@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { IComment } from '../../types';
+import { IComment, IInputFields } from '../../types';
+import { useState } from 'react';
+import Form from '../Form';
 import Comment from './Comment';
-import CommentForm from './CommentForm';
 
 interface ICommentsProps {
   comments: IComment[];
@@ -12,10 +13,38 @@ export default function Comments({
   comments,
   onNewComment,
 }: ICommentsProps) {
+  const [inputFields, setInputFields] = useState<IInputFields>({
+    author: {
+      value: '',
+      required: false,
+      label: 'Your name',
+    },
+    text: {
+      value: '',
+      required: true,
+      label: 'Your message',
+    },
+  });
+
   return (
     <>
       <CommentsHeading>Comments</CommentsHeading>
-      <CommentForm onSubmit={onNewComment} />
+      <Form
+        onSubmit={() => {
+          onNewComment(inputFields.author.value, inputFields.text.value);
+        }}
+        inputFields={inputFields}
+        onChange={(field, value) => {
+          setInputFields({
+            ...inputFields,
+            [field]: {
+              ...inputFields[field],
+              value: value,
+            },
+          });
+        }}
+        submitButtonName="Post a reply"
+      ></Form>
       {comments.length > 0 ? (
         comments.map((comment) => (
           <Comment

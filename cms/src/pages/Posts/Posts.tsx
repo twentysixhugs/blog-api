@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { IPost, IPostsCountResponse, IPostsResponse } from '../../types';
-import { formatDate } from '../../components/helpers/formatDate';
+import { formatDate } from '../../helpers/formatDate';
 import PostsOverview from '../../components/PostsOverview/';
 import PostsPagination from '../../components/PostsPagination';
 import Loader from '../../components/Loader';

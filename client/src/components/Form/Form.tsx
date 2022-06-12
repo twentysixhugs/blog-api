@@ -4,7 +4,7 @@ import FormField from './FormField';
 import { IInputFields } from '../../types';
 import validateRequiredFields from '../../helpers/validateRequiredFields';
 
-interface IFormProps {
+export interface IFormProps {
   inputFields: IInputFields;
   submitButtonName?: string;
   onChange: (field: string, value: string) => void;
@@ -52,10 +52,11 @@ export default function Form({
           value={inputFields[field].value}
           inputId={field}
           label={inputFields[field].label}
+          isRequired={inputFields[field].required}
+          type={inputFields[field].type}
           onChange={(e) => {
             onChange(field, e.target.value);
           }}
-          isRequired={inputFields[field].required}
         />,
       );
     }
@@ -64,7 +65,7 @@ export default function Form({
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit} className={className}>
       <Errors>{errors}</Errors>
       {getFormFields()}
       <SubmitButton>

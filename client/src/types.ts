@@ -71,5 +71,6 @@ export interface IInputFields {
     value: string;
     label: string;
     required: boolean;
+    type: string;
   };
 }

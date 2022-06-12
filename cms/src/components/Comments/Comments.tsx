@@ -19,11 +19,13 @@ export default function Comments({
       value: '',
       required: false,
       label: 'Your name',
+      type: 'text',
     },
     text: {
       value: '',
       required: true,
       label: 'Your message',
+      type: 'text',
     },
   });
 

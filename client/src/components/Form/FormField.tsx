@@ -5,8 +5,9 @@ interface IFormFieldProps {
   inputId: string;
   name: string;
   value: string | number | readonly string[] | undefined;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  type: string;
   isRequired: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export default function FormField({
@@ -14,6 +15,7 @@ export default function FormField({
   inputId,
   name,
   value,
+  type,
   onChange,
   isRequired,
 }: IFormFieldProps) {
@@ -28,6 +30,7 @@ export default function FormField({
         value={value}
         id={inputId}
         onChange={onChange}
+        type={type}
       ></Input>
     </UserInputWrapper>
   );

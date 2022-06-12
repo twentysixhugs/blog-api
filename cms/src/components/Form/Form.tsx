@@ -52,10 +52,11 @@ export default function Form({
           value={inputFields[field].value}
           inputId={field}
           label={inputFields[field].label}
+          isRequired={inputFields[field].required}
+          type={inputFields[field].type}
           onChange={(e) => {
             onChange(field, e.target.value);
           }}
-          isRequired={inputFields[field].required}
         />,
       );
     }

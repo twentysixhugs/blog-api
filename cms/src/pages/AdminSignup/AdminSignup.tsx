@@ -9,16 +9,25 @@ export default function AdminSignup() {
       value: '',
       required: false,
       label: 'Username',
+      type: 'text',
     },
     password: {
       value: '',
       required: true,
       label: 'Password',
+      type: 'password',
+    },
+    passwordConfirm: {
+      value: '',
+      required: true,
+      label: 'Confirm password',
+      type: 'password',
     },
     adminKey: {
       value: '',
       required: true,
       label: 'Admin key',
+      type: 'password',
     },
   });
 

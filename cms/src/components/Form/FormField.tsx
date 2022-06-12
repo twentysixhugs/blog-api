@@ -6,6 +6,7 @@ interface IFormFieldProps {
   name: string;
   value: string | number | readonly string[] | undefined;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  isRequired: boolean;
 }
 
 export default function FormField({
@@ -14,10 +15,14 @@ export default function FormField({
   name,
   value,
   onChange,
+  isRequired,
 }: IFormFieldProps) {
   return (
     <UserInputWrapper>
-      <Label htmlFor={inputId}>{label}</Label>
+      <Label htmlFor={inputId}>
+        {label}
+        {isRequired ? <Required> *</Required> : ''}
+      </Label>
       <Input
         name={name}
         value={value}
@@ -57,4 +62,8 @@ const Input = styled.input`
   background: ${(props) => (props.theme.isDark ? '#232323' : '#ffffff')};
   border: 1px solid
     ${(props) => (props.theme.isDark ? '#232323' : '#cacaca;')};
+`;
+
+const Required = styled.span`
+  color: #e94b4b;
 `;

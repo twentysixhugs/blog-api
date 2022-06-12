@@ -66,9 +66,9 @@ export default function Post() {
         const post: IPost = {
           ...postFetchResult.blogPost,
           url: `/author/posts/${postFetchResult.blogPost._id}`,
-          datePublishedFormatted: formatDate(
-            postFetchResult.blogPost.datePublished,
-          ),
+          datePublishedFormatted:
+            postFetchResult.blogPost.datePublished &&
+            formatDate(postFetchResult.blogPost.datePublished),
         };
 
         setCurrentPost(post);

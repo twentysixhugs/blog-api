@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface ICardProps {
-  date: string;
+  date: string | null;
   title: string;
   subtitle: string;
   contentUrl: string;
@@ -27,7 +27,11 @@ export default function Card({
     <Wrapper className={className} onClick={handleCardOpen}>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
-      <Date>{date}</Date>
+      {date ? (
+        <Published>Published on {date}</Published>
+      ) : (
+        <NotPublished>Not published</NotPublished>
+      )}
     </Wrapper>
   );
 }
@@ -56,7 +60,12 @@ const Subtitle = styled.p`
   color: #707070;
 `;
 
-const Date = styled.span`
-  font-size: 0.8rem;
-  color: #bbbbbb;
+const NotPublished = styled.span`
+  font-size: 0.9rem;
+  color: ${({ theme }) => (theme.isDark ? '#f09c00' : '#a16900')};
+`;
+
+const Published = styled.span`
+  font-size: 0.9rem;
+  color: ${({ theme }) => (theme.isDark ? '#00db12' : '#006608')};
 `;

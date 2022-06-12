@@ -63,7 +63,8 @@ export default function Posts() {
       .then((data) => {
         const blogPosts: IPost[] = data.blogPosts.map((post) => ({
           ...post,
-          datePublishedFormatted: formatDate(post.datePublished!),
+          datePublishedFormatted:
+            post.datePublished && formatDate(post.datePublished),
           url: `/author/posts/${post._id}`,
         }));
         setPosts(blogPosts);

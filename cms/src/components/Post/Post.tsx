@@ -23,7 +23,7 @@ export default function Post({
     <StyledPost>
       <Title>{title}</Title>
       <DateAuthorWrapper>
-        <span>{date}, by </span>
+        <span>{date ? date + ', ' : 'Not published, '}by </span>
         <span>{author}</span>
       </DateAuthorWrapper>
       <Text>{text}</Text>

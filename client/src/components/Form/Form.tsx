@@ -9,6 +9,7 @@ interface IFormProps {
   submitButtonName?: string;
   onChange: (field: string, value: string) => void;
   onSubmit: () => void;
+  className?: string;
 }
 
 export default function Form({
@@ -16,6 +17,7 @@ export default function Form({
   submitButtonName,
   onChange,
   onSubmit,
+  className,
 }: IFormProps) {
   const [errors, setErrors] = useState<string[]>([]);
   const validationErrors = {

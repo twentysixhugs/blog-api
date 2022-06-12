@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { IInputFields } from '../../types';
-import Form from '../../components/Form';
-import validateRequiredFields from '../../helpers/validateRequiredFields';
 import resetInputFields from '../../helpers/resetInputFields';
+import CenteredForm from '../../components/CenteredForm';
 
 export default function AdminSignup() {
   const [inputFields, setInputFields] = useState<IInputFields>({
@@ -32,7 +31,7 @@ export default function AdminSignup() {
 
   return (
     <>
-      <Form
+      <CenteredForm
         inputFields={inputFields}
         onChange={(field, value) => {
           setInputFields({
@@ -44,7 +43,7 @@ export default function AdminSignup() {
           });
         }}
         onSubmit={handleSubmit}
-      ></Form>
+      ></CenteredForm>
     </>
   );
 }

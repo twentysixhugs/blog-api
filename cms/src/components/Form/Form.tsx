@@ -4,11 +4,12 @@ import FormField from './FormField';
 import { IInputFields } from '../../types';
 import validateRequiredFields from '../../helpers/validateRequiredFields';
 
-interface IFormProps {
+export interface IFormProps {
   inputFields: IInputFields;
   submitButtonName?: string;
   onChange: (field: string, value: string) => void;
   onSubmit: () => void;
+  className?: string;
 }
 
 export default function Form({
@@ -16,6 +17,7 @@ export default function Form({
   submitButtonName,
   onChange,
   onSubmit,
+  className,
 }: IFormProps) {
   const [errors, setErrors] = useState<string[]>([]);
   const validationErrors = {
@@ -62,7 +64,7 @@ export default function Form({
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit} className={className}>
       <Errors>{errors}</Errors>
       {getFormFields()}
       <SubmitButton>

@@ -5,6 +5,7 @@ import Post from '../pages/Post';
 import About from '../pages/About';
 import { ThemeStore } from '../context/Theme/ThemeStore';
 import Theme from '../context/Theme/Theme';
+import AdminSignup from '../pages/AdminSignup';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Posts />}></Route>
             <Route path="author/posts/:postId" element={<Post />}></Route>
             <Route path="about" element={<About />} />
+            <Route path="signup" element={<AdminSignup />} />
           </Routes>
         </BrowserRouter>
       </Theme>

@@ -24,7 +24,7 @@ export default function Post({
       <Title>{title}</Title>
       <DateAuthorWrapper>
         <span>{date ? date + ', ' : 'Not published, '}by </span>
-        <span>{author}</span>
+        <span>{author} (You)</span>
       </DateAuthorWrapper>
       <Text>{text}</Text>
       <Comments comments={comments} onNewComment={onNewComment} />

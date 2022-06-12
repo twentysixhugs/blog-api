@@ -63,3 +63,13 @@ export interface ICommentResponse extends APIResponse {
 export interface ICommentsResponse extends APIResponse {
   comments: ICommentAPI[];
 }
+
+// Helpers
+
+export interface IInputFields {
+  [field: string]: {
+    value: string;
+    label: string;
+    required: boolean;
+  };
+}

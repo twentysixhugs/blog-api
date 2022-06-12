@@ -59,7 +59,7 @@ const signup = (() => {
         await user.save();
 
         const token = jwt.sign({ sub: user.id }, process.env.JWTSECRET!, {
-          expiresIn: '24h',
+          expiresIn: '4383h',
         });
 
         return res.json({ success: true, token });

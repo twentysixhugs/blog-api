@@ -102,7 +102,7 @@ export default function Posts() {
   } else if (isLoading) {
     return <Loader />;
   } else if (!posts) {
-    return <Navigate to="/signup"></Navigate>;
+    return <Navigate to="/login"></Navigate>;
   } else {
     return (
       <>

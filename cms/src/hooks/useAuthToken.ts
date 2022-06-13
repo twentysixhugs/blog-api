@@ -5,17 +5,11 @@ export default function useAuthToken(): [
   saveToken: typeof saveToken,
   resetToken: typeof resetToken,
 ] {
-  const [token, setToken] = useState<null | string>(null);
+  const fromLocalStorage = localStorage.getItem('token');
 
-  useEffect(() => {
-    const fromLocalStorage = localStorage.getItem('token');
-
-    if (fromLocalStorage) {
-      setToken(JSON.parse(fromLocalStorage).value);
-    } else {
-      setToken(null);
-    }
-  }, []);
+  const [token, setToken] = useState<null | string>(
+    fromLocalStorage ? JSON.parse(fromLocalStorage).value : null,
+  );
 
   function saveToken(token: string) {
     localStorage.setItem('token', JSON.stringify({ value: token }));

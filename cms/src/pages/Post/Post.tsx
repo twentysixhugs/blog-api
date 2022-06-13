@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { default as ErrorComponent } from '../../components/Error';
 import { default as PostComponent } from '../../components/Post';
 import { formatDate } from '../../helpers/formatDate';
@@ -12,6 +12,7 @@ import {
   ICommentResponse,
 } from '../../types';
 import fetchData from '../../api/fetchData';
+import useAuthToken from '../../hooks/useAuthToken';
 
 export default function Post() {
   const [currentPost, setCurrentPost] = useState<null | IPost>();
@@ -19,10 +20,16 @@ export default function Post() {
     IComment[] | null
   >(null);
   const [error, setError] = useState<null | { message: string }>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { postId } = useParams();
 
+  const [token, saveToken, resetToken] = useAuthToken();
+
   useEffect(() => {
+    if (!token) return;
+    setIsLoading(true);
+
     Promise.all([
       fetchData<IPostResponse>(
         `http://localhost:3000/api/author/posts/${postId}`,
@@ -30,8 +37,7 @@ export default function Post() {
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmE0OGRlNDhlYTg3MjAwODYzNjkzYWUiLCJpYXQiOjE2NTQ5NTEzOTYsImV4cCI6MTY1NTAzNzc5Nn0.6sKLkrpj7D3xpEpE7n3xWJ40WpSOpB2-DIC1QAjxEkY',
+            Authorization: `Bearer ${token}`,
           },
         },
         () => {
@@ -47,8 +53,7 @@ export default function Post() {
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmE0OGRlNDhlYTg3MjAwODYzNjkzYWUiLCJpYXQiOjE2NTQ5NTEzOTYsImV4cCI6MTY1NTAzNzc5Nn0.6sKLkrpj7D3xpEpE7n3xWJ40WpSOpB2-DIC1QAjxEkY',
+            Authorization: `Bearer ${token}`,
           },
         },
         () => {
@@ -60,15 +65,17 @@ export default function Post() {
       ),
     ])
       .then((results) => {
+        if (!results[0].success || !results[1].success) return;
+
         const postFetchResult = results[0];
         const commentsFetchResult = results[1];
 
         const post: IPost = {
           ...postFetchResult.blogPost,
-          url: `/author/posts/${postFetchResult.blogPost._id}`,
+          url: `/author/posts/${postFetchResult.blogPost!._id}`,
           datePublishedFormatted:
-            postFetchResult.blogPost.datePublished &&
-            formatDate(postFetchResult.blogPost.datePublished),
+            postFetchResult.blogPost!.datePublished &&
+            formatDate(postFetchResult.blogPost!.datePublished),
         };
 
         setCurrentPost(post);
@@ -89,7 +96,14 @@ export default function Post() {
       .catch((err) => {
         setError(err);
       });
-  }, [postId]);
+  }, [postId, token]);
+
+  useEffect(() => {
+    if ((currentPost && currentPostComments) || !token) {
+      setIsLoading(false);
+      console.log(currentPost, currentPostComments, token);
+    }
+  }, [currentPost, currentPostComments, token]);
 
   const handleNewComment = async (author: string, text: string) => {
     try {
@@ -132,13 +146,11 @@ export default function Post() {
 
   if (error) {
     return <ErrorComponent message={error.message} />;
-  } else if (!currentPost || !currentPostComments) {
-    return (
-      <div className="c-post">
-        <Loader />
-      </div>
-    );
-  } else {
+  } else if (isLoading) {
+    return <Loader />;
+  } else if (!token) {
+    return <Navigate to="/login" />;
+  } else if (currentPost && currentPostComments) {
     return (
       <>
         <PostComponent
@@ -151,5 +163,7 @@ export default function Post() {
         />
       </>
     );
+  } else {
+    return null;
   }
 }

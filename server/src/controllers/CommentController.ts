@@ -89,7 +89,7 @@ const create = (() => {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.json({ success: false, errors: errors.mapped() });
+        return res.json({ success: false, errors: errors.array() });
       }
 
       const post = await BlogPost.findOne({ _id: req.params.postId });

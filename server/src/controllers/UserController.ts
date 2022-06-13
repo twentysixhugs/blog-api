@@ -60,7 +60,7 @@ const signup = (() => {
         return res.json({
           ...req.body,
           success: false,
-          errors: errors.mapped(),
+          errors: errors.array(),
         });
       }
 
@@ -109,7 +109,7 @@ const login = (() => {
         return res.json({
           ...req.body,
           success: false,
-          errors: errors.mapped(),
+          errors: errors.array(),
         });
       }
 

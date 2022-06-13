@@ -7,6 +7,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 
 import User from '../models/User';
 import 'dotenv/config';
+import { ResponseError } from '../types';
 
 passport.use(
   new LocalStrategy(
@@ -16,7 +17,9 @@ passport.use(
         const user = await User.findOne({ username });
 
         if (!user) {
-          return done(null, false, { message: 'User not found' });
+          const err: ResponseError = new Error('User not found');
+          err.status = 404;
+          return done(err, false);
         }
 
         const isPasswordCorrect = await bcrypt.compare(
@@ -25,7 +28,9 @@ passport.use(
         );
 
         if (!isPasswordCorrect) {
-          return done(null, false, { message: 'Incorrect password' });
+          const err: ResponseError = new Error('Incorrect password');
+          err.status = 401;
+          return done(err, false);
         }
 
         return done(null, user);

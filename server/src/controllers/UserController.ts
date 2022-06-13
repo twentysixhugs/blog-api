@@ -38,6 +38,18 @@ const signup = (() => {
       .withMessage('Password is required')
       .isLength({ min: 6 })
       .withMessage('Password should be at least 6 characters long'),
+    body('passwordConfirm')
+      .not()
+      .isEmpty()
+      .withMessage('Password confirmation is required')
+      .custom((value, { req }) => value === req.body.password)
+      .withMessage('Passwords do not match'),
+    body('adminKey')
+      .not()
+      .isEmpty()
+      .withMessage('Admin key is required')
+      .custom((value) => value === process.env.ADMINKEY!)
+      .withMessage('Admin key is incorrect'),
   ];
 
   const middlewareChain: MiddlewareFn[] = [
@@ -45,7 +57,11 @@ const signup = (() => {
       const errors = await validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.json({ ...req.body, success: false, errors: errors });
+        return res.json({
+          ...req.body,
+          success: false,
+          errors: errors.mapped(),
+        });
       }
 
       try {
@@ -83,12 +99,18 @@ const login = (() => {
   ];
 
   const middlewareChain: MiddlewareFn[] = [
-    passport.authenticate('local', { session: false }),
+    passport.authenticate('local', {
+      session: false,
+    }),
     async (req, res, next) => {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.json({ ...req.body, success: false, errors: errors });
+        return res.json({
+          ...req.body,
+          success: false,
+          errors: errors.mapped(),
+        });
       }
 
       const token = jwt.sign(

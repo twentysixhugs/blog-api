@@ -78,7 +78,7 @@ export default function AdminSignup() {
       },
     )
       .then((data) => {
-        console.log(data);
+        data;
         if (data.success) {
           saveToken(data.token);
           setAuthResult('success');

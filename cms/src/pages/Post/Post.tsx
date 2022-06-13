@@ -101,7 +101,6 @@ export default function Post() {
   useEffect(() => {
     if ((currentPost && currentPostComments) || !token) {
       setIsLoading(false);
-      console.log(currentPost, currentPostComments, token);
     }
   }, [currentPost, currentPostComments, token]);
 

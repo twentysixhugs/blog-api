@@ -40,14 +40,14 @@ export interface IComment extends ICommentAPI {
 
 /* API Responses */
 
-interface IValidationError {
+export interface IValidationError {
   value: string;
   msg: string;
   param: string;
   location: string;
 }
 
-interface IAuthError {
+export interface IAuthError {
   msg: string;
   status: number;
 }

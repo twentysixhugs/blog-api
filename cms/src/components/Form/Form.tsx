@@ -7,17 +7,21 @@ import validateRequiredFields from '../../helpers/validateRequiredFields';
 export interface IFormProps {
   inputFields: IInputFields;
   submitButtonName?: string;
+  heading?: string;
   onChange: (field: string, value: string) => void;
   onSubmit: () => void;
   className?: string;
+  externalErrors?: string[];
 }
 
 export default function Form({
   inputFields,
   submitButtonName,
+  heading,
   onChange,
   onSubmit,
   className,
+  externalErrors,
 }: IFormProps) {
   const [errors, setErrors] = useState<string[]>([]);
   const validationErrors = {
@@ -66,7 +70,12 @@ export default function Form({
 
   return (
     <StyledForm onSubmit={handleSubmit} className={className}>
-      <Errors>{errors}</Errors>
+      {heading ? <Heading>{heading}</Heading> : ''}
+      <Errors>
+        {errors.concat(externalErrors || []).map((err) => (
+          <span key={err}>&#8226; {err}</span>
+        ))}
+      </Errors>
       {getFormFields()}
       <SubmitButton>
         {submitButtonName ? submitButtonName : 'Submit'}
@@ -81,7 +90,15 @@ const StyledForm = styled.form`
   gap: 32px;
 `;
 
+const Heading = styled.h2`
+  font-size: 2rem;
+  font-weight: 700;
+`;
+
 const Errors = styled.div`
+  display: flex;
+  flex-flow: column;
+  gap: 0.5rem;
   color: #e94b4b;
 `;
 

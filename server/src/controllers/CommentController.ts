@@ -92,7 +92,10 @@ const create = (() => {
         return res.json({ success: false, errors: errors.array() });
       }
 
-      const post = await BlogPost.findOne({ _id: req.params.postId });
+      const post = await BlogPost.findOne({
+        _id: req.params.postId,
+        datePublished: { $ne: null },
+      });
 
       if (!post) {
         const err: ResponseError = new Error();

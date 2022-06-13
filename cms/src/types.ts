@@ -40,8 +40,21 @@ export interface IComment extends ICommentAPI {
 
 /* API Responses */
 
+interface IValidationError {
+  value: string;
+  msg: string;
+  param: string;
+  location: string;
+}
+
+interface IAuthError {
+  msg: string;
+  status: number;
+}
+
 export interface APIResponse {
   success: boolean;
+  errors?: Record<string, IValidationError | IAuthError>;
 }
 
 export interface IPostResponse extends APIResponse {
@@ -62,6 +75,10 @@ export interface ICommentResponse extends APIResponse {
 
 export interface ICommentsResponse extends APIResponse {
   comments: ICommentAPI[];
+}
+
+export interface IAuthResponse extends APIResponse {
+  token: string;
 }
 
 // Helpers

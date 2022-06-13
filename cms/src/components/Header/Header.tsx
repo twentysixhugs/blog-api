@@ -4,9 +4,12 @@ import { useTheme } from '../../context/Theme/ThemeStore';
 
 import SUN_PIC from './assets/sun.png';
 import MOON_PIC from './assets/moon.png';
+import useAuthToken from '../../hooks/useAuthToken';
 
 export default function Header() {
   const theme = useTheme();
+
+  const [token, saveToken, resetToken] = useAuthToken();
 
   return (
     <StyledHeader>
@@ -17,8 +20,18 @@ export default function Header() {
         </Link>
       </Title>
       <Nav>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/about">About</StyledLink>
+        {token ? (
+          <>
+            <StyledNavLink to="/">Home</StyledNavLink>
+            <StyledNavLink to="/about">About</StyledNavLink>
+            <StyledLink to="/logout">Log out</StyledLink>
+          </>
+        ) : (
+          <>
+            <StyledLink to="/signup">Sign up</StyledLink>
+            <StyledLink to="/login">Log in</StyledLink>
+          </>
+        )}
         <ThemeToggle onClick={theme.toggle}></ThemeToggle>
       </Nav>
     </StyledHeader>
@@ -84,7 +97,15 @@ const Nav = styled.nav`
   font-size: 1.2rem;
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(Link)`
+  color: ${({ theme }) =>
+    theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.1;
+`;
+
+const StyledNavLink = styled(NavLink)`
   color: ${({ theme }) =>
     theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
   font-weight: 400;

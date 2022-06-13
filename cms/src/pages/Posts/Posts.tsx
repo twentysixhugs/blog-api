@@ -85,10 +85,10 @@ export default function Posts() {
   }, [currentPage, token]);
 
   useEffect(() => {
-    if (posts) {
+    if (posts || !token) {
       setIsLoading(false);
     }
-  }, [posts]);
+  }, [posts, token]);
 
   const handlePageChange = (event: { selected: number }) => {
     setTimeout(() => {
@@ -101,9 +101,9 @@ export default function Posts() {
     return <ErrorComponent message={error.message} />;
   } else if (isLoading) {
     return <Loader />;
-  } else if (!posts) {
+  } else if (!token) {
     return <Navigate to="/login"></Navigate>;
-  } else {
+  } else if (posts) {
     return (
       <>
         <PostsOverview posts={posts}>
@@ -120,5 +120,7 @@ export default function Posts() {
         </PostsOverview>
       </>
     );
+  } else {
+    return null;
   }
 }

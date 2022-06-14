@@ -31,6 +31,7 @@ export default function FormField({
         id={inputId}
         onChange={onChange}
         type={type}
+        autoComplete="off"
       ></Input>
     </UserInputWrapper>
   );
@@ -59,12 +60,14 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid #9e9e9e;
+    border: 1px solid
+      ${(props) => (props.theme.isDark ? '#333333' : '#9e9e9e')};
   }
 
   background: ${(props) => (props.theme.isDark ? '#232323' : '#ffffff')};
   border: 1px solid
     ${(props) => (props.theme.isDark ? '#232323' : '#cacaca;')};
+  color: ${(props) => (props.theme.isDark ? '#cacaca' : '#000000;')};
 `;
 
 const Required = styled.span`

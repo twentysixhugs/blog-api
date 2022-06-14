@@ -1,4 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, {
+  css,
+  FlattenInterpolation,
+  ThemeProps,
+} from 'styled-components';
 
 interface IFormFieldProps {
   label: string;
@@ -10,6 +14,8 @@ interface IFormFieldProps {
   onChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
+  //eslint-disable-next-line
+  css?: FlattenInterpolation<ThemeProps<any>>;
 }
 
 export default function FormField({
@@ -20,9 +26,10 @@ export default function FormField({
   type,
   onChange,
   isRequired,
+  css,
 }: IFormFieldProps) {
   return (
-    <UserInputWrapper>
+    <UserInputWrapper css={css}>
       <Label htmlFor={inputId}>
         {label}
         {isRequired ? <Required> *</Required> : ''}
@@ -49,10 +56,16 @@ export default function FormField({
   );
 }
 
-const UserInputWrapper = styled.div`
+interface IUserInputWrapperProps {
+  //eslint-disable-next-line
+  css?: FlattenInterpolation<ThemeProps<any>>;
+}
+
+const UserInputWrapper = styled.div<IUserInputWrapperProps>`
   display: flex;
   flex-flow: column;
   gap: 8px;
+  ${(props) => props.css}
 `;
 
 const Label = styled.label`
@@ -92,6 +105,8 @@ const Textarea = styled.textarea`
   min-height: 10rem;
   padding: 0.5rem;
   font-family: inherit;
+
+  resize: none;
 `;
 
 const Required = styled.span`

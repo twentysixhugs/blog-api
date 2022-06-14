@@ -61,6 +61,7 @@ export default function Form({
           onChange={(e) => {
             onChange(field, e.target.value);
           }}
+          css={inputFields[field].css}
         />,
       );
     }

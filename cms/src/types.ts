@@ -1,3 +1,5 @@
+import { FlattenInterpolation, ThemeProps } from 'styled-components';
+
 /* Models */
 
 // User
@@ -89,5 +91,7 @@ export interface IInputFields {
     label: string;
     required: boolean;
     type: string;
+    //eslint-disable-next-line
+    css?: FlattenInterpolation<ThemeProps<any>>;
   };
 }

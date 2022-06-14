@@ -98,6 +98,7 @@ const Heading = styled.h2`
 `;
 
 const Errors = styled.div`
+  margin-top: 20px;
   display: flex;
   flex-flow: column;
   gap: 0.5rem;

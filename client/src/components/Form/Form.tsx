@@ -115,7 +115,7 @@ const SubmitButton = styled.button`
   font-size: 1.5rem;
 
   background: ${(props) =>
-    props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
+    props.theme.isDark ? 'var(--orange--dark)' : 'var(--orange--light)'};
   color: ${(props) => (props.theme.isDark ? '#000' : '#fff')};
   border-radius: 12px;
 

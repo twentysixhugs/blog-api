@@ -45,6 +45,7 @@ const GlobalStyle = createGlobalStyle`
     --orange--dark: #ff975f;
     --text--dark: #e2e2e2;
     --border--dark: #3e3e3e;
+    --orange--light: #e48729;
 
     background: ${({ theme }: { theme: IThemeContext }) =>
       theme.isDark ? '#181a1b' : 'none'};

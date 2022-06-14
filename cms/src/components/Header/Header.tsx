@@ -161,7 +161,7 @@ const NewPost = styled(NavLink)`
   text-decoration: none;
 
   background: ${(props) =>
-    props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
+    props.theme.isDark ? 'var(--orange--dark)' : 'var(--orange--light)'};
   color: ${(props) => (props.theme.isDark ? '#000' : '#fff')};
   border-radius: 12px;
 
@@ -178,7 +178,7 @@ const NewPost = styled(NavLink)`
     margin: 0;
     background: none;
     color: ${(props) =>
-      props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
+      props.theme.isDark ? 'var(--orange--dark)' : 'var(--orange--light)'};
 
     &.active {
       text-decoration: underline;

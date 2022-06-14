@@ -5,8 +5,8 @@ import Post from '../pages/Post';
 import About from '../pages/About';
 import { ThemeStore } from '../context/Theme/ThemeStore';
 import Theme from '../context/Theme/Theme';
-import AdminSignup from '../pages/AdminSignup';
-import AdminLogin from '../pages/AdminLogin';
+import Signup from '../pages/Signup';
+import Login from '../pages/Login';
 import TokenStore from '../context/Token/TokenStore';
 
 function App() {
@@ -23,8 +23,8 @@ function App() {
                 element={<Post />}
               ></Route>
               <Route path="about" element={<About />} />
-              <Route path="signup" element={<AdminSignup />} />
-              <Route path="login" element={<AdminLogin />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
             </Routes>
           </BrowserRouter>
         </Theme>

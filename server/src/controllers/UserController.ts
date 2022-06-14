@@ -44,12 +44,6 @@ const signup = (() => {
       .withMessage('Password confirmation is required')
       .custom((value, { req }) => value === req.body.password)
       .withMessage('Passwords do not match'),
-    body('adminKey')
-      .not()
-      .isEmpty()
-      .withMessage('Admin key is required')
-      .custom((value) => value === process.env.ADMINKEY!)
-      .withMessage('Admin key is incorrect'),
   ];
 
   const middlewareChain: MiddlewareFn[] = [

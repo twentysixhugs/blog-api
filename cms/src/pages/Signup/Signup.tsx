@@ -13,7 +13,7 @@ import { default as ErrorComponent } from '../../components/Error';
 import { Navigate } from 'react-router-dom';
 import { useToken } from '../../context/Token/TokenStore';
 
-export default function AdminSignup() {
+export default function Signup() {
   const [inputFields, setInputFields] = useState<IInputFields>({
     username: {
       value: '',
@@ -31,12 +31,6 @@ export default function AdminSignup() {
       value: '',
       required: true,
       label: 'Confirm password',
-      type: 'password',
-    },
-    adminKey: {
-      value: '',
-      required: true,
-      label: 'Admin key',
       type: 'password',
     },
   });
@@ -64,7 +58,6 @@ export default function AdminSignup() {
           username: inputFields.username.value,
           password: inputFields.password.value,
           passwordConfirm: inputFields.passwordConfirm.value,
-          adminKey: inputFields.adminKey.value,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -108,7 +101,7 @@ export default function AdminSignup() {
       <>
         <CenteredForm
           inputFields={inputFields}
-          heading="Admin sign up"
+          heading="Sign up"
           onChange={(field, value) => {
             setInputFields({
               ...inputFields,
@@ -128,7 +121,7 @@ export default function AdminSignup() {
       <>
         <CenteredForm
           inputFields={inputFields}
-          heading="Admin sign up"
+          heading="Sign up"
           onChange={(field, value) => {
             setInputFields({
               ...inputFields,

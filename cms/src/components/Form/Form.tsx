@@ -93,6 +93,8 @@ const StyledForm = styled.form`
 const Heading = styled.h2`
   font-size: 2rem;
   font-weight: 700;
+  color: ${(props) =>
+    props.theme.isDark ? 'var(--orange--dark)' : '#000'};
 `;
 
 const Errors = styled.div`

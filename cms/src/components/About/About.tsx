@@ -7,13 +7,14 @@ export default function About() {
       <Content>
         <Title>About</Title>
         <Description>
-          I made this blog project to practice building REST API and
+          I made this blog CMS project to practice building REST API and
           accessing it. It{"'"}s not the first time I work with REST API,
           but it is the first time I build the API myself. I create the
-          blog posts using CMS, store them on the backend made with Express
-          & MongoDB and make available here. You can browse through the
-          posts page by page, open one, leave a comment and see what others
-          think about it.
+          blog posts using this CMS, store them on the backend made with
+          Express & MongoDB and make available in the blog app. You can
+          browse through the posts page by page, open one, leave a comment
+          and see what others think about it. You can find a link to the
+          main client app on GitHub.
         </Description>
         <Links></Links>
       </Content>

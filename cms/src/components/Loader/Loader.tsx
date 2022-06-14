@@ -8,11 +8,21 @@ export default function Loader() {
   );
 }
 
+const opacity = keyframes`
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+`;
+
 const Wrapper = styled.div`
   min-height: calc(100vh - var(--header-offset));
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${opacity} 0.3s ease-out;
 `;
 
 const rotate = keyframes`

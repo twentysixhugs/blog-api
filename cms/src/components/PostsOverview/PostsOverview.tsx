@@ -22,20 +22,22 @@ export default function PostsOverview({
       <Wrapper>
         <Title>Your posts</Title>
         <PostsWrapper>
-          {posts.map((post) => {
-            animationDelay += 0.1;
+          {posts
+            .sort((a, b) => (a.title < b.title ? -1 : 1))
+            .map((post) => {
+              animationDelay += 0.1;
 
-            return (
-              <AnimatedCard
-                key={post._id}
-                date={post.datePublishedFormatted}
-                title={post.title}
-                subtitle={post.text}
-                contentUrl={post.url}
-                animationDelay={animationDelay}
-              />
-            );
-          })}
+              return (
+                <AnimatedCard
+                  key={post._id}
+                  date={post.datePublishedFormatted}
+                  title={post.title}
+                  subtitle={post.text}
+                  contentUrl={post.url}
+                  animationDelay={animationDelay}
+                />
+              );
+            })}
         </PostsWrapper>
         {children}
       </Wrapper>

@@ -37,6 +37,10 @@ const StyledHeader = styled.header`
   background: ${({ theme }) => (theme.isDark ? '#181818' : '#fff')};
   box-shadow: ${({ theme }) =>
     theme.isDark ? 'none' : 'rgba(111, 104, 100, 0.2) 0px 7px 29px 0px'};
+
+  @media (max-width: 340px) {
+    padding-inline: 12px;
+  }
 `;
 
 const InvisibleWrapper = styled.div`
@@ -79,7 +83,8 @@ const Nav = styled.nav`
 
   display: flex;
   justify-content: flex-end;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
 
   font-size: 1.2rem;
 `;
@@ -92,6 +97,12 @@ const StyledLink = styled(NavLink)`
   line-height: 1.1;
   &.active {
     text-decoration: underline;
+  }
+  @media (max-width: 620px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.85rem;
   }
 `;
 
@@ -108,6 +119,6 @@ const ThemeToggle = styled.button`
 
   @media (max-width: 500px) {
     background-position: center;
-    width: calc(var(--header-offset) / 1.5);
+    width: calc(var(--header-offset) / 4);
   }
 `;

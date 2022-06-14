@@ -7,11 +7,13 @@ import { useTheme } from '../../context/Theme/ThemeStore';
 interface IPostsOverviewProps {
   posts: IPost[];
   children?: React.ReactNode;
+  pagination: React.ReactNode;
 }
 
 export default function PostsOverview({
   posts,
   children,
+  pagination,
 }: IPostsOverviewProps) {
   const theme = useTheme();
 
@@ -21,6 +23,7 @@ export default function PostsOverview({
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Title>Your posts</Title>
+        {children}
         <PostsWrapper>
           {posts
             .sort((a, b) => (a.title < b.title ? -1 : 1))
@@ -39,7 +42,7 @@ export default function PostsOverview({
               );
             })}
         </PostsWrapper>
-        {children}
+        {pagination}
       </Wrapper>
     </ThemeProvider>
   );

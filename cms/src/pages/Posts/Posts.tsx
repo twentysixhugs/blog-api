@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { IPost, IPostsCountResponse, IPostsResponse } from '../../types';
 import { formatDate } from '../../helpers/formatDate';
 import PostsOverview from '../../components/PostsOverview/';
+import PostsOverviewSwitch from '../../components/PostsOverviewSwitch';
 import PostsPagination from '../../components/PostsPagination';
 import Loader from '../../components/Loader';
 import { default as ErrorComponent } from '../../components/Error';
@@ -13,6 +14,9 @@ export default function Posts() {
   const [posts, setPosts] = useState<null | IPost[]>(null);
   const [error, setError] = useState<null | { message: string }>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [postsTypeToFetch, setPostsTypeToFetch] = useState<
+    'published' | 'unpublished'
+  >('published');
 
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,7 +30,7 @@ export default function Posts() {
     setIsLoading(true);
 
     fetchData<IPostsCountResponse>(
-      `http://localhost:3000/api/author/posts/count`,
+      `http://localhost:3000/api/author/posts/count?type=${postsTypeToFetch}`,
       {
         mode: 'cors',
         headers: {
@@ -48,13 +52,13 @@ export default function Posts() {
         setError(err);
         setIsLoading(false);
       });
-  }, [token]);
+  }, [token, postsTypeToFetch]);
 
   useEffect(() => {
     if (!token) return;
 
     fetchData<IPostsResponse>(
-      `http://localhost:3000/api/posts/author?perpage=${POSTS_PER_PAGE}&page=${currentPage}`,
+      `http://localhost:3000/api/posts/author?perpage=${POSTS_PER_PAGE}&page=${currentPage}&type=${postsTypeToFetch}`,
       {
         mode: 'cors',
         headers: {
@@ -82,7 +86,7 @@ export default function Posts() {
         setError(err);
         setIsLoading(false);
       });
-  }, [currentPage, token]);
+  }, [currentPage, token, postsTypeToFetch]);
 
   useEffect(() => {
     if (posts || !token) {
@@ -97,6 +101,11 @@ export default function Posts() {
     setCurrentPage(event.selected);
   };
 
+  // toggle between published and unpublished posts
+  const handleOverviewSwitch = (switchTo: 'published' | 'unpublished') => {
+    setPostsTypeToFetch(switchTo);
+  };
+
   if (error) {
     return <ErrorComponent message={error.message} />;
   } else if (isLoading) {
@@ -106,8 +115,9 @@ export default function Posts() {
   } else if (posts) {
     return (
       <>
-        <PostsOverview posts={posts}>
-          {posts.length > 0 && (
+        <PostsOverview
+          posts={posts}
+          pagination={
             <PostsPagination
               breakLabel="..."
               nextLabel=">"
@@ -116,6 +126,15 @@ export default function Posts() {
               pageCount={pageCount}
               previousLabel="<"
             />
+          }
+        >
+          {posts.length > 0 && (
+            <>
+              <PostsOverviewSwitch
+                onChange={handleOverviewSwitch}
+                selected={postsTypeToFetch}
+              />
+            </>
           )}
         </PostsOverview>
       </>

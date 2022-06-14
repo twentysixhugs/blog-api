@@ -7,6 +7,7 @@ import { ThemeStore } from '../context/Theme/ThemeStore';
 import Theme from '../context/Theme/Theme';
 import Signup from '../pages/Signup';
 import Login from '../pages/Login';
+import Logout from '../pages/Logout';
 import TokenStore from '../context/Token/TokenStore';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
+              <Route path="logout" element={<Logout />} />
             </Routes>
           </BrowserRouter>
         </Theme>

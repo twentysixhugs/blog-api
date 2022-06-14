@@ -22,6 +22,7 @@ export default function Header() {
       <Nav>
         {token ? (
           <>
+            <NewPost to="/new">New post</NewPost>
             <StyledNavLink to="/">Home</StyledNavLink>
             <StyledNavLink to="/about">About</StyledNavLink>
             <StyledLink to="/logout">Log out</StyledLink>
@@ -57,7 +58,7 @@ const InvisibleWrapper = styled.div`
   margin-right: auto;
   flex: 1;
 
-  @media (max-width: 750px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
@@ -74,15 +75,13 @@ const Title = styled.h1`
       theme.isDark ? 'var(--orange--dark)' : '#1c1c1c'};
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     font-size: 1.3rem;
     margin-left: 32px;
   }
 
-  @media (max-width: 500px) {
-    font-size: 0.7rem;
-    text-align: center;
-    margin-inline: 20px;
+  @media (max-width: 620px) {
+    display: none;
   }
 `;
 
@@ -92,9 +91,14 @@ const Nav = styled.nav`
 
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 16px;
 
   font-size: 1.2rem;
+
+  @media (max-width: 400px) {
+    gap: 12px;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -103,6 +107,14 @@ const StyledLink = styled(Link)`
   font-weight: 400;
   text-decoration: none;
   line-height: 1.1;
+
+  @media (max-width: 620px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.85rem;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -113,6 +125,12 @@ const StyledNavLink = styled(NavLink)`
   line-height: 1.1;
   &.active {
     text-decoration: underline;
+  }
+  @media (max-width: 620px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.85rem;
   }
 `;
 
@@ -129,6 +147,42 @@ const ThemeToggle = styled.button`
 
   @media (max-width: 500px) {
     background-position: center;
-    width: calc(var(--header-offset) / 1.5);
+    width: calc(var(--header-offset) / 4);
+  }
+`;
+
+const NewPost = styled(Link)`
+  width: max-content;
+  padding: 0.8rem 0.5rem;
+  margin-right: 1.75rem;
+  margin-left: 3.75rem;
+
+  font-size: 1.3rem;
+  text-decoration: none;
+
+  background: ${(props) =>
+    props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
+  color: ${(props) => (props.theme.isDark ? '#000' : '#fff')};
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  &:active {
+    background: #ee8924;
+  }
+
+  @media (max-width: 800px) {
+    padding: 0;
+    margin: 0;
+    background: none;
+    color: ${(props) =>
+      props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
+  }
+
+  @media (max-width: 620px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.85rem;
   }
 `;

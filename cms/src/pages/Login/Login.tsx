@@ -69,9 +69,9 @@ export default function Login() {
           saveToken(data.token);
           setAuthResult('success');
           setInputFields(resetInputFields(inputFields));
-        } else {
+        } else if (data.errors) {
           setAuthResult('failure');
-          setServerErrors(data.errors || []);
+          setServerErrors(data.errors.errors || []);
         }
       })
       .catch((err) => {

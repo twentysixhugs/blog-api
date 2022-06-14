@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface IFormFieldProps {
   label: string;
@@ -7,7 +7,9 @@ interface IFormFieldProps {
   value: string | number | readonly string[] | undefined;
   type: string;
   isRequired: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
 }
 
 export default function FormField({
@@ -25,14 +27,24 @@ export default function FormField({
         {label}
         {isRequired ? <Required> *</Required> : ''}
       </Label>
-      <Input
-        name={name}
-        value={value}
-        id={inputId}
-        onChange={onChange}
-        type={type}
-        autoComplete="off"
-      ></Input>
+      {type === 'textarea' ? (
+        <Textarea
+          name={name}
+          value={value}
+          id={inputId}
+          onChange={onChange}
+          autoComplete="off"
+        ></Textarea>
+      ) : (
+        <Input
+          name={name}
+          value={value}
+          id={inputId}
+          onChange={onChange}
+          type={type}
+          autoComplete="off"
+        ></Input>
+      )}
     </UserInputWrapper>
   );
 }
@@ -50,10 +62,7 @@ const Label = styled.label`
   color: ${(props) => (props.theme.isDark ? 'var(--text--dark)' : '#000')};
 `;
 
-const Input = styled.input`
-  min-height: 2.5rem;
-  padding: 0 0.5rem;
-
+const fieldTag = css`
   font-size: 1.1rem;
 
   border-radius: 8px;
@@ -68,6 +77,21 @@ const Input = styled.input`
   border: 1px solid
     ${(props) => (props.theme.isDark ? '#232323' : '#cacaca;')};
   color: ${(props) => (props.theme.isDark ? '#cacaca' : '#000000;')};
+`;
+
+const Input = styled.input`
+  ${fieldTag}
+
+  min-height: 2.5rem;
+  padding: 0 0.5rem;
+`;
+
+const Textarea = styled.textarea`
+  ${fieldTag}
+
+  min-height: 10rem;
+  padding: 0.5rem;
+  font-family: inherit;
 `;
 
 const Required = styled.span`

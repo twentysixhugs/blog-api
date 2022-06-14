@@ -25,7 +25,7 @@ export default function Comments({
       value: '',
       required: true,
       label: 'Your message',
-      type: 'text',
+      type: 'textarea',
     },
   });
 

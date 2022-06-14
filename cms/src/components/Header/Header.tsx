@@ -151,7 +151,7 @@ const ThemeToggle = styled.button`
   }
 `;
 
-const NewPost = styled(Link)`
+const NewPost = styled(NavLink)`
   width: max-content;
   padding: 0.8rem 0.5rem;
   margin-right: 1.75rem;
@@ -168,7 +168,13 @@ const NewPost = styled(Link)`
   cursor: pointer;
 
   &:active {
-    background: #ee8924;
+    ${(props) => (props.theme.isDark ? '' : 'background: #e48729')};
+  }
+
+  @media (min-width: 801px) {
+    &.active {
+      text-decoration: none;
+    }
   }
 
   @media (max-width: 800px) {
@@ -177,6 +183,10 @@ const NewPost = styled(Link)`
     background: none;
     color: ${(props) =>
       props.theme.isDark ? 'var(--orange--dark)' : '#e48729'};
+
+    &.active {
+      text-decoration: underline;
+    }
   }
 
   @media (max-width: 620px) {

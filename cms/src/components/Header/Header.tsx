@@ -167,10 +167,6 @@ const NewPost = styled(NavLink)`
 
   cursor: pointer;
 
-  &:active {
-    ${(props) => (props.theme.isDark ? '' : 'background: #e48729')};
-  }
-
   @media (min-width: 801px) {
     &.active {
       text-decoration: none;

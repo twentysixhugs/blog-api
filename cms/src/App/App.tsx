@@ -8,6 +8,7 @@ import Theme from '../context/Theme/Theme';
 import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
+import NewPost from '../pages/NewPost';
 import TokenStore from '../context/Token/TokenStore';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="logout" element={<Logout />} />
+              <Route path="new" element={<NewPost />} />
             </Routes>
           </BrowserRouter>
         </Theme>

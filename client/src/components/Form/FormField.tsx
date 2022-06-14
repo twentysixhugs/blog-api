@@ -92,6 +92,8 @@ const Textarea = styled.textarea`
   min-height: 10rem;
   padding: 0.5rem;
   font-family: inherit;
+
+  resize: none;
 `;
 
 const Required = styled.span`

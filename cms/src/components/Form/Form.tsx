@@ -59,7 +59,11 @@ export default function Form({
           isRequired={inputFields[field].required}
           type={inputFields[field].type}
           onChange={(e) => {
-            onChange(field, e.target.value);
+            if ('checked' in e.target && e.target.checked) {
+              onChange(field, e.target.checked ? 'on' : '');
+            } else {
+              onChange(field, e.target.value);
+            }
           }}
           css={inputFields[field].css}
         />,

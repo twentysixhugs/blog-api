@@ -4,12 +4,12 @@ import { useTheme } from '../../context/Theme/ThemeStore';
 
 import SUN_PIC from './assets/sun.png';
 import MOON_PIC from './assets/moon.png';
-import useAuthToken from '../../hooks/useAuthToken';
+import { useToken } from '../../context/Token/TokenStore';
 
 export default function Header() {
   const theme = useTheme();
 
-  const [token, saveToken, resetToken] = useAuthToken();
+  const [token, saveToken, resetToken] = useToken();
 
   return (
     <StyledHeader>

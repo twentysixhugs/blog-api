@@ -6,8 +6,8 @@ import PostsPagination from '../../components/PostsPagination';
 import Loader from '../../components/Loader';
 import { default as ErrorComponent } from '../../components/Error';
 import fetchData from '../../api/fetchData';
-import useAuthToken from '../../hooks/useAuthToken';
 import { Navigate } from 'react-router-dom';
+import { useToken } from '../../context/Token/TokenStore';
 
 export default function Posts() {
   const [posts, setPosts] = useState<null | IPost[]>(null);
@@ -19,7 +19,7 @@ export default function Posts() {
 
   const POSTS_PER_PAGE = 7;
 
-  const [token, saveToken, resetToken] = useAuthToken();
+  const [token, saveToken, resetToken] = useToken();
 
   useEffect(() => {
     if (!token) return;

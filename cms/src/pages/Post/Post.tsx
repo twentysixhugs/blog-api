@@ -12,7 +12,7 @@ import {
   ICommentResponse,
 } from '../../types';
 import fetchData from '../../api/fetchData';
-import useAuthToken from '../../hooks/useAuthToken';
+import { useToken } from '../../context/Token/TokenStore';
 
 export default function Post() {
   const [currentPost, setCurrentPost] = useState<null | IPost>();
@@ -24,7 +24,7 @@ export default function Post() {
 
   const { postId } = useParams();
 
-  const [token, saveToken, resetToken] = useAuthToken();
+  const [token, saveToken, resetToken] = useToken();
 
   useEffect(() => {
     if (!token) return;

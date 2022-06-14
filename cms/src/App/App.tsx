@@ -6,21 +6,29 @@ import About from '../pages/About';
 import { ThemeStore } from '../context/Theme/ThemeStore';
 import Theme from '../context/Theme/Theme';
 import AdminSignup from '../pages/AdminSignup';
+import AdminLogin from '../pages/AdminLogin';
+import TokenStore from '../context/Token/TokenStore';
 
 function App() {
   return (
     <ThemeStore>
-      <Theme>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Posts />}></Route>
-            <Route path="author/posts/:postId" element={<Post />}></Route>
-            <Route path="about" element={<About />} />
-            <Route path="signup" element={<AdminSignup />} />
-          </Routes>
-        </BrowserRouter>
-      </Theme>
+      <TokenStore>
+        <Theme>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Posts />}></Route>
+              <Route
+                path="author/posts/:postId"
+                element={<Post />}
+              ></Route>
+              <Route path="about" element={<About />} />
+              <Route path="signup" element={<AdminSignup />} />
+              <Route path="login" element={<AdminLogin />} />
+            </Routes>
+          </BrowserRouter>
+        </Theme>
+      </TokenStore>
     </ThemeStore>
   );
 }

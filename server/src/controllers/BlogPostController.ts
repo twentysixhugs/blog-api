@@ -47,11 +47,6 @@ const create = (() => {
       .not()
       .isEmpty()
       .withMessage('Text should not be empty. Write something :)'),
-    body('shouldPublish')
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage('But should I publish it or not?'),
   ];
 
   return [...validationChain, ...middlewareChain];

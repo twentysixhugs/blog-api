@@ -11,7 +11,7 @@ import fetchData from '../../api/fetchData';
 import Loader from '../../components/Loader';
 import { default as ErrorComponent } from '../../components/Error';
 import { Navigate } from 'react-router-dom';
-import useAuthToken from '../../hooks/useAuthToken';
+import { useToken } from '../../context/Token/TokenStore';
 
 export default function AdminSignup() {
   const [inputFields, setInputFields] = useState<IInputFields>({
@@ -50,7 +50,7 @@ export default function AdminSignup() {
     'success' | 'failure' | null
   >(null);
 
-  const [token, saveToken, resetToken] = useAuthToken();
+  const [token, saveToken, resetToken] = useToken();
 
   const handleSubmit = async () => {
     setIsLoading(true);

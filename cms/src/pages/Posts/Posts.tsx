@@ -128,14 +128,10 @@ export default function Posts() {
             />
           }
         >
-          {posts.length > 0 && (
-            <>
-              <PostsOverviewSwitch
-                onChange={handleOverviewSwitch}
-                selected={postsTypeToFetch}
-              />
-            </>
-          )}
+          <PostsOverviewSwitch
+            onChange={handleOverviewSwitch}
+            selected={postsTypeToFetch}
+          />
         </PostsOverview>
       </>
     );

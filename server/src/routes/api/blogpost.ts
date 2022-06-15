@@ -26,15 +26,16 @@ router.put('/posts/:postId', blogPostController.update);
 
 /* Comments */
 
+router.delete(
+  'author/posts/:postId/comments/:commentId',
+  commentController.deleteOne,
+);
+
 router.get(
   '/author/posts/:postId/comments',
   commentController.getAllForAuthorPost,
 );
 router.get('/posts/:postId/comments', commentController.getAllForPost);
 router.post('/posts/:postId/comments/new', commentController.create);
-router.delete(
-  '/posts/:postId/comments/:commentId',
-  commentController.deleteOne,
-);
 
 export default router;

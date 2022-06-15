@@ -11,6 +11,7 @@ import Logout from '../pages/Logout';
 import NewPost from '../pages/NewPost';
 import TokenStore from '../context/Token/TokenStore';
 import EditPost from '../pages/EditPost';
+import DeletePost from '../pages/DeletePost';
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
               <Route
                 path="author/posts/:postId/edit"
                 element={<EditPost />}
+              />
+              <Route
+                path="author/posts/:postId/delete"
+                element={<DeletePost />}
               />
               <Route path="about" element={<About />} />
               <Route path="signup" element={<Signup />} />

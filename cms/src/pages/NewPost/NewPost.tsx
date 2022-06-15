@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useToken } from '../../context/Token/TokenStore';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { css } from 'styled-components';
-import checkMarkSVG from '../../globalAssets/checkmark_inverted.svg';
+import checkMarkSVG from '../../globalAssets/checkmark.svg';
 import fetchData from '../../api/fetchData';
 import { default as ErrorComponent } from '../../components/Error';
 

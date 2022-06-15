@@ -52,4 +52,6 @@ const Styled = styled.div<IStyledProps>`
   &:hover {
     transform: scale(1.3);
   }
+
+  cursor: pointer;
 `;

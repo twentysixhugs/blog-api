@@ -23,7 +23,7 @@ import { useToken } from '../../context/Token/TokenStore';
 export default function EditPost() {
   const [error, setError] = useState<null | { message: string }>(null);
   const [serverErrors, setServerErrors] = useState<IValidationError[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { postId } = useParams();
 

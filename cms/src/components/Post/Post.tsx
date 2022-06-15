@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { IComment } from '../../types';
 import Comments from '../Comments';
+import Edit from '../Edit';
 
 interface IPostProps {
   author: string;
   title: string;
   date: string;
   text: string;
+  contentUrl: string;
   comments: IComment[];
   onNewComment: (author: string, text: string) => void;
 }
@@ -16,12 +18,16 @@ export default function Post({
   title,
   date,
   text,
+  contentUrl,
   comments,
   onNewComment,
 }: IPostProps) {
   return (
     <StyledPost>
-      <Title>{title}</Title>
+      <TitleWrapper>
+        <Title>{title}</Title>
+        <ResizedEdit contentUrl={contentUrl} />
+      </TitleWrapper>
       <DateAuthorWrapper>
         <span>{date ? date + ', ' : 'Not published, '}by </span>
         <span>{author} (You)</span>
@@ -40,6 +46,12 @@ const StyledPost = styled.div`
   }
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 800;
@@ -49,6 +61,11 @@ const Title = styled.h1`
   @media (max-width: 500px) {
     font-size: 2rem;
   }
+`;
+
+const ResizedEdit = styled(Edit)`
+  width: 40px;
+  height: 40px;
 `;
 
 const DateAuthorWrapper = styled.div`

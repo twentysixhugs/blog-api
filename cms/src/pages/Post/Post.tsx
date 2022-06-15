@@ -157,6 +157,7 @@ export default function Post() {
           date={currentPost.datePublishedFormatted}
           title={currentPost.title}
           text={currentPost.text}
+          contentUrl={currentPost.url}
           comments={currentPostComments}
           onNewComment={handleNewComment}
         />

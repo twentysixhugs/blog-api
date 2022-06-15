@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import ConfirmationModal from '../ConfirmationModal';
 
 interface IContentActionProps {
-  contentUrl: string;
-  actionEndpoint: `/${string}`;
+  contentUrl?: string;
+  actionEndpoint?: `/${string}`;
   iconDarkTheme?: string;
   iconLightTheme?: string;
   className?: string;
   confirmationMessage?: string;
+  onActionSubmit?: () => void;
 }
 
 export default function ContentAction({
@@ -19,6 +20,7 @@ export default function ContentAction({
   iconLightTheme,
   className,
   confirmationMessage,
+  onActionSubmit,
 }: IContentActionProps) {
   const navigate = useNavigate();
 
@@ -38,8 +40,16 @@ export default function ContentAction({
     if (shouldConfirm) {
       setShouldShowConfirmPopup(true);
     } else {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    if (contentUrl && actionEndpoint) {
+      // if should redirect on action
       navigate(contentUrl + actionEndpoint);
     }
+    onActionSubmit ? onActionSubmit() : null;
   };
 
   return (
@@ -56,7 +66,7 @@ export default function ContentAction({
           onConfirm={() => {
             setTimeout(() => {
               setShouldShowConfirmPopup(false);
-              navigate(contentUrl + actionEndpoint);
+              handleSubmit();
             }, 300);
           }}
           onCancel={() => {

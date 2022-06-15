@@ -33,7 +33,10 @@ export interface ICommentAPI {
   author: string;
   text: string;
   date: string;
-  post: string;
+  post: {
+    _id: string;
+    datePublished: Date;
+  };
 }
 
 export interface IComment extends ICommentAPI {

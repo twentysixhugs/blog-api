@@ -17,7 +17,7 @@ const getAllForPost: MiddlewareFn = async (req, res, next) => {
       .sort({
         date: 'desc',
       })
-      .populate('post');
+      .populate('post', 'datePublished');
 
     if (
       comments[0] &&

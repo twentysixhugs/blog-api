@@ -81,11 +81,13 @@ export default function Form({
   return (
     <StyledForm onSubmit={handleSubmit} className={className}>
       {heading ? <Heading>{heading}</Heading> : ''}
-      <Errors>
-        {errors.concat(externalErrors || []).map((err) => (
-          <span key={err}>&#8226; {err}</span>
-        ))}
-      </Errors>
+      {(errors.length > 0 || externalErrors) && (
+        <Errors>
+          {errors.concat(externalErrors || []).map((err) => (
+            <span key={err}>&#8226; {err}</span>
+          ))}
+        </Errors>
+      )}
       {getFormFields()}
       <SubmitButton>
         {submitButtonName ? submitButtonName : 'Submit'}

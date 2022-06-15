@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IComment } from '../../types';
 import Comments from '../Comments';
-import Edit from '../Edit';
+import EditPostAction from '../EditPostAction';
 
 interface IPostProps {
   author: string;
@@ -26,7 +26,7 @@ export default function Post({
     <StyledPost>
       <TitleWrapper>
         <Title>{title}</Title>
-        <ResizedEdit contentUrl={contentUrl} />
+        <ResizedEditPostAction contentUrl={contentUrl} />
       </TitleWrapper>
       <DateAuthorWrapper>
         <span>{date ? date + ', ' : 'Not published, '}by </span>
@@ -63,7 +63,7 @@ const Title = styled.h1`
   }
 `;
 
-const ResizedEdit = styled(Edit)`
+const ResizedEditPostAction = styled(EditPostAction)`
   width: 40px;
   height: 40px;
 `;

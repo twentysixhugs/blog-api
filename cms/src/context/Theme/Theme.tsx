@@ -24,6 +24,16 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
   }
 
+
+  #root.is-blur {
+    filter: blur(2px);
+  }
+
+  #modal-root {
+    position: relative;
+    z-index: 99;
+  }
+
   * {
     box-sizing: border-box;
   }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import editPencilSVG from '../../globalAssets/edit_pencil.svg';
+import editPencilDarkThemeSVG from '../../globalAssets/edit_pencil_dark_theme.svg';
 
 interface ICardProps {
   date: string | null;
@@ -23,9 +25,18 @@ export default function Card({
     navigate(contentUrl);
   };
 
+  const handleEdit: React.MouseEventHandler = (e) => {
+    e.stopPropagation();
+
+    navigate(contentUrl + '/edit');
+  };
+
   return (
     <Wrapper className={className} onClick={handleCardOpen}>
-      <Title>{title}</Title>
+      <TitleWrapper>
+        <Title>{title}</Title>
+        <Edit onClick={handleEdit}></Edit>
+      </TitleWrapper>
       <Subtitle>{subtitle}</Subtitle>
       {date ? (
         <Published>Published on {date}</Published>
@@ -46,10 +57,33 @@ const Wrapper = styled.div`
   cursor: pointer;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
 const Title = styled.h2`
   font-size: 1.2rem;
+  line-height: 1.1;
   font-weight: bold;
   color: ${({ theme }) => (theme.isDark ? 'var(--orange--dark)' : '#000')};
+`;
+
+const Edit = styled.div`
+  width: 20px;
+  height: 20px;
+  background: ${({ theme }) =>
+    theme.isDark
+      ? `url(${editPencilDarkThemeSVG})`
+      : `url(${editPencilSVG})`};
+  background-size: contain;
+
+  transition: transform 0.2s ease-out;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 const Subtitle = styled.p`

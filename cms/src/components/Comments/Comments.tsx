@@ -8,11 +8,13 @@ import resetInputFields from '../../helpers/resetInputFields';
 interface ICommentsProps {
   comments: IComment[];
   onNewComment: (author: string, text: string) => void;
+  onCommentDelete: (id: string) => void;
 }
 
 export default function Comments({
   comments,
   onNewComment,
+  onCommentDelete,
 }: ICommentsProps) {
   const [inputFields, setInputFields] = useState<IInputFields>({
     author: {
@@ -56,6 +58,9 @@ export default function Comments({
             text={comment.text}
             author={comment.author}
             date={comment.dateFormatted}
+            id={comment._id}
+            postId={comment.post._id}
+            onDelete={() => onCommentDelete(comment._id)}
           />
         ))
       ) : (

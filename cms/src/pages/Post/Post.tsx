@@ -143,6 +143,44 @@ export default function Post() {
     }
   };
 
+  const handleCommentDelete = (id: string) => {
+    fetchData<ICommentResponse>(
+      `http://localhost:3000/api/author/posts/${postId}/comments/${id}`,
+      {
+        mode: 'cors',
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      },
+      () => {
+        throw new Error('Something went wrong, cannot delete a comment');
+      },
+      () => {
+        throw new Error(
+          'The post you are trying to delete a comment from is not found. Are you a hacker?',
+        );
+      },
+    )
+      .then((data) => {
+        if (!data.success) {
+          throw new Error('Something went wrong, cannot delete a comment');
+        } else {
+          setCurrentPostComments(
+            currentPostComments && [
+              ...currentPostComments.filter(
+                (comment) => comment._id !== id,
+              ),
+            ],
+          );
+        }
+      })
+      .catch((err) => {
+        setError(err as { message: string });
+      });
+  };
+
   if (error) {
     return <ErrorComponent message={error.message} />;
   } else if (isLoading) {
@@ -160,6 +198,7 @@ export default function Post() {
           contentUrl={currentPost.url}
           comments={currentPostComments}
           onNewComment={handleNewComment}
+          onCommentDelete={handleCommentDelete}
         />
       </>
     );

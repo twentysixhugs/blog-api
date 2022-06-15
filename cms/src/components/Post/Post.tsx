@@ -12,6 +12,7 @@ interface IPostProps {
   contentUrl: string;
   comments: IComment[];
   onNewComment: (author: string, text: string) => void;
+  onCommentDelete: (id: string) => void;
 }
 
 export default function Post({
@@ -22,6 +23,7 @@ export default function Post({
   contentUrl,
   comments,
   onNewComment,
+  onCommentDelete,
 }: IPostProps) {
   return (
     <StyledPost>
@@ -37,7 +39,11 @@ export default function Post({
         <span>{author} (You)</span>
       </DateAuthorWrapper>
       <Text>{text}</Text>
-      <Comments comments={comments} onNewComment={onNewComment} />
+      <Comments
+        comments={comments}
+        onNewComment={onNewComment}
+        onCommentDelete={onCommentDelete}
+      />
     </StyledPost>
   );
 }

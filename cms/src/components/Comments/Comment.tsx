@@ -1,19 +1,31 @@
 import styled from 'styled-components';
+import DeleteCommentAction from '../DeleteCommentAction';
 
 interface ICommentProps {
   author: string;
   text: string;
   date: string;
+  id: string;
+  postId: string;
+  onDelete: () => void;
 }
 
-export default function Comment({ author, text, date }: ICommentProps) {
+export default function Comment({
+  author,
+  text,
+  date,
+  id,
+  postId,
+  onDelete,
+}: ICommentProps) {
   return (
     <Wrapper>
-      <CommentInfo>
+      <WrapperTop>
         <Author>{author}</Author>
         &#8226;
         <Date>{date}</Date>
-      </CommentInfo>
+        <StyledDeleteCommentAction onActionSubmit={onDelete} />
+      </WrapperTop>
       <Text>{text}</Text>
     </Wrapper>
   );
@@ -34,7 +46,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const CommentInfo = styled.div`
+const WrapperTop = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -62,4 +74,10 @@ const Date = styled.span`
   font-size: 0.9rem;
   line-height: 1.5;
   color: #636363;
+`;
+
+const StyledDeleteCommentAction = styled(DeleteCommentAction)`
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
 `;

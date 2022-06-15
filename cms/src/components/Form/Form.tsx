@@ -59,13 +59,18 @@ export default function Form({
           isRequired={inputFields[field].required}
           type={inputFields[field].type}
           onChange={(e) => {
-            if ('checked' in e.target && e.target.checked) {
-              onChange(field, e.target.checked ? 'on' : '');
+            if (e.target.type === 'checkbox') {
+              if ('checked' in e.target && e.target.checked) {
+                onChange(field, 'on');
+              } else {
+                onChange(field, '');
+              }
             } else {
               onChange(field, e.target.value);
             }
           }}
           css={inputFields[field].css}
+          attributes={inputFields[field].attributes}
         />,
       );
     }

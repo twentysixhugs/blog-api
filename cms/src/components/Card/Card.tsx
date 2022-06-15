@@ -28,7 +28,7 @@ export default function Card({
     <Wrapper className={className} onClick={handleCardOpen}>
       <TitleWrapper>
         <Title>{title}</Title>
-        <Edit contentUrl={contentUrl}></Edit>
+        <ResizedEdit contentUrl={contentUrl}></ResizedEdit>
       </TitleWrapper>
       <Subtitle>{subtitle}</Subtitle>
       {date ? (
@@ -61,6 +61,11 @@ const Title = styled.h2`
   line-height: 1.1;
   font-weight: bold;
   color: ${({ theme }) => (theme.isDark ? 'var(--orange--dark)' : '#000')};
+`;
+
+const ResizedEdit = styled(Edit)`
+  width: 20px;
+  height: 20px;
 `;
 
 const Subtitle = styled.p`

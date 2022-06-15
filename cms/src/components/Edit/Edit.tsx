@@ -6,9 +6,10 @@ import editPencilDarkThemeSVG from '../../globalAssets/edit_pencil_dark_theme.sv
 
 interface IEditProps {
   contentUrl: string;
+  className?: string;
 }
 
-export default function Edit({ contentUrl }: IEditProps) {
+export default function Edit({ contentUrl, className }: IEditProps) {
   const navigate = useNavigate();
 
   const handleEdit: React.MouseEventHandler = (e) => {
@@ -17,16 +18,15 @@ export default function Edit({ contentUrl }: IEditProps) {
     navigate(contentUrl + '/edit');
   };
 
-  return <StyledEdit onClick={handleEdit} />;
+  return <StyledEdit className={className} onClick={handleEdit} />;
 }
 
 const StyledEdit = styled.div`
-  width: 20px;
-  height: 20px;
   background: ${({ theme }) =>
-    theme.isDark
-      ? `url(${editPencilDarkThemeSVG})`
-      : `url(${editPencilSVG})`};
+      theme.isDark
+        ? `url(${editPencilDarkThemeSVG})`
+        : `url(${editPencilSVG})`}
+    no-repeat;
   background-size: contain;
 
   transition: transform 0.2s ease-out;

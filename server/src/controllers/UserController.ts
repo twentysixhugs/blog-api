@@ -1,4 +1,4 @@
-import { MiddlewareFn } from '../types';
+import { MiddlewareFn, ResponseError } from '../types';
 import {
   ValidationChain,
   validationResult,
@@ -93,9 +93,6 @@ const login = (() => {
   ];
 
   const middlewareChain: MiddlewareFn[] = [
-    passport.authenticate('local', {
-      session: false,
-    }),
     async (req, res, next) => {
       const errors = validationResult(req);
 
@@ -107,18 +104,44 @@ const login = (() => {
         });
       }
 
-      const token = jwt.sign(
-        { sub: (req.user as HydratedDocument<IUser>).id },
-        process.env.JWTSECRET!,
+      return next();
+    },
+    (req, res, next) => {
+      passport.authenticate(
+        'local',
         {
-          expiresIn: '180d',
+          session: false,
         },
-      );
+        (
+          err: ResponseError,
+          user: Express.User,
+          info: { message: string },
+        ) => {
+          if (err) {
+            return next(err);
+          }
 
-      return res.json({
-        success: true,
-        token,
-      });
+          if (!user) {
+            return res.json({
+              success: false,
+              errors: [{ msg: info.message, status: 401 }],
+            });
+          } else {
+            const token = jwt.sign(
+              { sub: (user as HydratedDocument<IUser>).id },
+              process.env.JWTSECRET!,
+              {
+                expiresIn: '180d',
+              },
+            );
+
+            return res.json({
+              success: true,
+              token,
+            });
+          }
+        },
+      )(req, res, next);
     },
   ];
 

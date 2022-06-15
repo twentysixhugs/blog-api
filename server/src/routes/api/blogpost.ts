@@ -27,7 +27,7 @@ router.put('/posts/:postId', blogPostController.update);
 /* Comments */
 
 router.delete(
-  'author/posts/:postId/comments/:commentId',
+  '/author/posts/:postId/comments/:commentId',
   commentController.deleteOne,
 );
 

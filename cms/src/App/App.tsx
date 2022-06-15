@@ -10,6 +10,7 @@ import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import NewPost from '../pages/NewPost';
 import TokenStore from '../context/Token/TokenStore';
+import EditPost from '../pages/EditPost';
 
 function App() {
   return (
@@ -20,10 +21,11 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={<Posts />}></Route>
+              <Route path="author/posts/:postId" element={<Post />} />
               <Route
-                path="author/posts/:postId"
-                element={<Post />}
-              ></Route>
+                path="author/posts/:postId/edit"
+                element={<EditPost />}
+              />
               <Route path="about" element={<About />} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />

@@ -67,6 +67,7 @@ export default function Comments({
 
 const CommentsHeading = styled.h2`
   margin-top: 3rem;
+  margin-bottom: 3.2rem;
   font-size: 2rem;
   font-weight: 700;
 

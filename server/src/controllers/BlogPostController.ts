@@ -94,7 +94,9 @@ const update = (() => {
       const blogPost = new BlogPost({
         title: req.body.title,
         text: req.body.text,
-        datePublished: req.body.shouldPublish ? new Date() : null,
+        datePublished: req.body.shouldPublish
+          ? post.datePublished || new Date()
+          : null,
         author: (req.user as HydratedDocument<IUser>).id,
         _id: req.params.postId,
       });
@@ -120,11 +122,6 @@ const update = (() => {
       .not()
       .isEmpty()
       .withMessage('Text should not be empty. Write something :)'),
-    body('shouldPublish')
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage('But should I publish it or not?'),
   ];
 
   return [...validationChain, ...middlewareChain];

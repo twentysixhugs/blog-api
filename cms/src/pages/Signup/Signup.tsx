@@ -78,7 +78,7 @@ export default function Signup() {
           setInputFields(resetInputFields(inputFields));
         } else if (data.errors) {
           setAuthResult('failure');
-          setServerErrors(data.errors.errors || []);
+          setServerErrors(data.errors);
         }
       })
       .catch((err) => {

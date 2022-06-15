@@ -95,8 +95,7 @@ export default function NewPost() {
         if (data.success) {
           return navigate(`/author/posts/${data.blogPost._id}`);
         } else if (data.errors) {
-          console.log(data.errors);
-          setServerErrors(data.errors.errors);
+          setServerErrors(data.errors);
         } else {
           setError({
             message: 'Something went wrong when creating a post',

@@ -56,7 +56,7 @@ export interface IAuthError {
 
 export interface APIResponse {
   success: boolean;
-  errors?: { errors: IValidationError[] };
+  errors?: IValidationError[];
 }
 
 export interface IPostResponse extends APIResponse {

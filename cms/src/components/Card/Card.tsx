@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import EditPostAction from '../EditPostAction';
+import DeletePostAction from '../DeletePostAction';
 
 interface ICardProps {
   date: string | null;
@@ -31,6 +32,9 @@ export default function Card({
         <ResizedEditPostAction
           contentUrl={contentUrl}
         ></ResizedEditPostAction>
+        <ResizedDeletePostAction
+          contentUrl={contentUrl}
+        ></ResizedDeletePostAction>
       </TitleWrapper>
       <Subtitle>{subtitle}</Subtitle>
       {date ? (
@@ -66,6 +70,11 @@ const Title = styled.h2`
 `;
 
 const ResizedEditPostAction = styled(EditPostAction)`
+  width: 20px;
+  height: 20px;
+`;
+
+const ResizedDeletePostAction = styled(DeletePostAction)`
   width: 20px;
   height: 20px;
 `;

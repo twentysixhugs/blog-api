@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IComment } from '../../types';
 import Comments from '../Comments';
 import EditPostAction from '../EditPostAction';
+import DeletePostAction from '../DeletePostAction';
 
 interface IPostProps {
   author: string;
@@ -27,6 +28,9 @@ export default function Post({
       <TitleWrapper>
         <Title>{title}</Title>
         <ResizedEditPostAction contentUrl={contentUrl} />
+        <ResizedDeletePostAction
+          contentUrl={contentUrl}
+        ></ResizedDeletePostAction>
       </TitleWrapper>
       <DateAuthorWrapper>
         <span>{date ? date + ', ' : 'Not published, '}by </span>
@@ -64,6 +68,11 @@ const Title = styled.h1`
 `;
 
 const ResizedEditPostAction = styled(EditPostAction)`
+  width: 40px;
+  height: 40px;
+`;
+
+const ResizedDeletePostAction = styled(DeletePostAction)`
   width: 40px;
   height: 40px;
 `;

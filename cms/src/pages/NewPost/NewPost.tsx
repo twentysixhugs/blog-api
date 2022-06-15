@@ -52,10 +52,6 @@ export default function NewPost() {
           appearance: none;
           outline: none;
 
-          background: url(${checkMarkSVG});
-        }
-
-        & input[type='checkbox']:checked {
           background: url(${checkMarkSVG}) no-repeat;
           background-position: center;
         }

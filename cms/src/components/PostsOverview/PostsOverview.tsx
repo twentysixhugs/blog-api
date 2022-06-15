@@ -42,7 +42,13 @@ export default function PostsOverview({
               );
             })}
         </PostsWrapper>
-        {pagination}
+        {posts.length > 0 ? (
+          pagination
+        ) : (
+          <EmptyPostsMessage>
+            Hey, do you feel like writing something?
+          </EmptyPostsMessage>
+        )}
       </Wrapper>
     </ThemeProvider>
   );
@@ -92,4 +98,12 @@ const AnimatedCard = styled(Card)`
   animation: ${appear} 1.2s ease-out both;
   animation-delay: ${(props: { animationDelay: number }) =>
     props.animationDelay}s;
+`;
+
+const EmptyPostsMessage = styled.span`
+  margin-top: 1.75rem;
+  font-size: 1.1rem;
+  color: ${(props) => (props.theme.isDark ? 'var(--text--dark)' : '#000')};
+
+  animation: ${appear} 1.2s ease-out both;
 `;

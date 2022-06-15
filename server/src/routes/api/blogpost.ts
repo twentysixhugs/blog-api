@@ -12,6 +12,7 @@ router.get(
   '/author/posts/count',
   blogPostController.getAuthorsOwnTotalCount,
 );
+router.delete('/author/posts/:postId', blogPostController.deleteOne);
 
 /* Single post */
 
@@ -22,8 +23,6 @@ router.get('/author/posts/:postId', blogPostController.getAuthorsOwn);
 router.post('/posts/new', blogPostController.create);
 
 router.put('/posts/:postId', blogPostController.update);
-
-router.delete('/posts/:postId', blogPostController.deleteOne);
 
 /* Comments */
 

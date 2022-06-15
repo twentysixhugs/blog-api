@@ -93,5 +93,6 @@ export interface IInputFields {
     type: string;
     //eslint-disable-next-line
     css?: FlattenInterpolation<ThemeProps<any>>;
+    attributes?: { [name: string]: string | number | boolean };
   };
 }

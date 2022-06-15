@@ -16,6 +16,7 @@ interface IFormFieldProps {
   >;
   //eslint-disable-next-line
   css?: FlattenInterpolation<ThemeProps<any>>;
+  attributes?: { [name: string]: string | number | boolean };
 }
 
 export default function FormField({
@@ -27,6 +28,7 @@ export default function FormField({
   onChange,
   isRequired,
   css,
+  attributes,
 }: IFormFieldProps) {
   return (
     <UserInputWrapper css={css}>
@@ -50,6 +52,7 @@ export default function FormField({
           onChange={onChange}
           type={type}
           autoComplete="off"
+          {...attributes}
         ></Input>
       )}
     </UserInputWrapper>

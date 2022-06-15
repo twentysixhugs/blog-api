@@ -40,6 +40,7 @@ export default function NewPost() {
           height: 40px;
           width: 40px;
           transform: scale(0.75);
+          cursor: pointer;
         }
 
         & input[type='checkbox']:checked {

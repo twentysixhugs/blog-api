@@ -21,8 +21,6 @@ import fetchData from '../../api/fetchData';
 import { useToken } from '../../context/Token/TokenStore';
 
 export default function EditPost() {
-  const [currentPost, setCurrentPost] = useState<null | IPost>();
-
   const [error, setError] = useState<null | { message: string }>(null);
   const [serverErrors, setServerErrors] = useState<IValidationError[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,6 +55,10 @@ export default function EditPost() {
         if (!result.success) return;
 
         const post = result.blogPost;
+
+        if (post) {
+          setIsLoading(false);
+        }
 
         setInputFields({
           title: {
@@ -116,14 +118,10 @@ export default function EditPost() {
   }, [postId, token]);
 
   useEffect(() => {
-    if (currentPost || !token) {
+    if (!token) {
       setIsLoading(false);
     }
-  }, [currentPost, token]);
-
-  useEffect(() => {
-    console.log(Array.isArray(serverErrors));
-  }, [serverErrors]);
+  }, [token]);
 
   const navigate = useNavigate();
 
@@ -170,6 +168,8 @@ export default function EditPost() {
 
   if (!token) {
     return <Navigate to="/login" />;
+  } else if (isLoading) {
+    return <Loader />;
   } else if (error) {
     return <ErrorComponent message={error.message} />;
   } else

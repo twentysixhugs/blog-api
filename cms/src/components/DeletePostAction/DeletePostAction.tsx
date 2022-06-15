@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PostAction from '../PostAction';
+import ContentAction from '../ContentAction';
 import deleteBinLightThemeSVG from '../../globalAssets/delete_bin_light_theme.svg';
 import deleteBinDarkThemeSVG from '../../globalAssets/delete_bin_dark_theme.svg';
 
@@ -13,7 +13,7 @@ export default function DeletePostAction({
   className,
 }: IDeletePostActionProps) {
   return (
-    <PostAction
+    <ContentAction
       contentUrl={contentUrl}
       actionEndpoint="/delete"
       className={className}

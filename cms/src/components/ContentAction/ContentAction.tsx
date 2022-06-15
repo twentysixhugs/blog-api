@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ConfirmationModal from '../ConfirmationModal';
 
-interface IPostActionProps {
+interface IContentActionProps {
   contentUrl: string;
   actionEndpoint: `/${string}`;
   iconDarkTheme?: string;
@@ -12,14 +12,14 @@ interface IPostActionProps {
   confirmationMessage?: string;
 }
 
-export default function PostAction({
+export default function ContentAction({
   contentUrl,
   actionEndpoint,
   iconDarkTheme,
   iconLightTheme,
   className,
   confirmationMessage,
-}: IPostActionProps) {
+}: IContentActionProps) {
   const navigate = useNavigate();
 
   const [shouldConfirm, setShouldConfirm] = useState(false);

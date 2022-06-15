@@ -1,6 +1,6 @@
 import editPencilSVG from '../../globalAssets/edit_pencil.svg';
 import editPencilDarkThemeSVG from '../../globalAssets/edit_pencil_dark_theme.svg';
-import PostAction from '../PostAction';
+import ContentAction from '../ContentAction';
 
 interface IEditPostActionProps {
   contentUrl: string;
@@ -12,7 +12,7 @@ export default function EditPostAction({
   className,
 }: IEditPostActionProps) {
   return (
-    <PostAction
+    <ContentAction
       contentUrl={contentUrl}
       actionEndpoint="/edit"
       className={className}

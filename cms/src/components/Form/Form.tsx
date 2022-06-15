@@ -81,7 +81,8 @@ export default function Form({
   return (
     <StyledForm onSubmit={handleSubmit} className={className}>
       {heading ? <Heading>{heading}</Heading> : ''}
-      {(errors.length > 0 || externalErrors) && (
+      {(errors.length > 0 ||
+        (externalErrors && externalErrors.length > 0)) && (
         <Errors>
           {errors.concat(externalErrors || []).map((err) => (
             <span key={err}>&#8226; {err}</span>

@@ -13,7 +13,13 @@ export default function Header() {
 
   return (
     <StyledHeader>
-      <InvisibleWrapper></InvisibleWrapper>
+      <AnchorLink
+        href="https://blogclient-twentysixhugs.netlify.app"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Go to blog
+      </AnchorLink>
       <Title>
         <Link className="title__link" to="/">
           BLOG API CMS
@@ -53,13 +59,22 @@ const StyledHeader = styled.header`
     theme.isDark ? 'none' : 'rgba(111, 104, 100, 0.2) 0px 7px 29px 0px'};
 `;
 
-const InvisibleWrapper = styled.div`
-  visibility: hidden;
+const AnchorLink = styled.a`
   margin-right: auto;
   flex: 1;
 
-  @media (max-width: 1200px) {
-    display: none;
+  color: ${({ theme }) =>
+    theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.1;
+
+  @media (max-width: 620px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -77,10 +92,10 @@ const Title = styled.h1`
 
   @media (max-width: 800px) {
     font-size: 1.3rem;
-    margin-left: 32px;
+    margin-inline: 32px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 650px) {
     display: none;
   }
 `;
@@ -97,7 +112,7 @@ const Nav = styled.nav`
   font-size: 1.2rem;
 
   @media (max-width: 400px) {
-    gap: 12px;
+    gap: 10px;
   }
 `;
 
@@ -113,7 +128,7 @@ const StyledLink = styled(Link)`
   }
 
   @media (max-width: 400px) {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -130,7 +145,7 @@ const StyledNavLink = styled(NavLink)`
     font-size: 1rem;
   }
   @media (max-width: 400px) {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -152,7 +167,7 @@ const ThemeToggle = styled.button`
 `;
 
 const NewPost = styled(NavLink)`
-  width: max-content;
+  min-width: max-content;
   padding: 0.8rem 0.5rem;
   margin-right: 1.75rem;
   margin-left: 3.75rem;
@@ -176,6 +191,7 @@ const NewPost = styled(NavLink)`
   @media (max-width: 800px) {
     padding: 0;
     margin: 0;
+    margin-inline: 8px;
     background: none;
     color: ${(props) =>
       props.theme.isDark ? 'var(--orange--dark)' : 'var(--orange--light)'};

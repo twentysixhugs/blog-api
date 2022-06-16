@@ -10,7 +10,13 @@ export default function Header() {
 
   return (
     <StyledHeader>
-      <InvisibleWrapper></InvisibleWrapper>
+      <AnchorLink
+        href="https://blogcms-twentysixhugs.netlify.app"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Go to CMS
+      </AnchorLink>
       <Title>
         <Link className="title__link" to="/">
           TWENTY SIX HUGS
@@ -43,16 +49,6 @@ const StyledHeader = styled.header`
   }
 `;
 
-const InvisibleWrapper = styled.div`
-  visibility: hidden;
-  margin-right: auto;
-  flex: 1;
-
-  @media (max-width: 750px) {
-    display: none;
-  }
-`;
-
 const Title = styled.h1`
   display: flex;
   align-items: center;
@@ -67,7 +63,11 @@ const Title = styled.h1`
 
   @media (max-width: 700px) {
     font-size: 1.3rem;
-    margin-left: 32px;
+    margin-inline: 32px;
+  }
+
+  @media (max-width: 620px) {
+    display: none;
   }
 
   @media (max-width: 500px) {
@@ -120,5 +120,24 @@ const ThemeToggle = styled.button`
   @media (max-width: 500px) {
     background-position: center;
     width: calc(var(--header-offset) / 4);
+  }
+`;
+
+const AnchorLink = styled.a`
+  margin-right: auto;
+  flex: 1;
+
+  color: ${({ theme }) =>
+    theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.1;
+
+  @media (max-width: 620px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
   }
 `;

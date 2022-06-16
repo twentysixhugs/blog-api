@@ -7,6 +7,9 @@
     "devstart": "nodemon --config \"./util/nodemon.json\"/",
     "build": "rm -rf ./build/ && tsc"
   },
+  "engines": {
+    "node": "16.15.0"
+  },
   "dependencies": {
     "@twentysixhugs/profanity-filter": "^0.2.5",
     "bcrypt": "^5.0.1",

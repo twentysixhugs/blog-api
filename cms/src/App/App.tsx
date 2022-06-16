@@ -12,6 +12,7 @@ import NewPost from '../pages/NewPost';
 import TokenStore from '../context/Token/TokenStore';
 import EditPost from '../pages/EditPost';
 import DeletePost from '../pages/DeletePost';
+import NotFound from '../pages/NotFound';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="logout" element={<Logout />} />
               <Route path="new" element={<NewPost />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </Theme>

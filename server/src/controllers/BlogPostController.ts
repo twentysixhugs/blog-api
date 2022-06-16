@@ -8,6 +8,7 @@ import BlogPost from '../models/BlogPost';
 import User, { IUser } from '../models/User';
 import { MiddlewareFn, ResponseError } from '../types';
 import { HydratedDocument } from 'mongoose';
+import profanityFilter from '../config/profanity-filter';
 
 const create = (() => {
   const middlewareChain: MiddlewareFn[] = [
@@ -41,12 +42,14 @@ const create = (() => {
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Title should not be empty'),
+      .withMessage('Title should not be empty')
+      .customSanitizer((value) => profanityFilter.clean(value)),
     body('text')
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Text should not be empty. Write something :)'),
+      .withMessage('Text should not be empty. Write something :)')
+      .customSanitizer((value) => profanityFilter.clean(value)),
   ];
 
   return [...validationChain, ...middlewareChain];
@@ -116,12 +119,14 @@ const update = (() => {
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Title should not be empty'),
+      .withMessage('Title should not be empty')
+      .customSanitizer((value) => profanityFilter.clean(value)),
     body('text')
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Text should not be empty. Write something :)'),
+      .withMessage('Text should not be empty. Write something :)')
+      .customSanitizer((value) => profanityFilter.clean(value)),
   ];
 
   return [...validationChain, ...middlewareChain];

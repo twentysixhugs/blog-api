@@ -10,13 +10,15 @@ export default function Header() {
 
   return (
     <StyledHeader>
-      <AnchorLink
-        href="https://blogcms-twentysixhugs.netlify.app"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Go to CMS
-      </AnchorLink>
+      <AnchorLinkWrapper>
+        <AnchorLink
+          href="https://blogcms-twentysixhugs.netlify.app"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Go to CMS
+        </AnchorLink>
+      </AnchorLinkWrapper>
       <Title>
         <Link className="title__link" to="/">
           TWENTY SIX HUGS
@@ -123,10 +125,12 @@ const ThemeToggle = styled.button`
   }
 `;
 
-const AnchorLink = styled.a`
+const AnchorLinkWrapper = styled.div`
   margin-right: auto;
   flex: 1;
+`;
 
+const AnchorLink = styled.a`
   color: ${({ theme }) =>
     theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
   font-weight: 400;

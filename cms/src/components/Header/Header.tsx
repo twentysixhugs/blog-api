@@ -13,13 +13,15 @@ export default function Header() {
 
   return (
     <StyledHeader>
-      <AnchorLink
-        href="https://blogclient-twentysixhugs.netlify.app"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Go to blog
-      </AnchorLink>
+      <AnchorLinkWrapper>
+        <AnchorLink
+          href="https://blogclient-twentysixhugs.netlify.app"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Go to blog
+        </AnchorLink>
+      </AnchorLinkWrapper>
       <Title>
         <Link className="title__link" to="/">
           BLOG API CMS
@@ -37,6 +39,7 @@ export default function Header() {
           <>
             <StyledLink to="/signup">Sign up</StyledLink>
             <StyledLink to="/login">Log in</StyledLink>
+            <StyledNavLink to="/about">About</StyledNavLink>
           </>
         )}
         <ThemeToggle onClick={theme.toggle}></ThemeToggle>
@@ -59,10 +62,12 @@ const StyledHeader = styled.header`
     theme.isDark ? 'none' : 'rgba(111, 104, 100, 0.2) 0px 7px 29px 0px'};
 `;
 
-const AnchorLink = styled.a`
+const AnchorLinkWrapper = styled.div`
   margin-right: auto;
   flex: 1;
+`;
 
+const AnchorLink = styled.a`
   color: ${({ theme }) =>
     theme.isDark ? 'var(--orange--dark)' : '#3f3f3f'};
   font-weight: 400;

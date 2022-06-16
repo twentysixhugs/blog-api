@@ -11,10 +11,11 @@ export default function About() {
           accessing it. It{"'"}s not the first time I work with REST API,
           but it is the first time I build the API myself. I create the
           blog posts using this CMS, store them on the backend made with
-          Express & MongoDB and make available in the blog app. You can
-          browse through the posts page by page, open one, leave a comment
-          and see what others think about it. You can find a link to the
-          main client app on GitHub.
+          Express & MongoDB and make available in the blog app. Using this
+          CMS, you can sign up and create, edit and update posts, view the
+          published and unpublished ones page by page and manage comments.
+          You can find a link to the blog app on GitHub and in this app
+          {"'"}s header.
         </Description>
         <Links></Links>
       </Content>

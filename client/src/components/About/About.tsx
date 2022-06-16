@@ -13,7 +13,8 @@ export default function About() {
           blog posts using CMS, store them on the backend made with Express
           & MongoDB and make available here. You can browse through the
           posts page by page, open one, leave a comment and see what others
-          think about it.
+          think about it. You can find a link to the CMS on GitHub and in
+          this app{"'"}s header.
         </Description>
         <Links></Links>
       </Content>

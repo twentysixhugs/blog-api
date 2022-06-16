@@ -11,6 +11,7 @@ import * as bcrypt from 'bcrypt';
 
 import User, { IUser } from '../models/User';
 import { HydratedDocument } from 'mongoose';
+import { randomUUID } from 'crypto';
 
 const signup = (() => {
   const validationChain: ValidationChain[] = [
@@ -22,6 +23,15 @@ const signup = (() => {
       .bail()
       .isAlphanumeric()
       .withMessage('Username can contain only letters and numbers')
+      .customSanitizer(async (value: string) => {
+        // It's pretty much enough to replace these two here.
+        // Non-latin letters are filtered anyway
+        // It may confuse users if it filters
+        // something not so common in their username.
+        // So, I decided not to make it as strong as in blogPost
+        // where I used profanity filter and json with words
+        return value.replace('fuck', '').replace('ass', '');
+      })
       .custom(async (value: string, { req }) => {
         const userCheck = await User.findOne({
           username: req.body.username,

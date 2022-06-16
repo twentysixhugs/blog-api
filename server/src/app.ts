@@ -19,7 +19,15 @@ mongoose.connect(mongodb);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.use(cors());
+var corsOptions = {
+  origin: [
+    'https://blogclient-twentysixhugs.netlify.app/',
+    'https://blogcms-twentysixhugs.netlify.app/login',
+  ],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

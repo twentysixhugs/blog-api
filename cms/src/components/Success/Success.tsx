@@ -42,12 +42,21 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - var(--header-offset));
+
+  @media (max-width: 500px) {
+    padding: 0 20px;
+  }
 `;
 
 const Message = styled.span`
   font-size: 1.4rem;
   color: ${(props) =>
     props.theme.isDark ? 'var(--text--dark)' : '#202020'};
+
+  @media (max-width: 500px) {
+    font-size: 1.1rem;
+    text-align: center;
+  }
 `;
 
 const StyledLink = styled(Link)`

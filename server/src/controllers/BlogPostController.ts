@@ -259,7 +259,7 @@ const getAuthorsOwnPaginated = (() => {
         const blogPosts = await BlogPost.find({
           author: (req.user as HydratedDocument<IUser>)._id,
           datePublished:
-            req.query.type === 'published' ? { $ne: null } : null,
+            req.query.posttype === 'published' ? { $ne: null } : null,
         })
           .limit(perPage)
           .skip(perPage * page)
@@ -296,7 +296,7 @@ const getAuthorsOwnTotalCount = (() => {
         const blogPostsCount = await BlogPost.find({
           author: (req.user as HydratedDocument<IUser>)._id,
           datePublished:
-            req.query.type === 'published' ? { $ne: null } : null,
+            req.query.posttype === 'published' ? { $ne: null } : null,
         }).count();
 
         res.json({ success: true, blogPostsCount });

@@ -30,7 +30,7 @@ export default function Posts() {
     setIsLoading(true);
 
     fetchData<IPostsCountResponse>(
-      `https://warm-falls-56358.herokuapp.com/api/author/posts/count?type=${postsTypeToFetch}`,
+      `https://warm-falls-56358.herokuapp.com/api/posts/count?type=${postsTypeToFetch}`,
       {
         mode: 'cors',
         headers: {

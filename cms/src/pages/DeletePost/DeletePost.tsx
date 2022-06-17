@@ -22,6 +22,7 @@ export default function DeletePost() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        mode: 'cors',
       },
       () => {
         throw new Error('Something went wrong when deleting a post');

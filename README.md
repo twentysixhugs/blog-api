@@ -1,3 +1,7 @@
+# Live preview
+### [Content Management System](https://blogcms-twentysixhugs.netlify.app/)
+### [Blog](https://blogclient-twentysixhugs.netlify.app/)
+
 ### Credits
 
 <a href="https://www.flaticon.com/free-icons/moon" title="moon icons">Moon icons created by Good Ware - Flaticon</a>

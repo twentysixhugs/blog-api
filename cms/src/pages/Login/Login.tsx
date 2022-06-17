@@ -44,7 +44,7 @@ export default function Login() {
     setIsLoading(true);
 
     fetchData<IAuthResponse>(
-      'http://localhost:3000/api/login',
+      'https://warm-falls-56358.herokuapp.com/api/login',
       {
         mode: 'cors',
         method: 'POST',

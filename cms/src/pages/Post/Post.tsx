@@ -32,7 +32,7 @@ export default function Post() {
 
     Promise.all([
       fetchData<IPostResponse>(
-        `http://localhost:3000/api/author/posts/${postId}`,
+        `https://warm-falls-56358.herokuapp.com/api/author/posts/${postId}`,
         {
           mode: 'cors',
           headers: {
@@ -48,7 +48,7 @@ export default function Post() {
         },
       ),
       fetchData<ICommentsResponse>(
-        `http://localhost:3000/api/author/posts/${postId}/comments`,
+        `https://warm-falls-56358.herokuapp.com/api/author/posts/${postId}/comments`,
         {
           mode: 'cors',
           headers: {
@@ -107,7 +107,7 @@ export default function Post() {
   const handleNewComment = async (author: string, text: string) => {
     try {
       const commentCreationResult = await fetchData<ICommentResponse>(
-        `http://localhost:3000/api/posts/${postId}/comments/new`,
+        `https://warm-falls-56358.herokuapp.com/api/posts/${postId}/comments/new`,
         {
           mode: 'cors',
           method: 'POST',
@@ -145,7 +145,7 @@ export default function Post() {
 
   const handleCommentDelete = (id: string) => {
     fetchData<ICommentResponse>(
-      `http://localhost:3000/api/author/posts/${postId}/comments/${id}`,
+      `https://warm-falls-56358.herokuapp.com/api/author/posts/${postId}/comments/${id}`,
       {
         mode: 'cors',
         method: 'DELETE',

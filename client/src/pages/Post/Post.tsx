@@ -25,7 +25,7 @@ export default function Post() {
   useEffect(() => {
     Promise.all([
       fetchData<IPostResponse>(
-        `http://localhost:3000/api/posts/${postId}`,
+        `https://warm-falls-56358.herokuapp.com/api/posts/${postId}`,
         { mode: 'cors' },
         () => {
           throw new Error('Cannot fetch post data');
@@ -35,7 +35,7 @@ export default function Post() {
         },
       ),
       fetchData<ICommentsResponse>(
-        `http://localhost:3000/api/posts/${postId}/comments`,
+        `https://warm-falls-56358.herokuapp.com/api/posts/${postId}/comments`,
         { mode: 'cors' },
         () => {
           throw new Error('Cannot fetch comments data');
@@ -79,7 +79,7 @@ export default function Post() {
   const handleNewComment = async (author: string, text: string) => {
     try {
       const commentCreationResult = await fetchData<ICommentResponse>(
-        `http://localhost:3000/api/posts/${postId}/comments/new`,
+        `https://warm-falls-56358.herokuapp.com/api/posts/${postId}/comments/new`,
         {
           mode: 'cors',
           method: 'POST',

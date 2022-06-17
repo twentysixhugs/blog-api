@@ -36,7 +36,7 @@ export default function EditPost() {
     setIsLoading(true);
 
     fetchData<IPostResponse>(
-      `http://localhost:3000/api/author/posts/${postId}`,
+      `https://warm-falls-56358.herokuapp.com/api/author/posts/${postId}`,
       {
         mode: 'cors',
         headers: {
@@ -127,7 +127,7 @@ export default function EditPost() {
 
   const handleSubmit = () => {
     fetchData<IPostResponse>(
-      `http://localhost:3000/api/posts/${postId}`,
+      `https://warm-falls-56358.herokuapp.com/api/posts/${postId}`,
       {
         mode: 'cors',
         method: 'PUT',

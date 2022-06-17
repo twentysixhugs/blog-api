@@ -70,7 +70,7 @@ export default function NewPost() {
 
   const handleSubmit = () => {
     fetchData<IPostResponse>(
-      'http://localhost:3000/api/posts/new',
+      'https://warm-falls-56358.herokuapp.com/api/posts/new',
       {
         mode: 'cors',
         method: 'POST',

@@ -30,7 +30,7 @@ export default function Posts() {
     setIsLoading(true);
 
     fetchData<IPostsCountResponse>(
-      `http://localhost:3000/api/author/posts/count?type=${postsTypeToFetch}`,
+      `https://warm-falls-56358.herokuapp.com/api/author/posts/count?type=${postsTypeToFetch}`,
       {
         mode: 'cors',
         headers: {
@@ -58,7 +58,7 @@ export default function Posts() {
     if (!token) return;
 
     fetchData<IPostsResponse>(
-      `http://localhost:3000/api/posts/author?perpage=${POSTS_PER_PAGE}&page=${currentPage}&type=${postsTypeToFetch}`,
+      `https://warm-falls-56358.herokuapp.com/api/posts/author?perpage=${POSTS_PER_PAGE}&page=${currentPage}&type=${postsTypeToFetch}`,
       {
         mode: 'cors',
         headers: {

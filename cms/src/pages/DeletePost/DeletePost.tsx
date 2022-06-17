@@ -15,7 +15,7 @@ export default function DeletePost() {
 
   useEffect(() => {
     fetchData<APIResponse>(
-      `http://localhost:3000/api/author/posts/${postId}`,
+      `https://warm-falls-56358.herokuapp.com/api/author/posts/${postId}`,
       {
         method: 'DELETE',
         headers: {

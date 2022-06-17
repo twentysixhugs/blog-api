@@ -50,7 +50,7 @@ export default function Signup() {
     setIsLoading(true);
 
     fetchData<IAuthResponse>(
-      'http://localhost:3000/api/signup',
+      'https://warm-falls-56358.herokuapp.com/api/signup',
       {
         mode: 'cors',
         method: 'POST',

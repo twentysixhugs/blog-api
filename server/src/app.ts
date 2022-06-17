@@ -21,8 +21,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var corsOptions = {
   origin: [
-    'https://blogclient-twentysixhugs.netlify.app/',
-    'https://blogcms-twentysixhugs.netlify.app/login',
+    'https://blogclient-twentysixhugs.netlify.app',
+    'https://blogcms-twentysixhugs.netlify.app',
   ],
   optionsSuccessStatus: 200,
 };
